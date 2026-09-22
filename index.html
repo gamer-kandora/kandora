@@ -2743,6 +2743,14 @@ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 const ADMIN1_URL =
 "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_1_states_provinces.geojson";
 
+/*
+   MAP DATA FALLBACKS
+   Keep the exact same Natural Earth province map, but try a second
+   CDN if the primary raw GitHub request is blocked or unavailable.
+*/
+const ADMIN1_URL_FALLBACK =
+"https://cdn.jsdelivr.net/gh/nvkelso/natural-earth-vector@master/geojson/ne_10m_admin_1_states_provinces.geojson";
+
 
 const map =
 L.map(
@@ -2906,8 +2914,8 @@ function proclamationFeatureMatches(r,f){const c=getCountry(f.properties);if(!pr
 function proclamationRequirementFeatures(r){return provinces.filter(f=>proclamationFeatureMatches(r,f));}
 function proclamationRequirementMet(r){const f=proclamationRequirementFeatures(r);return f.length>0&&f.every(x=>ownerOf(x)===currentCountry);}
 function proclamationIsReady(id){const r=proclamationRules[id];return!!(r&&currentCountry&&currentCountry.toLowerCase()===r.country.toLowerCase()&&!proclamationDone.has(id)&&r.requires.every(proclamationRequirementMet));}
-function openProclamationFocus(){if(!currentCountry){showMessage("CHOOSE A COUNTRY FIRST.");return;}if(!focusDone.has("expansion")){showMessage("COMPLETE NATIONAL EXPANSION FIRST.");return;}renderProclamationFocus();}
-function renderProclamationFocus(){const box=document.getElementById("proclamationFocusContent");if(!box||!currentCountry)return;let h="<div class='proclamationCard'><div class='proclamationTitle'>PROCLAMATION REQUIREMENTS</div>";for(const[id,r]of Object.entries(proclamationRules)){if(r.country.toLowerCase()!==currentCountry.toLowerCase())continue;const ready=proclamationIsReady(id);h+=`<div class='proclamationCard ${ready?"ready":""}'><div class='proclamationTitle'>${escapeText(r.name)}</div><div class='proclamationReq ${ready?"met":"missing"}'>`;for(const q of r.requires){const f=proclamationRequirementFeatures(q),o=f.filter(x=>ownerOf(x)===currentCountry).length,m=f.filter(x=>ownerOf(x)!==currentCountry).map(x=>getProvince(x.properties));h+=`<div><b>${escapeText(q.label)}</b>: ${o}/${f.length} required provinces ${o===f.length&&f.length?"✓":"✕"}</div>`;if(m.length)h+=`<div style='opacity:.8'>Still needed: ${escapeText(m.join(", "))}</div>`;if(!f.length)h+=`<div style='opacity:.8'>No matching provinces found in the map data.</div>`;}h+=`</div>`;h+=proclamationDone.has(id)?`<button class='button' disabled>PROCLAIMED</button>`:`<button class='button gold' ${ready?"":"disabled"} onclick="completeProclamation('${id}')">PROCLAIM</button>`;h+=`</div>`;}h+="</div>";box.innerHTML=h;}
+function openProclamationFocus(){if(!currentCountry){showMessage("CHOOSE A COUNTRY FIRST.");return;}const win=document.getElementById("focusWindow");if(win)win.style.display="block";renderProclamationFocus();}
+function renderProclamationFocus(){const box=document.getElementById("proclamationFocusContent");if(!box||!currentCountry)return;let h="<div class='proclamationCard'><div class='proclamationTitle'>PROCLAMATION GOALS</div><div class='muted' style='margin-bottom:10px'>Conquer the listed territories, take them in the Peace Conference, then return here to proclaim. Finish NATIONAL EXPANSION to unlock proclamation.</div>";for(const[id,r]of Object.entries(proclamationRules)){if(r.country.toLowerCase()!==currentCountry.toLowerCase())continue;const ready=proclamationIsReady(id);h+=`<div class='proclamationCard ${ready?"ready":""}'><div class='proclamationTitle'>${escapeText(r.name)}</div><div class='proclamationReq ${ready?"met":"missing"}'>`;for(const q of r.requires){const f=proclamationRequirementFeatures(q),o=f.filter(x=>ownerOf(x)===currentCountry).length,m=f.filter(x=>ownerOf(x)!==currentCountry).map(x=>getProvince(x.properties));h+=`<div><b>${escapeText(q.label)}</b>: ${o}/${f.length} required provinces ${o===f.length&&f.length?"✓":"✕"}</div>`;if(m.length)h+=`<div style='opacity:.8'>Still needed: ${escapeText(m.join(", "))}</div>`;if(!f.length)h+=`<div style='opacity:.8'>No matching provinces found in the map data.</div>`;}h+=`</div>`;h+=proclamationDone.has(id)?`<button class='button' disabled>PROCLAIMED</button>`:`<button class='button gold' ${ready&&focusDone.has("expansion")?"":"disabled"} onclick="completeProclamation('${id}')">${focusDone.has("expansion")?(ready?"PROCLAIM":"LOCKED — COMPLETE GOALS") : "LOCKED — NATIONAL EXPANSION"}</button>`;h+=`</div>`;}h+="</div>";box.innerHTML=h;}
 function completeProclamation(id){const r=proclamationRules[id];if(!r||!currentCountry)return;if(currentCountry.toLowerCase()!==r.country.toLowerCase()){showMessage("THIS PROCLAMATION BELONGS TO "+r.country.toUpperCase()+".");return;}if(!proclamationIsReady(id)){showMessage("YOU DO NOT CONTROL ALL REQUIRED PROVINCES.");renderProclamationFocus();return;}proclamationDone.add(id);const st=statsFor(currentCountry);st.stability=Math.min(100,st.stability+10);st.military+=100;st.economy+=150;updateStats();showMessage(r.name+" PROCLAIMED!");addWorldNews("<b>🏛️ "+escapeText(r.name)+"</b><br>"+escapeText(currentCountry)+" has fulfilled every territorial requirement.","battle");const el=document.getElementById("focusProclamations");if(el)el.classList.add("done");renderProclamationFocus();}
 
 /* =========================================================
@@ -2916,206 +2924,32 @@ function completeProclamation(id){const r=proclamationRules[id];if(!r||!currentC
 
 let focusDone=new Set();
 let proclamationDone=new Set();
-const empireRequirement=(label,countries)=>({label,countries,all:true});
-
-const empireRule=(name,country,targets)=>({
-    name,
-    country,
-    requires:targets.map(([label,countries])=>empireRequirement(label,countries))
-});
-
-/*
-   Historical proclamations/restorations.
-   The requirements use the modern countries/provinces that exist in
-   KANDORA's map. This keeps the system expandable without changing the map.
-*/
 const proclamationRules={
-
-    japanEmpire: empireRule("PROCLAIM JAPANESE EMPIRE","Japan",[
-        ["KOREA",["South Korea","North Korea"]],
-        ["TAIWAN",["Taiwan"]],
-        ["MANCHURIA",["China"]]
-    ]),
-
-    greaterHungary:{
-        name:"PROCLAIM GREATER HUNGARY",
-        country:"Hungary",
-        requires:[
-            empireRequirement("SLOVAKIA",["Slovakia"]),
-            {label:"TRANSYLVANIA",countries:["Romania"],provinces:["Alba","Arad","Bihor","Brașov","Brasov","Cluj","Covasna","Harghita","Hunedoara","Maramureș","Maramures","Mureș","Mures","Sălaj","Salaj","Sibiu","Satu Mare","Timiș","Timis","Caraș-Severin","Caras-Severin"]},
-            {label:"VOJVODINA",countries:["Serbia"],provinces:["Vojvodina","Autonomous Province of Vojvodina","North Bačka","North Backa","South Bačka","South Backa","West Bačka","West Backa","Srem","South Banat","Central Banat","North Banat"]}
-        ]
-    },
-
-    germanEmpire: empireRule("PROCLAIM GERMAN EMPIRE","Germany",[
-        ["AUSTRIA",["Austria"]],
-        ["CZECH LANDS",["Czechia","Czech Republic"]],
-        ["POLAND",["Poland"]],
-        ["ALSACE-LORRAINE",["France"]]
-    ]),
-
-    austrianEmpire: empireRule("PROCLAIM AUSTRIAN EMPIRE","Austria",[
-        ["HUNGARY",["Hungary"]],
-        ["CZECH LANDS",["Czechia","Czech Republic"]],
-        ["SLOVAKIA",["Slovakia"]],
-        ["CROATIAN LANDS",["Croatia"]],
-        ["SLOVENIA",["Slovenia"]]
-    ]),
-
-    ottomanEmpire: empireRule("PROCLAIM OTTOMAN EMPIRE","Turkey",[
-        ["BALKANS",["Greece","Bulgaria","Serbia","Romania"]],
-        ["LEVANT",["Syria","Lebanon","Israel","Jordan"]],
-        ["MESOPOTAMIA",["Iraq"]],
-        ["EGYPT",["Egypt"]]
-    ]),
-
-    russianEmpire: empireRule("PROCLAIM RUSSIAN EMPIRE","Russia",[
-        ["UKRAINE",["Ukraine"]],
-        ["BELARUS",["Belarus"]],
-        ["BALTICS",["Estonia","Latvia","Lithuania"]],
-        ["POLAND",["Poland"]],
-        ["FINLAND",["Finland"]],
-        ["CAUCASUS",["Georgia","Armenia","Azerbaijan"]],
-        ["CENTRAL ASIA",["Kazakhstan"]]
-    ]),
-
-    britishEmpire: empireRule("PROCLAIM BRITISH EMPIRE","United Kingdom",[
-        ["CANADA",["Canada"]],
-        ["INDIA",["India"]],
-        ["AUSTRALIA",["Australia"]],
-        ["NEW ZEALAND",["New Zealand"]],
-        ["EGYPT",["Egypt"]],
-        ["SOUTH AFRICA",["South Africa"]],
-        ["KENYA",["Kenya"]],
-        ["NIGERIA",["Nigeria"]]
-    ]),
-
-    frenchEmpire: empireRule("PROCLAIM FRENCH COLONIAL EMPIRE","France",[
-        ["ALGERIA",["Algeria"]],
-        ["TUNISIA",["Tunisia"]],
-        ["MOROCCO",["Morocco"]],
-        ["WEST AFRICA",["Senegal","Nigeria"]],
-        ["SYRIA",["Syria"]],        ["VIETNAM",["Vietnam"]]
-    ]),
-
-    spanishEmpire: empireRule("PROCLAIM SPANISH EMPIRE","Spain",[
-        ["MEXICO",["Mexico"]],
-        ["PERU",["Peru"]],
-        ["PHILIPPINES",["Philippines"]],
-        ["CUBA",["Cuba"]],
-        ["CENTRAL AMERICA",["Guatemala","Honduras","El Salvador","Nicaragua","Costa Rica","Panama"]]
-    ]),
-
-    portugueseEmpire: empireRule("PROCLAIM PORTUGUESE EMPIRE","Portugal",[
-        ["BRAZIL",["Brazil"]],
-        ["ANGOLA",["Angola"]],
-        ["MOZAMBIQUE",["Mozambique"]],
-        ["INDIA",["India"]],
-        ["TIMOR",["Indonesia"]]
-    ]),
-
-    dutchEmpire: empireRule("PROCLAIM DUTCH EMPIRE","Netherlands",[
-        ["INDONESIA",["Indonesia"]],
-        ["SURINAME",["Suriname"]],
-        ["CARIBBEAN",["Venezuela","Colombia"]]
-    ]),
-
-    belgianEmpire: empireRule("PROCLAIM BELGIAN COLONIAL EMPIRE","Belgium",[
-        ["CONGO",["Democratic Republic of the Congo"]],
-        ["RWANDA-BURUNDI",["Rwanda","Burundi"]]
-    ]),
-
-    italianEmpire: empireRule("PROCLAIM ITALIAN EMPIRE","Italy",[
-        ["LIBYA",["Libya"]],
-        ["ERITREA",["Eritrea"]],
-        ["ETHIOPIA",["Ethiopia"]],
-        ["SOMALIA",["Somalia"]]
-    ]),
-
-    byzantineEmpire: empireRule("PROCLAIM BYZANTINE EMPIRE","Greece",[
-        ["TURKEY",["Turkey"]],
-        ["BALKANS",["Bulgaria","Serbia"]],
-        ["LEVANT",["Syria","Lebanon","Israel"]],
-        ["EGYPT",["Egypt"]]
-    ]),
-
-    bulgarianEmpire: empireRule("PROCLAIM BULGARIAN EMPIRE","Bulgaria",[
-        ["ROMANIA",["Romania"]],
-        ["SERBIA",["Serbia"]],
-        ["NORTH MACEDONIA",["North Macedonia"]],
-        ["GREECE",["Greece"]]
-    ]),
-
-    serbianEmpire: empireRule("PROCLAIM SERBIAN EMPIRE","Serbia",[
-        ["BOSNIA",["Bosnia and Herzegovina"]],
-        ["MONTENEGRO",["Montenegro"]],
-        ["NORTH MACEDONIA",["North Macedonia"]],
-        ["KOSOVO",["Kosovo"]],
-        ["ALBANIA",["Albania"]],
-        ["GREECE",["Greece"]]
-    ]),
-
-    romanianRealm: empireRule("PROCLAIM GREATER ROMANIA","Romania",[
-        ["MOLDOVA",["Moldova"]],
-        ["TRANSYLVANIA",["Hungary"]],
-        ["BUKOVINA",["Ukraine"]]
-    ]),
-
-    polishLithuanian: empireRule("PROCLAIM POLISH-LITHUANIAN COMMONWEALTH","Poland",[
-        ["LITHUANIA",["Lithuania"]],
-        ["BELARUS",["Belarus"]],
-        ["UKRAINE",["Ukraine"]],
-        ["LATVIA",["Latvia"]]
-    ]),
-
-    mongolEmpire: empireRule("PROCLAIM MONGOL EMPIRE","Mongolia",[
-        ["CHINA",["China"]],
-        ["RUSSIA",["Russia"]],
-        ["KAZAKHSTAN",["Kazakhstan"]],
-        ["CENTRAL ASIA",["Afghanistan","Iran"]]
-    ]),
-
-    persianEmpire: empireRule("PROCLAIM PERSIAN EMPIRE","Iran",[
-        ["IRAQ",["Iraq"]],
-        ["AFGHANISTAN",["Afghanistan"]],
-        ["ARMENIA",["Armenia"]],
-        ["AZERBAIJAN",["Azerbaijan"]],
-        ["GEORGIA",["Georgia"]]
-    ]),
-
-    egyptianEmpire: empireRule("PROCLAIM EGYPTIAN EMPIRE","Egypt",[
-        ["SUDAN",["Sudan"]],
-        ["LIBYA",["Libya"]],
-        ["LEVANT",["Syria","Jordan","Israel"]]
-    ]),
-
-    saudiArabianRealm: empireRule("PROCLAIM ARABIAN EMPIRE","Saudi Arabia",[
-        ["IRAQ",["Iraq"]],
-        ["JORDAN",["Jordan"]],
-        ["SYRIA",["Syria"]],
-        ["YEMEN",["Yemen"]]
-    ]),
-
-    ethiopianEmpire: empireRule("PROCLAIM ETHIOPIAN EMPIRE","Ethiopia",[
-        ["ERITREA",["Eritrea"]],
-        ["SOMALIA",["Somalia"]],
-        ["SUDAN",["Sudan"]]
-    ]),
-
-    indianEmpire: empireRule("PROCLAIM INDIAN EMPIRE","India",[
-        ["PAKISTAN",["Pakistan"]],
-        ["BANGLADESH",["Bangladesh"]],
-        ["NEPAL",["Nepal"]],
-        ["BHUTAN",["Bhutan"]],
-        ["SRI LANKA",["Sri Lanka"]]
-    ]),
-
-    chineseEmpire: empireRule("PROCLAIM CHINESE EMPIRE","China",[
-        ["MONGOLIA",["Mongolia"]],
-        ["KOREA",["North Korea","South Korea"]],
-        ["VIETNAM",["Vietnam"]],
-        ["TAIWAN",["Taiwan"]]
-    ])
+japanEmpire:{name:"PROCLAIM JAPANESE EMPIRE",country:"Japan",requires:[{label:"KOREA",countries:["South Korea","North Korea","Republic of Korea","Democratic People\'s Republic of Korea"],all:true},{label:"TAIWAN",countries:["Taiwan"],all:true},{label:"MANCHURIA",countries:["China","People\'s Republic of China","Republic of China"],provinces:["Liaoning","Jilin","Heilongjiang"]}]},
+greaterHungary:{name:"PROCLAIM GREATER HUNGARY",country:"Hungary",requires:[{label:"SLOVAKIA",countries:["Slovakia"],all:true},{label:"TRANSYLVANIA",countries:["Romania"],provinces:["Alba","Arad","Bihor","Brașov","Brasov","Cluj","Covasna","Harghita","Hunedoara","Maramureș","Maramures","Mureș","Mures","Sălaj","Salaj","Sibiu","Satu Mare","Timiș","Timis","Caraș-Severin","Caras-Severin"]},{label:"VOJVODINA",countries:["Serbia"],provinces:["Vojvodina","Autonomous Province of Vojvodina","North Bačka","North Backa","South Bačka","South Backa","West Bačka","West Backa","Srem","South Banat","Central Banat","North Banat"]}]},
+germanEmpire:{name:"PROCLAIM GERMAN EMPIRE",country:"Germany",requires:[{label:"AUSTRIA",countries:["Austria"],all:true},{label:"CZECH LANDS",countries:["Czechia","Czech Republic"],all:true},{label:"POLAND",countries:["Poland"],all:true},{label:"ALSACE-LORRAINE",countries:["France"],provinces:["Alsace","Moselle","Haut-Rhin","Bas-Rhin"]}]},
+austrianEmpire:{name:"PROCLAIM AUSTRIAN EMPIRE",country:"Austria",requires:[{label:"HUNGARY",countries:["Hungary"],all:true},{label:"CZECH LANDS",countries:["Czechia","Czech Republic"],all:true},{label:"CROATIA",countries:["Croatia"],all:true},{label:"SLOVENIA",countries:["Slovenia"],all:true}]},
+otomanEmpire:{name:"PROCLAIM OTTOMAN EMPIRE",country:"Turkey",requires:[{label:"BALKANS",countries:["Greece","Bulgaria","Serbia","Romania"],all:true},{label:"LEVANT",countries:["Syria","Lebanon","Israel","Jordan"],all:true},{label:"IRAQ",countries:["Iraq"],all:true},{label:"EGYPT",countries:["Egypt"],all:true}]},
+russianEmpire:{name:"PROCLAIM RUSSIAN EMPIRE",country:"Russia",requires:[{label:"EASTERN EUROPE",countries:["Ukraine","Belarus","Estonia","Latvia","Lithuania","Poland","Finland"],all:true},{label:"CAUCASUS",countries:["Georgia","Armenia","Azerbaijan"],all:true},{label:"KAZAKHSTAN",countries:["Kazakhstan"],all:true}]},
+britishEmpire:{name:"PROCLAIM BRITISH EMPIRE",country:"United Kingdom",requires:[{label:"CANADA",countries:["Canada"],all:true},{label:"INDIA",countries:["India"],all:true},{label:"AUSTRALIA",countries:["Australia"],all:true},{label:"NEW ZEALAND",countries:["New Zealand"],all:true},{label:"EGYPT",countries:["Egypt"],all:true},{label:"SOUTH AFRICA",countries:["South Africa"],all:true}]},
+frenchEmpire:{name:"PROCLAIM FRENCH COLONIAL EMPIRE",country:"France",requires:[{label:"NORTH AFRICA",countries:["Algeria","Tunisia","Morocco"],all:true},{label:"WEST AFRICA",countries:["Senegal","Nigeria"],all:true},{label:"SYRIA",countries:["Syria"],all:true},{label:"VIETNAM",countries:["Vietnam"],all:true}]},
+spanishEmpire:{name:"PROCLAIM SPANISH EMPIRE",country:"Spain",requires:[{label:"MEXICO",countries:["Mexico"],all:true},{label:"PERU",countries:["Peru"],all:true},{label:"PHILIPPINES",countries:["Philippines"],all:true},{label:"CUBA",countries:["Cuba"],all:true}]},
+portugueseEmpire:{name:"PROCLAIM PORTUGUESE EMPIRE",country:"Portugal",requires:[{label:"BRAZIL",countries:["Brazil"],all:true},{label:"ANGOLA",countries:["Angola"],all:true},{label:"MOZAMBIQUE",countries:["Mozambique"],all:true},{label:"INDIA",countries:["India"],all:true}]},
+dutchEmpire:{name:"PROCLAIM DUTCH EMPIRE",country:"Netherlands",requires:[{label:"INDONESIA",countries:["Indonesia"],all:true},{label:"SURINAME",countries:["Suriname"],all:true},{label:"CARIBBEAN",countries:["Aruba","Curaçao","Curacao","Sint Maarten"],all:true}]},
+belgianEmpire:{name:"PROCLAIM BELGIAN COLONIAL EMPIRE",country:"Belgium",requires:[{label:"CONGO",countries:["Democratic Republic of the Congo"],all:true},{label:"RWANDA-BURUNDI",countries:["Rwanda","Burundi"],all:true}]},
+italianEmpire:{name:"PROCLAIM ITALIAN EMPIRE",country:"Italy",requires:[{label:"LIBYA",countries:["Libya"],all:true},{label:"ERITREA",countries:["Eritrea"],all:true},{label:"ETHIOPIA",countries:["Ethiopia"],all:true},{label:"SOMALIA",countries:["Somalia"],all:true}]},
+byzantineEmpire:{name:"PROCLAIM BYZANTINE EMPIRE",country:"Greece",requires:[{label:"ANATOLIA",countries:["Turkey"],all:true},{label:"BALKANS",countries:["Bulgaria","Serbia"],all:true},{label:"LEVANT",countries:["Syria","Lebanon","Israel"],all:true},{label:"EGYPT",countries:["Egypt"],all:true}]},
+bulgarianEmpire:{name:"PROCLAIM BULGARIAN EMPIRE",country:"Bulgaria",requires:[{label:"ROMANIA",countries:["Romania"],all:true},{label:"SERBIA",countries:["Serbia"],all:true},{label:"NORTH MACEDONIA",countries:["North Macedonia"],all:true},{label:"GREECE",countries:["Greece"],all:true}]},
+serbianEmpire:{name:"PROCLAIM SERBIAN EMPIRE",country:"Serbia",requires:[{label:"BOSNIA",countries:["Bosnia and Herzegovina"],all:true},{label:"MONTENEGRO",countries:["Montenegro"],all:true},{label:"NORTH MACEDONIA",countries:["North Macedonia"],all:true},{label:"ALBANIA",countries:["Albania"],all:true}]},
+greaterRomania:{name:"PROCLAIM GREATER ROMANIA",country:"Romania",requires:[{label:"MOLDOVA",countries:["Moldova"],all:true},{label:"TRANSYLVANIA",countries:["Hungary"],all:true},{label:"BUKOVINA",countries:["Ukraine"],provinces:["Chernivtsi","Chernivtsi Oblast"]}]},
+polishLithuanian:{name:"RESTORE POLISH-LITHUANIAN COMMONWEALTH",country:"Poland",requires:[{label:"LITHUANIA",countries:["Lithuania"],all:true},{label:"BELARUS",countries:["Belarus"],all:true},{label:"UKRAINE",countries:["Ukraine"],all:true}]},
+mongolEmpire:{name:"PROCLAIM MONGOL EMPIRE",country:"Mongolia",requires:[{label:"CHINA",countries:["China"],all:true},{label:"KAZAKHSTAN",countries:["Kazakhstan"],all:true},{label:"RUSSIA",countries:["Russia"],all:true}]},
+persianEmpire:{name:"PROCLAIM PERSIAN EMPIRE",country:"Iran",requires:[{label:"IRAQ",countries:["Iraq"],all:true},{label:"AFGHANISTAN",countries:["Afghanistan"],all:true},{label:"CAUCASUS",countries:["Armenia","Azerbaijan","Georgia"],all:true}]},
+egyptianEmpire:{name:"PROCLAIM EGYPTIAN EMPIRE",country:"Egypt",requires:[{label:"SUDAN",countries:["Sudan"],all:true},{label:"LIBYA",countries:["Libya"],all:true},{label:"LEVANT",countries:["Syria","Jordan","Israel"],all:true}]},
+arabianEmpire:{name:"PROCLAIM ARABIAN EMPIRE",country:"Saudi Arabia",requires:[{label:"IRAQ",countries:["Iraq"],all:true},{label:"JORDAN",countries:["Jordan"],all:true},{label:"SYRIA",countries:["Syria"],all:true},{label:"YEMEN",countries:["Yemen"],all:true}]},
+ethiopianEmpire:{name:"PROCLAIM ETHIOPIAN EMPIRE",country:"Ethiopia",requires:[{label:"ERITREA",countries:["Eritrea"],all:true},{label:"SOMALIA",countries:["Somalia"],all:true},{label:"SUDAN",countries:["Sudan"],all:true}]},
+indianEmpire:{name:"PROCLAIM INDIAN EMPIRE",country:"India",requires:[{label:"PAKISTAN",countries:["Pakistan"],all:true},{label:"BANGLADESH",countries:["Bangladesh"],all:true},{label:"NEPAL",countries:["Nepal"],all:true},{label:"BHUTAN",countries:["Bhutan"],all:true},{label:"SRI LANKA",countries:["Sri Lanka"],all:true}]},
+chineseEmpire:{name:"PROCLAIM CHINESE EMPIRE",country:"China",requires:[{label:"MONGOLIA",countries:["Mongolia"],all:true},{label:"KOREA",countries:["South Korea","North Korea"],all:true},{label:"VIETNAM",countries:["Vietnam"],all:true},{label:"TAIWAN",countries:["Taiwan"],all:true}]}
 };
 
 let techs={};
@@ -3161,8 +2995,7 @@ const LOGISTICS_REBUILD_TIME=5000;
 
 
 /* =========================================================
-   COLORS
-========================================================= */
+   COLORS========================================================= */
 
 const colors=[
 "#718b9d",
@@ -3994,7 +3827,8 @@ live.classList.add(
 }
 
 
-const window=document.getElementById(
+const window=
+document.getElementById(
 "newsWindow"
 );
 
@@ -4160,8 +3994,7 @@ ${news.text}
 
 
 /* =========================================================
-   SVG
-========================================================= */
+   SVG========================================================= */
 
 function infantrySVG(){
 
@@ -4993,6 +4826,7 @@ id:data[0],
 name:data[1],
 
 country:data[2],
+
 lat:data[3],
 
 lng:data[4],
@@ -5159,7 +4993,6 @@ let cls="cityNormal";
 if(
 city.type==="capital"
 ){
-
 symbol="★";
 
 cls="cityCapital";
@@ -5992,7 +5825,8 @@ other;
 }
 
 
-if(nearest&&
+if(
+nearest&&
 nearestDistance<=18
 ){
 
@@ -6158,8 +5992,7 @@ const line of
 railwayLines
 ){
 
-if(
-line.country!==
+if(line.country!==
 country
 )
 continue;
@@ -6991,7 +6824,8 @@ if(
 token!==
 army.moveToken||
 !army.moving
-)return;
+)
+return;
 
 
 if(
@@ -7157,8 +6991,7 @@ defenders,
 false
 );
 
-}
-else{
+}else{
 
 freeCapture(
 army,
@@ -7990,7 +7823,8 @@ country
 );
 
 
-if(!capital
+if(
+!capital
 )
 return null;
 
@@ -8156,7 +7990,6 @@ return best;
 function findAIProvinceTarget(
 army
 ){
-
 let best=null;
 
 let bestDistance=
@@ -8989,7 +8822,8 @@ country
 
 const reasonable=
 possible.filter(
-other=>statsFor(
+other=>
+statsFor(
 other
 ).military<
 mine.military*
@@ -9155,7 +8989,6 @@ cityOwner(city)===
 country&&
 !city.construction
 );
-
 
 if(
 !owned.length
@@ -9988,7 +9821,8 @@ iconAnchor:[
 })
 
 }
-).addTo(
+)
+.addTo(
 map
 );
 
@@ -10155,7 +9989,6 @@ attackerPower,
 
 defender:
 defenderPower,
-
 defenderMax:
 defenderPower,
 
@@ -10987,7 +10820,8 @@ updateCounts();
 
 
 showMessage(
-country+" HAS SURRENDERED!"
+country+
+" HAS SURRENDERED!"
 );
 
 if(currentCountry && isWar(currentCountry,country)){
@@ -11153,8 +10987,7 @@ function drawCurrentFront(){
 
 if(
 !currentFront||
-currentFront.points.length<2
-)
+currentFront.points.length<2)
 return;
 
 
@@ -11986,6 +11819,7 @@ toggleWar(
 '${escapeText(country)}'
 )
 ">
+
 DECLARE WAR
 
 </button>
@@ -12153,7 +11987,6 @@ country
 
 }
 else{
-
 if(
 areAllies(
 currentCountry,
@@ -12986,6 +12819,7 @@ showMessage(
 );
 
 return;
+
 }
 
 
@@ -13152,7 +12986,6 @@ return;
 
 
 renderRecruitment();
-
 
 document.getElementById(
 "recruitWindow"
@@ -13984,7 +13817,8 @@ function airTick(){
    if(target&&airMissionAvailable(wing,target.feature)){wing.targetProvince=target.feature;wing.mission=wing.type==='fighter'?'AIR SUPERIORITY':'CLOSE AIR SUPPORT';}
   }
   if(!wing.targetProvince||wing.mission==='NONE')continue;
-  const c=provinceCenters.get(wing.targetProvince),b=cities.find(x=>x.id===wing.baseId);  if(!c||!b||map.distance([b.lat,b.lng],c)>1100000){wing.mission='NONE';continue;}
+  const c=provinceCenters.get(wing.targetProvince),b=cities.find(x=>x.id===wing.baseId);
+  if(!c||!b||map.distance([b.lat,b.lng],c)>1100000){wing.mission='NONE';continue;}
   if(wing.type==='fighter'){
    for(const enemy of enemyAirWings(wing)){
     const own=Math.max(1,Math.floor(2+Math.random()*4));
@@ -14150,8 +13984,7 @@ decisions;
 
 const box=
 document.getElementById(
-"governmentContent"
-);
+"governmentContent");
 
 
 box.innerHTML=`
@@ -14983,7 +14816,8 @@ selectedProvince.country
 )
 ){
 
-showMessage("Declare war first."
+showMessage(
+"Declare war first."
 );
 
 return;
@@ -15051,206 +14885,122 @@ target
    MAP LOAD
 ========================================================= */
 
-fetch(
-ADMIN1_URL
-)
+function loadAdmin1Map(url, fallbackUrl){
 
-.then(
-response=>{
+return fetch(url,{cache:"no-store"})
+.then(response=>{
 
-if(
-!response.ok
-){
-
-throw new Error(
-"Map failed to load"
-);
-
-}
-
+if(!response.ok) throw new Error("Map HTTP " + response.status);
 
 return response.json();
 
+})
+.catch(error=>{
+
+console.warn("KANDORA map source failed:",url,error);
+
+if(!fallbackUrl || url===fallbackUrl) throw error;
+
+showMessage("RETRYING WORLD MAP...");
+
+return fetch(fallbackUrl,{cache:"no-store"})
+.then(response=>{
+
+if(!response.ok) throw new Error("Fallback map HTTP " + response.status);
+
+return response.json();
+
+});
+
+});
+
 }
-)
+
+loadAdmin1Map(ADMIN1_URL,ADMIN1_URL_FALLBACK)
 
 .then(
 data=>{
 
-provinces=
-data.features;
+provinces=data.features;
 
+for(const feature of data.features){
 
-for(
-const feature of
-data.features
-){
+const country=getCountry(feature.properties);
 
-const country=
-getCountry(
-feature.properties
-);
+statsFor(country);
 
+setOwner(feature,country);
 
-statsFor(
-country
-);
+if(!countryStartingProvinces.has(country)){
+countryStartingProvinces.set(country,[]);
+}
 
-
-setOwner(
-feature,
-country
-);
-
-
-if(
-!countryStartingProvinces.has(
-country
-)
-){
-
-countryStartingProvinces.set(
-country,
-[]
-);
+countryStartingProvinces.get(country).push(feature);
 
 }
 
+/* SAME REAL WORLD MAP — unchanged Natural Earth province data */
+provinceLayer=L.geoJSON(data,{
 
-countryStartingProvinces
-.get(country)
-.push(
-feature
-);
+style:provinceStyle,
 
-}
+onEachFeature:(feature,layer)=>{
 
+layer.bindTooltip(getProvince(feature.properties),{sticky:true});
 
-/*
-   SAME REAL WORLD MAP
-*/
+layer.on("click",event=>{
 
-provinceLayer=
-L.geoJSON(
-data,
-{
-
-style:
-provinceStyle,
-
-onEachFeature:
-(
-feature,
-layer
-)=>{
-
-layer.bindTooltip(
-getProvince(
-feature.properties
-),
-{
-sticky:true
-}
-);
-
-
-layer.on(
-"click",
-event=>{
-
-L.DomEvent
-.stopPropagation(
-event
-);
-
-
-selectProvince(
-feature,
-layer,
-event.latlng
-);
-
-}
-);
-
-}
-
-}
-)
-.addTo(
-map
-);
-
-
-rebuildCaches();
-
-
-setupCapitalProvinces();
-
-
-setupCities();
-
-
-addCapitalStars();
-
-
-initCountrySystems();
-
-
-const countries=
-new Set(
-data.features.map(
-feature=>
-getCountry(
-feature.properties
-)
-)
-);
-
-
-document.getElementById(
-"countryCount"
-).textContent=
-countries.size;
-
-
-document.getElementById(
-"provinceCount"
-).textContent=
-data.features.length;
-
-
-rebuildLogistics();
-
-
-addWorldNews(
-"<b>🌍 WORLD MAP</b><br>"+
-"The world is ready.",
-"battle"
-);
-
-
-showMessage(
-"WORLD MAP LOADED — SELECT A COUNTRY"
-);
-
-}
-)
-
-.catch(
-error=>{
-
-console.error(
-error
-);
-
-
-showMessage(
-"MAP FAILED TO LOAD — CHECK INTERNET"
-);
+L.DomEvent.stopPropagation(event);
+selectProvince(feature,layer,event.latlng);
 
 });
 
+}
+
+}).addTo(map);
+
+/* Make sure Leaflet recalculates the full-screen map size after the
+   page and panels have finished laying out. */
+setTimeout(()=>{
+if(map){
+map.invalidateSize(true);
+map.setView([20,0],1,false);
+}
+},100);
+
+requestAnimationFrame(()=>{
+if(map) map.invalidateSize(true);
+});
+
+rebuildCaches();
+setupCapitalProvinces();
+setupCities();
+addCapitalStars();
+initCountrySystems();
+
+const countries=new Set(data.features.map(feature=>getCountry(feature.properties)));
+
+document.getElementById("countryCount").textContent=countries.size;
+document.getElementById("provinceCount").textContent=data.features.length;
+
+rebuildLogistics();
+addWorldNews("<b>🌍 WORLD MAP</b><br>The world is ready.","battle");
+showMessage("WORLD MAP LOADED — SELECT A COUNTRY");
+
+})
+
+.catch(error=>{
+
+console.error("KANDORA WORLD MAP ERROR:",error);
+showMessage("MAP FAILED TO LOAD — CHECK INTERNET CONNECTION");
+
+/* Leave the map container visible instead of silently failing. */
+const mapEl=document.getElementById("map");
+if(mapEl){
+mapEl.style.background="#71828a";
+}
+
+});
 
 /* =========================================================
    COUNTRY SYSTEM
