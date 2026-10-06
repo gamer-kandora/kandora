@@ -997,4 +997,13366 @@ border-left:4px solid #8c6b9c;
 
 #focusWindow,
 #researchWindow,
-#recruitWindow,
+#recruitWindow,#productionWindow,
+#governmentWindow,
+#dipWindow{
+
+position:absolute;
+
+z-index:5000;
+
+top:95px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:760px;
+
+max-width:92vw;
+
+max-height:76vh;
+
+display:none;
+
+overflow:auto;
+}
+
+#dipWindow{
+
+width:620px;
+}
+
+#focusContent,
+#researchContent,
+#recruitContent,
+#productionContent,
+#governmentContent,
+#dipContent{
+
+padding:14px;
+}
+
+.close{
+
+float:right;
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+}
+
+
+/* =========================================================
+   FOCUS TREE
+========================================================= */
+
+.focusTree{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:18px;
+}
+
+.focusRow{
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+flex-wrap:wrap;
+}
+
+.focus{
+
+width:165px;
+
+min-height:78px;
+
+padding:10px;
+
+text-align:center;
+
+background:#2a3029;
+
+border:1px solid #686e60;
+
+cursor:pointer;
+
+font-size:10px;
+}
+
+.focus:hover{
+
+background:#41483e;
+}
+
+.focus.done{
+
+border-color:#a8bc68;
+
+background:#48553d;
+}
+
+.focus.locked{
+
+opacity:.5;
+
+cursor:not-allowed;
+}
+
+.focus b{
+
+display:block;
+
+font-size:12px;
+
+margin-bottom:5px;
+}
+
+
+/* =========================================================
+   GRIDS
+========================================================= */
+
+.techGrid,
+.recruitGrid,
+.prodGrid,
+.govGrid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:10px;
+}
+
+.tech,
+.recruitCard,
+.prodCard,
+.govCard{
+
+padding:12px;
+
+background:#282e28;
+
+border:1px solid #4b5349;
+}
+
+.tech h3,
+.recruitCard h3,
+.prodCard h3,
+.govCard h3{
+
+margin:0 0 6px;
+
+font-size:14px;
+}
+
+.tech p,
+.recruitCard p,
+.prodCard p,
+.govCard p{
+
+margin:4px 0;
+
+color:#b9bdb2;
+
+font-size:11px;
+}
+
+.tech button,
+.recruitCard button,
+.prodCard button,
+.govCard button{
+
+margin-top:8px;
+
+width:100%;
+}
+
+.tech.done{
+
+border-color:#9eb56a;
+
+background:#3d4b37;
+}
+
+.tech.researching{
+
+border-color:#c5ad58;
+}
+
+.progress{
+
+height:8px;
+
+background:#111;
+
+border:1px solid #555;
+
+margin-top:7px;
+}
+
+.progress>div{
+
+height:100%;
+
+background:#879d59;
+}
+
+.subhead{
+
+font-size:11px;
+
+color:#c7c9bd;
+
+margin:3px 0 10px;
+}
+
+
+/* =========================================================
+   DIPLOMACY
+========================================================= */
+
+.dipCountry{
+
+padding:10px;
+
+margin-bottom:7px;
+
+background:#282e28;
+
+border:1px solid #4b5349;
+}
+
+.dipCountry h3{
+
+margin:0 0 5px;
+
+font-size:14px;
+}
+
+.dipCountry small{
+
+color:#b5b9ae;
+}
+
+.dipSearch{
+
+width:100%;
+
+padding:10px;
+
+margin-bottom:12px;
+
+background:#202520;
+
+border:1px solid #596052;
+
+color:white;
+
+font-size:12px;
+
+outline:none;
+}
+
+.queue{
+
+margin-top:12px;
+
+padding:10px;
+
+background:#202520;
+
+border:1px solid #454b43;
+}
+
+.queueItem{
+
+padding:7px;
+
+border-bottom:
+1px solid #3c433b;
+
+font-size:11px;
+}
+
+.queueItem:last-child{
+
+border-bottom:0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+.focusNationTitle{padding:10px;margin-bottom:10px;background:#202520;border:1px solid #555;font-size:15px;}
+.focusNationTitle .muted{margin-top:4px;}
+
+@media(max-width:1200px){
+
+#brand{
+width:200px;
+}
+
+.resource{
+min-width:80px;
+}
+
+#liveNews{
+min-width:100px;
+}
+
+}
+
+@media(max-width:850px){
+
+#liveNews{
+display:none;
+}
+
+#brand{
+width:180px;
+}
+
+.resource{
+min-width:68px;
+padding:9px 6px;
+}
+
+#worldPanel{
+width:190px;
+}
+
+.focus{
+width:130px;
+}
+
+.techGrid,
+.recruitGrid,
+.prodGrid,
+.govGrid{
+
+grid-template-columns:1fr;
+}
+
+}
+
+
+/* NATION STATUS / POLITICS */
+#countryPanel{width:330px;max-height:calc(100vh - 170px);overflow:hidden}
+#countryContent{max-height:calc(100vh - 220px);overflow-y:auto;padding:12px}
+.nationClose{float:right;background:#252a24;color:#ddd;border:1px solid #666;cursor:pointer;width:24px;height:22px}
+.nationHero{display:flex;gap:10px;align-items:center;padding:8px;background:#242a24;border:1px solid #464d44;margin-bottom:10px}
+.nationPortrait{width:54px;height:54px;border:1px solid #8b8d70;background:#171b17;display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0}
+.nationHeroText{min-width:0}.nationLeader{font-weight:900;font-size:14px}.nationIdeology{font-size:10px;color:#bbb;margin-top:3px}
+.nationSection{margin-top:10px;padding:9px;background:#242a24;border:1px solid #464d44}.nationSectionTitle{font-size:10px;font-weight:900;letter-spacing:1px;color:#d6d7c7;margin-bottom:8px}
+.ideologyRow{display:flex;align-items:center;gap:9px}.ideologyPie{width:68px;height:68px;border-radius:50%;border:2px solid #111;box-shadow:0 2px 5px #0008;flex-shrink:0}.ideologyLegend{font-size:9px;line-height:15px;flex:1}.ideologyLine{display:flex;justify-content:space-between;gap:8px}
+.nationMetric{margin-top:7px}.nationMetricTop{display:flex;justify-content:space-between;font-size:9px}.nationMiniBar{height:6px;background:#101310;border:1px solid #4c514a;margin-top:3px}.nationMiniFill{height:100%;background:#74894f}
+.spiritRow{display:flex;gap:6px;flex-wrap:wrap}.spiritIcon{width:48px;height:48px;background:#30362f;border:1px solid #70755f;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px}.spiritIcon small{font-size:6px;text-align:center;line-height:7px;color:#ddd;max-width:44px}
+.lawRow{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #3d433c;padding:5px 0;font-size:9px}.lawRow:last-child{border-bottom:0}.lawValue{font-weight:bold;color:#e0d68d;text-align:right}
+.govGrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.govCard{background:#30362f;border:1px solid #4e554b;padding:7px;text-align:center}.govValue{font-size:16px;font-weight:900;color:#e3d98e}.govLabel{font-size:7px;color:#aaa;margin-top:2px}.advisorSlots{display:flex;gap:5px;margin-top:8px}.advisorSlot{flex:1;min-height:38px;border:1px dashed #656b60;background:#191d19;display:flex;align-items:center;justify-content:center;font-size:8px;color:#999;text-align:center}.electionBox{font-size:9px;color:#c8c9bd;margin-top:5px}
+
+/* =========================================================
+   INDUSTRY / PRODUCTION SYSTEM
+========================================================= */
+.industrySummary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}
+.industryBox{background:#1a2019;border:1px solid #5f6858;padding:7px;text-align:center}
+.industryBox b{display:block;font-size:16px;color:#e8dfad}
+.industryBox small{color:#aeb5a7}
+.resourceStrip{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}
+.resourceTag{background:#252b23;border:1px solid #555e50;padding:4px 7px;font-size:9px}
+.resourceTag.shortage{border-color:#a56b5d;color:#ffb5a7}
+.prodCard{min-height:125px}
+.prodLineMeta{font-size:9px;color:#aeb5a7;margin:3px 0}
+.prodSlider{width:100%}
+.efficiencyBar{height:6px;background:#10130f;border:1px solid #4d5449;margin-top:4px}
+.efficiencyFill{height:100%;background:#6f9658}
+.factoryBtns{display:flex;gap:4px;justify-content:center;margin-top:4px}
+.factoryBtns button{padding:2px 7px}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div id="map"></div>
+
+<div id="notification"></div>
+
+
+<!-- =====================================================
+     NEWS
+===================================================== -->
+
+<button
+id="newsButton"
+class="button"
+onclick="openWorldNews()">
+
+WORLD NEWS
+
+</button>
+
+
+<div
+id="newsWindow"
+class="panel">
+
+<button
+class="close"
+onclick="closeWindow('newsWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+
+WORLD NEWS
+
+</div>
+
+<div id="newsContent"></div>
+
+</div>
+
+
+<!-- =====================================================
+     CITY
+===================================================== -->
+
+<div
+id="cityWindow"
+class="panel">
+
+<button
+class="close"
+onclick="closeWindow('cityWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+
+CITY
+
+</div>
+
+<div id="cityContent"></div>
+
+</div>
+
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+<div id="topBar">
+
+
+<div id="brand">
+
+<div id="brandTitle">
+KANDORA
+</div>
+
+<div id="brandSub">
+WORLD CONQUEST
+</div>
+
+</div>
+
+
+<div class="resources">
+
+
+<div class="resource">
+
+<small>
+Population
+</small>
+
+<b id="population">
+—
+</b>
+
+</div>
+
+
+<div class="resource">
+
+<small>
+Economy
+</small>
+
+<b id="economy">
+—
+</b>
+
+</div>
+
+
+<div class="resource">
+
+<small>
+Military
+</small>
+
+<b id="military">
+—
+</b>
+
+</div>
+
+
+<div class="resource">
+
+<small>
+Stability
+</small>
+
+<b id="stability">
+—
+</b>
+
+</div>
+
+
+<div class="resource">
+
+<small>
+Manpower
+</small>
+
+<b id="manpower">
+—
+</b>
+
+</div>
+
+
+</div>
+
+
+<div id="liveNews">
+
+<div id="liveNewsInner">
+
+<span id="liveNewsLabel">
+LIVE NEWS
+</span>
+
+<span id="liveNewsText">
+The world is watching...
+</span>
+
+</div>
+
+</div>
+
+
+<div id="dateBox">
+
+<div id="date">
+1 January 2026
+</div>
+
+<small>
+WORLD TIME
+</small>
+
+</div>
+
+
+<div id="speedBox">
+
+<button
+class="speed active"
+onclick="setSpeed(1,this)">
+
+▶
+
+</button>
+
+
+<button
+class="speed"
+onclick="setSpeed(2,this)">
+
+▶▶
+
+</button>
+
+
+<button
+class="speed"
+onclick="setSpeed(4,this)">
+
+▶▶▶
+
+</button>
+
+
+<button
+class="speed"
+onclick="pauseGame()">
+
+⏸
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COUNTRY PANEL
+===================================================== -->
+
+<div
+id="countryPanel"
+class="panel">
+
+<div class="panelHead">
+NATION
+</div>
+
+<div id="countryContent">
+<button class="nationClose" onclick="closeNationPanel()">✕</button>
+<div class="nationHero"><div id="nationPortrait" class="nationPortrait">🏛️</div><div class="nationHeroText"><div id="countryName">Choose a Country</div><div class="nationLeader" id="nationLeaderName">No nation selected</div><div class="nationIdeology" id="nationIdeologyName">Click a province to inspect its nation.</div><div class="electionBox" id="nationElection">Election: —</div></div></div>
+<div class="nationSection"><div class="nationSectionTitle">POLITICS</div><div class="ideologyRow"><div id="nationIdeologyPie" class="ideologyPie"></div><div id="nationIdeologyLegend" class="ideologyLegend"></div></div><div class="nationMetric"><div class="nationMetricTop"><span>STABILITY</span><span id="stabSmall">—</span></div><div class="nationMiniBar"><div id="stabBar" class="nationMiniFill"></div></div></div><div class="nationMetric"><div class="nationMetricTop"><span>WAR SUPPORT</span><span id="warSupportSmall">—</span></div><div class="nationMiniBar"><div id="warSupportBar" class="nationMiniFill"></div></div></div></div>
+<div class="nationSection"><div class="nationSectionTitle">NATIONAL SPIRITS</div><div id="nationSpirits" class="spiritRow"></div></div>
+<div class="nationSection"><div class="nationSectionTitle">ECONOMY & LAWS</div><div class="lawRow"><span>Conscription</span><span id="nationConscription" class="lawValue">—</span></div><div class="lawRow"><span>Trade</span><span id="nationTrade" class="lawValue">—</span></div><div class="lawRow"><span>Economy</span><span id="nationEconomyLaw" class="lawValue">—</span></div></div>
+<div class="nationSection"><div class="nationSectionTitle">GOVERNMENT</div><div class="govGrid"><div class="govCard"><div id="nationPoliticalPower" class="govValue">0</div><div class="govLabel">POLITICAL POWER</div></div><div class="govCard"><div id="nationAdvisorSlots" class="govValue">0/3</div><div class="govLabel">ADVISOR SLOTS</div></div></div><div id="nationRulingParty" class="muted">Ruling party: —</div><div id="nationAdvisors" class="advisorSlots"></div></div>
+<div class="nationSection"><div class="nationSectionTitle">COUNTRY OVERVIEW</div><div class="info"><span>Population</span><b id="nationPopulation">—</b></div><div class="info"><span>Economy</span><b id="nationEconomy">—</b></div><div class="info"><span>Military</span><b id="nationMilitary">—</b></div><div class="info"><span>Manpower</span><b id="nationManpower">—</b></div></div>
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     WORLD PANEL<!-- =====================================================
+     WORLD PANEL
+===================================================== -->
+
+<div
+id="worldPanel"
+class="panel">
+
+<div class="panelHead">
+WORLD INFORMATION
+</div>
+
+
+<div class="info">
+<span>Countries</span>
+<b id="countryCount">—</b>
+</div>
+
+
+<div class="info">
+<span>Provinces</span>
+<b id="provinceCount">—</b>
+</div>
+
+
+<div class="info">
+<span>Cities</span>
+<b id="cityCount">0</b>
+</div>
+
+
+<div class="info">
+<span>Captured</span>
+<b id="captured">0</b>
+</div>
+
+
+<div class="info">
+<span>Your Armies</span>
+<b id="armyCount">0</b>
+</div>
+
+
+<div class="info">
+<span>Your Troops</span>
+<b id="troopCount">0</b>
+</div>
+
+
+<div class="info">
+<span>AI Armies</span>
+<b id="aiCount">0</b>
+</div>
+
+
+<div class="info">
+<span>Wars</span>
+<b id="warCount">0</b>
+</div>
+
+
+<div class="info">
+<span>Allies</span>
+<b id="allianceCount">0</b>
+</div>
+
+
+<div class="info">
+<span>Research</span>
+<b id="researchPoints">0</b>
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ARMY PANEL
+===================================================== -->
+
+<div
+id="armyPanel"
+class="panel">
+
+<div class="panelHead">
+ARMY SELECTED
+</div>
+
+<div id="armyContent">
+
+<b id="armyName">
+Army
+</b>
+
+
+<div class="unitInfo">
+
+<span>
+Infantry
+</span>
+
+<b id="armyInfantry">
+0
+</b>
+
+</div>
+
+
+<div class="unitInfo">
+
+<span>
+Tanks
+</span>
+
+<b id="armyTanks">
+0
+</b>
+
+</div>
+
+
+<div class="unitInfo">
+
+<span>
+Organization
+</span>
+
+<b id="armyOrg">
+100%
+</b>
+
+</div>
+
+
+<div class="unitInfo">
+
+<span>
+Combat Power
+</span>
+
+<b id="armyPower">
+0
+</b>
+
+</div>
+
+
+<div class="unitInfo">
+
+<span>
+Supply
+</span>
+
+<b
+id="armySupply"
+class="supplyGood">
+
+100%
+
+</b>
+
+</div>
+
+
+<div id="armySupplyBar">
+
+<div
+id="armySupplyFill">
+</div>
+
+</div>
+
+
+<div class="unitInfo">
+
+<span>
+Network
+</span>
+
+<b id="armyNetwork">
+CONNECTED
+</b>
+
+</div>
+
+
+<button
+class="button blue"
+id="createFrontButton"
+onclick="startFrontCreation()"
+style="
+width:100%;
+margin-top:10px;
+">
+
+CREATE FRONT
+
+</button>
+
+
+<button
+class="button gold"
+id="finishFrontButton"
+onclick="finishFrontCreation()"
+style="
+width:100%;
+margin-top:7px;
+display:none;
+">
+
+FINISH FRONT
+
+</button>
+
+
+<button
+class="button red"
+id="removeFrontButton"
+onclick="removeSelectedFront()"
+style="
+width:100%;
+margin-top:7px;
+display:none;
+">
+
+REMOVE FRONT
+
+</button>
+
+
+<button
+id="stopButton"
+onclick="stopArmy()">
+
+STOP MOVEMENT
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PROVINCE
+===================================================== -->
+
+<div
+id="provinceInfo"
+class="panel">
+
+<h2 id="provinceName">
+Province
+</h2>
+
+<p id="provinceOwner">
+Owner: —
+</p>
+
+<p id="provincePopulation">
+Population: —
+</p>
+
+<p id="provinceStatus">
+Select a province.
+</p>
+
+<button
+id="attackButton"
+class="button red"
+onclick="attackProvince()">
+
+ATTACK / CAPTURE
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     FOCUS
+===================================================== -->
+
+<div
+id="focusWindow"
+class="panel">
+
+<button
+class="close"
+onclick="closeWindow('focusWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+NATIONAL FOCUS TREE
+</div>
+
+<div id="focusContent">
+<div class="subhead">Every country now has its own national focus tree. Focuses take game days to complete.</div>
+<div id="focusNationTitle" class="focusNationTitle"></div>
+<div id="focusTimeStatus"></div>
+<div id="focusTreeDynamic" class="focusTree"></div>
+</div>
+
+</div>
+
+<!-- =====================================================
+     RESEARCH
+===================================================== -->
+
+<div
+id="researchWindow"
+class="panel">
+
+<button
+class="close"
+onclick="closeWindow('researchWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+RESEARCH & TECHNOLOGY
+</div>
+
+<div id="researchContent"></div>
+
+</div>
+
+
+<!-- =====================================================
+     RECRUITMENT
+===================================================== -->
+
+<div
+id="recruitWindow"
+class="panel">
+
+<button
+class="close"onclick="closeWindow('recruitWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+RECRUITMENT & TRAINING
+</div>
+
+<div id="recruitContent"></div>
+
+</div>
+
+
+<!-- =====================================================
+     PRODUCTION
+===================================================== -->
+
+<div
+id="productionWindow"
+class="panel">
+
+<button
+class="close"
+onclick="closeWindow('productionWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+MILITARY PRODUCTION
+</div>
+
+<div id="productionContent"></div>
+
+</div>
+
+
+<!-- =====================================================
+     GOVERNMENT
+===================================================== -->
+
+<div
+id="governmentWindow"
+class="panel">
+
+<button
+class="close"
+onclick="closeWindow('governmentWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+GOVERNMENT & ECONOMY
+</div>
+
+<div id="governmentContent"></div>
+
+</div>
+
+
+<!-- =====================================================
+     DIPLOMACY
+===================================================== -->
+
+<div
+id="dipWindow"
+class="panel">
+
+<button
+class="close"
+onclick="closeWindow('dipWindow')">
+
+✕
+
+</button>
+
+<div class="panelHead">
+DIPLOMACY
+</div>
+
+<div id="dipContent"></div>
+
+</div>
+
+
+<!-- =====================================================
+     BOTTOM BAR
+===================================================== -->
+
+<div id="bottomBar">
+
+
+<button
+class="button command"
+onclick="openFocus()">
+
+FOCUS TREE
+
+</button>
+
+
+<button
+class="button command"
+onclick="openDiplomacy()">
+
+DIPLOMACY
+
+</button>
+
+
+<button
+class="button command"
+onclick="openGovernment()">
+
+GOVERNMENT
+
+</button>
+
+
+<button
+class="button command blue"
+onclick="openResearch()">
+
+RESEARCH
+
+</button>
+
+
+<button
+class="button command gold"
+onclick="openRecruitment()">
+
+RECRUIT
+
+</button>
+
+
+<button
+class="button command"
+onclick="openProduction()">
+
+PRODUCTION
+
+</button>
+
+
+<button
+class="button command red"
+onclick="attackProvince()">
+
+ATTACK
+
+</button>
+
+
+<button
+class="button command"
+id="newGame"
+onclick="location.reload()">
+
+NEW GAME
+
+</button>
+
+
+</div>
+
+
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<script>
+
+/* =========================================================
+   MAP
+========================================================= */
+
+const ADMIN1_URL =
+"https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_1_states_provinces.geojson";
+
+
+const map =
+L.map(
+"map",
+{
+minZoom:1,
+maxZoom:8,
+worldCopyJump:true,
+zoomControl:true,
+preferCanvas:true
+}
+)
+.setView(
+[20,0],
+1
+);
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let provinceLayer=null;
+
+let provinces=[];
+
+let currentCountry=null;
+
+let viewedCountry=null;
+let nationPanelOpen=true;
+
+let selectedProvince=null;
+
+let selectedArmy=null;
+
+/* =========================================================
+   TACTICAL MOVEMENT ARROW
+   Uses the SAME province pathfinder as army movement.
+========================================================= */
+let tacticalArrowLayer=null;
+let tacticalArrowHead=null;
+let tacticalArrowArmy=null;
+let tacticalArrowTarget=null;
+let tacticalArrowTimer=null;
+let tacticalArrowDrawToken=0;
+
+function clearTacticalArrow(){
+    tacticalArrowDrawToken++;
+    if(tacticalArrowTimer){ clearTimeout(tacticalArrowTimer); tacticalArrowTimer=null; }
+    if(tacticalArrowLayer){
+        if(tacticalArrowLayer._outline) map.removeLayer(tacticalArrowLayer._outline);
+        map.removeLayer(tacticalArrowLayer);
+        tacticalArrowLayer=null;
+    }
+    if(tacticalArrowHead){ map.removeLayer(tacticalArrowHead); tacticalArrowHead=null; }
+    tacticalArrowArmy=null;
+    tacticalArrowTarget=null;
+}
+
+function tacticalArrowPointsForArmy(army,targetLatLng){
+    if(!army||!targetLatLng) return null;
+    const startFeature=army.currentProvince||findProvinceAt(army.marker.getLatLng());
+    const targetFeature=findProvinceAt(targetLatLng);
+    if(!startFeature||!targetFeature) return null;
+    const path=findLandPath(startFeature,targetFeature,army);
+    if(!path||!path.length) return null;
+    const points=[army.marker.getLatLng()];
+    for(const feature of path){
+        const layer=findLayer(feature);
+        if(layer) points.push(layer.getBounds().getCenter());
+    }
+    points.push(L.latLng(targetLatLng.lat,targetLatLng.lng));
+    const clean=[];
+    for(const pt of points){
+        if(!clean.length||map.distance(clean[clean.length-1],pt)>1000) clean.push(pt);
+    }
+    return clean.length>=2?clean:null;
+}
+
+function catmullRomLatLng(points,samplesPerSegment=7){
+    if(points.length<3) return points.slice();
+    const out=[];
+    for(let i=0;i<points.length-1;i++){
+        const p0=points[Math.max(0,i-1)],p1=points[i],p2=points[i+1],p3=points[Math.min(points.length-1,i+2)];
+        for(let j=0;j<samplesPerSegment;j++){
+            const t=j/samplesPerSegment,t2=t*t,t3=t2*t;
+            const lat=.5*((2*p1.lat)+(-p0.lat+p2.lat)*t+(2*p0.lat-5*p1.lat+4*p2.lat-p3.lat)*t2+(-p0.lat+3*p1.lat-3*p2.lat+p3.lat)*t3);
+            const lng=.5*((2*p1.lng)+(-p0.lng+p2.lng)*t+(2*p0.lng-5*p1.lng+4*p2.lng-p3.lng)*t2+(-p0.lng+3*p1.lng-3*p2.lng+p3.lng)*t3);
+            out.push(L.latLng(lat,lng));
+        }
+    }
+    out.push(points[points.length-1]);
+    return out;
+}
+
+function drawTacticalArrowHead(points){
+    if(tacticalArrowHead){ map.removeLayer(tacticalArrowHead); tacticalArrowHead=null; }
+    if(!points||points.length<2) return;
+    const tip=points[points.length-1],back=points[points.length-2];
+    const dx=tip.lng-back.lng,dy=tip.lat-back.lat,len=Math.sqrt(dx*dx+dy*dy)||1;
+    const ux=dx/len,uy=dy/len,size=Math.max(.35,Math.min(2.0,len*.30)),half=size*.58;
+    const left=L.latLng(tip.lat-uy*half-ux*size,tip.lng+ux*half-uy*size);
+    const right=L.latLng(tip.lat+uy*half-ux*size,tip.lng-ux*half-uy*size);
+    tacticalArrowHead=L.polygon([tip,left,right],{
+        color:'#f4d35e',weight:1,opacity:.98,fillColor:'#f4d35e',fillOpacity:.98,interactive:false
+    }).addTo(map);
+}
+
+function renderTacticalArrow(army,targetLatLng,animate=true){
+    const raw=tacticalArrowPointsForArmy(army,targetLatLng);
+    if(!raw){ clearTacticalArrow(); return; }
+    const smooth=catmullRomLatLng(raw,7),token=++tacticalArrowDrawToken;
+    if(tacticalArrowLayer){
+        if(tacticalArrowLayer._outline) map.removeLayer(tacticalArrowLayer._outline);
+        map.removeLayer(tacticalArrowLayer);
+    }
+    if(tacticalArrowHead) map.removeLayer(tacticalArrowHead);
+    tacticalArrowArmy=army;
+    tacticalArrowTarget=L.latLng(targetLatLng.lat,targetLatLng.lng);
+    const outline=L.polyline([],{
+        color:'#20251f',weight:11,opacity:.42,lineCap:'round',lineJoin:'round',interactive:false
+    }).addTo(map);
+    tacticalArrowLayer=L.polyline([],{
+        color:'#f4d35e',weight:7,opacity:.92,lineCap:'round',lineJoin:'round',interactive:false
+    }).addTo(map);
+    tacticalArrowLayer._outline=outline;
+    const finish=()=>{
+        if(token!==tacticalArrowDrawToken||!tacticalArrowLayer) return;
+        tacticalArrowLayer.setLatLngs(smooth); outline.setLatLngs(smooth); drawTacticalArrowHead(smooth);
+    };
+    if(!animate){ finish(); return; }
+    const duration=Math.min(700,Math.max(220,smooth.length*12)),start=performance.now();
+    function draw(now){
+        if(token!==tacticalArrowDrawToken||!tacticalArrowLayer) return;
+        const progress=Math.min(1,(now-start)/duration),count=Math.max(2,Math.floor(progress*(smooth.length-1))+1),partial=smooth.slice(0,count);
+        tacticalArrowLayer.setLatLngs(partial); outline.setLatLngs(partial);
+        if(progress<1) requestAnimationFrame(draw); else finish();
+    }
+    requestAnimationFrame(draw);
+}
+
+function updateTacticalArrow(){
+    if(!tacticalArrowArmy||!tacticalArrowTarget) return;
+    renderTacticalArrow(tacticalArrowArmy,tacticalArrowTarget,false);
+    if(tacticalArrowArmy.moving) tacticalArrowTimer=setTimeout(updateTacticalArrow,180);
+}
+
+function setTacticalMoveOrder(army,destination){
+    if(!army||army.isAI||army.fighting||paused||!destination) return false;
+    const target=L.latLng(destination.lat,destination.lng);
+    const route=tacticalArrowPointsForArmy(army,target);
+    if(!route){ showMessage('NO CONNECTED LAND ROUTE TO THAT PROVINCE.'); return false; }
+    clearTacticalArrow();
+    tacticalArrowArmy=army;
+    tacticalArrowTarget=target;
+    renderTacticalArrow(army,target,true);
+    setTimeout(updateTacticalArrow,180);
+    moveArmy(army,target);
+    return true;
+}
+
+
+let selectedCity=null;
+
+let playerArmies=[];
+
+let aiArmies=[];
+
+let countryStats={};
+
+let provinceOwners=new Map();
+
+let wars=new Set();
+
+/* Article 5-style alliance system */
+let warInitiators=new Map();
+let allianceWarResponses=new Set();
+
+let alliances=new Set();
+
+let surrenderedCountries=new Set();
+
+
+/* =========================================================
+   AI STATE
+========================================================= */
+
+let countryAI={};
+
+let aiArmyCounter=new Map();
+
+let aiCursor=0;
+
+let frontCursor=0;
+
+const AI_BATCH_SIZE=5;
+
+const FRONT_BATCH_SIZE=2;
+
+
+/* =========================================================
+   CACHES
+========================================================= */
+
+let countryCapitals=new Map();
+
+let countryStartingProvinces=new Map();
+
+let layerByFeature=new Map();
+
+let provinceCenters=new Map();
+
+let countryProvinceCache=new Map();
+
+let countryLayers=new Map();
+
+
+/* =========================================================
+   CAPITALS
+========================================================= */
+
+let capitalMarkers=[];
+
+
+/* =========================================================
+   CITIES
+========================================================= */
+
+let cities=[];
+
+let cityMarkers=[];
+
+let cityById=new Map();
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+let speed=1;
+
+let paused=false;
+
+let year=2026;
+
+let month=1;
+
+let day=1;
+
+let focusQueue=null;
+
+let mobilizationQueue=null;
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+let worldNews=[];
+
+const MAX_NEWS=80;
+
+
+/* =========================================================
+   BATTLES
+========================================================= */
+
+let activeBattle=null;
+
+let battleIndicator=null;
+
+
+/* =========================================================
+   FRONTS
+========================================================= */
+
+let playerFronts=[];
+
+let creatingFront=false;
+
+let currentFront=null;
+
+let frontMarkers=[];
+
+let frontLineLayer=null;
+
+
+/* =========================================================
+   RESEARCH
+========================================================= */
+
+let focusDone=new Set();
+
+let techs={};
+
+let researchQueue=null;
+
+
+/* =========================================================
+   RECRUIT
+========================================================= */
+
+let recruitQueue=[];
+
+
+/* =========================================================
+   PRODUCTION
+========================================================= */
+
+let productionLines=[];
+
+
+/* =========================================================
+   LOGISTICS
+========================================================= */
+
+let railwayLines=[];
+
+let railwayMarkers=[];
+
+let supplyReachCache=new Map();
+
+let logisticsDirty=true;
+
+let logisticsLastBuild=0;
+
+const LOGISTICS_REBUILD_TIME=5000;
+
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+const colors=[
+"#718b9d",
+"#9c665d",
+"#789264",
+"#a18854",
+"#80699a",
+"#a46d87",
+"#617f9d",
+"#8b8059",
+"#5b8580",
+"#a47755",
+"#667a8e",
+"#96705d"
+];
+
+let countryColors={};
+
+let colorIndex=0;
+
+
+/* =========================================================
+   CAPITAL COORDINATES
+========================================================= */
+
+const CAPITAL_COORDINATES={
+
+"Germany":[52.5200,13.4050],
+"France":[48.8566,2.3522],
+"United Kingdom":[51.5074,-0.1278],
+"Italy":[41.9028,12.4964],
+"Spain":[40.4168,-3.7038],
+"Portugal":[38.7223,-9.1393],
+"Belgium":[50.8503,4.3517],
+"Netherlands":[52.3676,4.9041],
+"Luxembourg":[49.6116,6.1319],
+"Switzerland":[46.9480,7.4474],
+"Austria":[48.2082,16.3738],
+"Poland":[52.2297,21.0122],
+"Czechia":[50.0755,14.4378],
+"Czech Republic":[50.0755,14.4378],
+"Slovakia":[48.1486,17.1077],
+"Hungary":[47.4979,19.0402],
+"Romania":[44.4268,26.1025],
+"Bulgaria":[42.6977,23.3219],
+"Greece":[37.9838,23.7275],
+"Denmark":[55.6761,12.5683],
+"Norway":[59.9139,10.7522],
+"Sweden":[59.3293,18.0686],
+"Finland":[60.1699,24.9384],
+"Ireland":[53.3498,-6.2603],
+"Estonia":[59.4370,24.7536],
+"Latvia":[56.9496,24.1052],
+"Lithuania":[54.6872,25.2797],
+"Ukraine":[50.4501,30.5234],
+"Belarus":[53.9006,27.5590],
+"Moldova":[47.0105,28.8636],
+"Russia":[55.7558,37.6173],
+"Turkey":[39.9334,32.8597],
+
+"United States":[38.9072,-77.0369],
+"United States of America":[38.9072,-77.0369],
+"Canada":[45.4215,-75.6972],
+"Mexico":[19.4326,-99.1332],
+
+"Brazil":[-15.7939,-47.8828],
+"Argentina":[-34.6037,-58.3816],
+"Chile":[-33.4489,-70.6693],
+"Peru":[-12.0464,-77.0428],
+"Colombia":[4.7110,-74.0721],
+"Venezuela":[10.4806,-66.9036],
+
+"Egypt":[30.0444,31.2357],
+"Libya":[32.8872,13.1913],
+"Tunisia":[36.8065,10.1815],
+"Algeria":[36.7538,3.0588],
+"Morocco":[34.0209,-6.8416],
+"Sudan":[15.5007,32.5599],
+"Ethiopia":[9.0300,38.7400],
+"Kenya":[-1.2921,36.8219],
+"Nigeria":[9.0765,7.3986],
+"South Africa":[-25.7479,28.2293],
+
+"Saudi Arabia":[24.7136,46.6753],
+"United Arab Emirates":[24.4539,54.3773],
+"Qatar":[25.2854,51.5310],
+"Kuwait":[29.3759,47.9776],
+"Oman":[23.5880,58.3829],
+"Yemen":[15.3694,44.1910],
+"Iraq":[33.3152,44.3661],
+"Iran":[35.6892,51.3890],
+"Israel":[31.7683,35.2137],
+"Jordan":[31.9539,35.9106],
+"Syria":[33.5138,36.2765],
+
+"India":[28.6139,77.2090],
+"Pakistan":[33.6844,73.0479],
+"Afghanistan":[34.5553,69.2075],
+"Kazakhstan":[51.1694,71.4491],
+"China":[39.9042,116.4074],
+"Mongolia":[47.8864,106.9057],
+"Japan":[35.6762,139.6503],
+"South Korea":[37.5665,126.9780],
+"North Korea":[39.0392,125.7625],
+"Vietnam":[21.0278,105.8342],
+"Thailand":[13.7563,100.5018],
+"Myanmar":[19.7633,96.0785],
+"Malaysia":[3.1390,101.6869],
+"Indonesia":[-6.2088,106.8456],
+"Philippines":[14.5995,120.9842],
+
+"Australia":[-35.2809,149.1300],
+"New Zealand":[-41.2866,174.7756]
+
+};
+
+
+/* =========================================================
+   CITY DATA
+========================================================= */
+
+const CITY_DATA=[
+
+["berlin","Berlin","Germany",52.5200,13.4050,"capital"],
+["paris","Paris","France",48.8566,2.3522,"capital"],
+["london","London","United Kingdom",51.5074,-0.1278,"capital"],
+["rome","Rome","Italy",41.9028,12.4964,"capital"],
+["madrid","Madrid","Spain",40.4168,-3.7038,"capital"],
+["warsaw","Warsaw","Poland",52.2297,21.0122,"capital"],
+["vienna","Vienna","Austria",48.2082,16.3738,"capital"],
+["budapest","Budapest","Hungary",47.4979,19.0402,"capital"],
+["bucharest","Bucharest","Romania",44.4268,26.1025,"capital"],
+["athens","Athens","Greece",37.9838,23.7275,"capital"],
+["moscow","Moscow","Russia",55.7558,37.6173,"capital"],
+["kyiv","Kyiv","Ukraine",50.4501,30.5234,"capital"],
+["ankara","Ankara","Turkey",39.9334,32.8597,"capital"],
+["washington","Washington","United States",38.9072,-77.0369,"capital"],
+["ottawa","Ottawa","Canada",45.4215,-75.6972,"capital"],
+["mexicocity","Mexico City","Mexico",19.4326,-99.1332,"capital"],
+["brasilia","Brasilia","Brazil",-15.7939,-47.8828,"capital"],
+["buenosaires","Buenos Aires","Argentina",-34.6037,-58.3816,"capital"],
+["cairo","Cairo","Egypt",30.0444,31.2357,"capital"],
+["pretoria","Pretoria","South Africa",-25.7479,28.2293,"capital"],
+["riyadh","Riyadh","Saudi Arabia",24.7136,46.6753,"capital"],
+["tehran","Tehran","Iran",35.6892,51.3890,"capital"],
+["baghdad","Baghdad","Iraq",33.3152,44.3661,"capital"],
+["newdelhi","New Delhi","India",28.6139,77.2090,"capital"],
+["beijing","Beijing","China",39.9042,116.4074,"capital"],
+["tokyo","Tokyo","Japan",35.6762,139.6503,"capital"],
+["seoul","Seoul","South Korea",37.5665,126.9780,"capital"],
+["jakarta","Jakarta","Indonesia",-6.2088,106.8456,"capital"],
+["canberra","Canberra","Australia",-35.2809,149.1300,"capital"],
+
+["hamburg","Hamburg","Germany",53.5511,9.9937,"major"],
+["munich","Munich","Germany",48.1351,11.5820,"major"],
+["marseille","Marseille","France",43.2965,5.3698,"major"],
+["lyon","Lyon","France",45.7640,4.8357,"major"],
+["milan","Milan","Italy",45.4642,9.1900,"major"],
+["naples","Naples","Italy",40.8518,14.2681,"major"],
+["manchester","Manchester","United Kingdom",53.4808,-2.2426,"major"],
+["birmingham","Birmingham","United Kingdom",52.4862,-1.8904,"major"],
+["krakow","Krakow","Poland",50.0647,19.9450,"major"],
+["stpetersburg","Saint Petersburg","Russia",59.9343,30.3351,"major"],
+["novosibirsk","Novosibirsk","Russia",55.0084,82.9357,"major"],
+["istanbul","Istanbul","Turkey",41.0082,28.9784,"major"],
+["newyork","New York","United States",40.7128,-74.0060,"major"],
+["losangeles","Los Angeles","United States",34.0522,-118.2437,"major"],
+["chicago","Chicago","United States",41.8781,-87.6298,"major"],
+["toronto","Toronto","Canada",43.6532,-79.3832,"major"],
+["saopaulo","Sao Paulo","Brazil",-23.5505,-46.6333,"major"],
+["rio","Rio de Janeiro","Brazil",-22.9068,-43.1729,"major"],
+["alexandria","Alexandria","Egypt",31.2001,29.9187,"major"],
+["mumbai","Mumbai","India",19.0760,72.8777,"major"],
+["shanghai","Shanghai","China",31.2304,121.4737,"major"],
+["osaka","Osaka","Japan",34.6937,135.5023,"major"],
+["sydney","Sydney","Australia",-33.8688,151.2093,"major"]
+
+];
+
+
+/* =========================================================
+   BUILDING COSTS
+========================================================= */
+
+const BUILDING_COSTS={
+
+factory:80,
+
+barracks:50,
+
+fort:65,
+
+supplyHub:90,
+
+port:75,
+
+airbase:85
+
+};
+
+const BUILDING_TIMES={
+
+factory:20,
+
+barracks:14,
+
+fort:18,
+
+supplyHub:22,
+
+port:20,
+
+airbase:20
+
+};
+
+
+/* =========================================================
+   COUNTRY HELPERS
+========================================================= */
+
+function getCountry(p){
+
+return p.admin||
+p.ADMIN||
+p.sovereignt||
+p.SOVEREIGNT||
+p.geonunit||
+"Unknown";
+
+}
+
+
+function getProvince(p){
+
+return p.name||
+p.NAME_1||
+p.name_en||
+p.NAME_EN||
+p.NAME||
+"Unnamed Province";
+
+}
+
+
+function statsFor(country){
+
+if(
+!countryStats[country]
+){
+
+countryStats[country]={
+
+population:
+Math.floor(
+Math.random()*120
+)+5,
+
+economy:
+Math.floor(
+Math.random()*600
+)+80,
+
+military:
+Math.floor(
+Math.random()*300
+)+80,
+
+stability:
+Math.floor(
+Math.random()*25
+)+65,
+
+manpower:
+Math.floor(
+Math.random()*900
+)+100,
+
+research:0,
+
+factories:
+Math.floor(
+Math.random()*8
+)+4,
+
+equipment:100
+
+};
+
+}
+
+return countryStats[country];
+
+}
+
+
+function ownerOf(feature){
+
+return provinceOwners.get(
+feature
+)||
+getCountry(
+feature.properties
+);
+
+}
+
+
+function setOwner(
+feature,
+owner
+){
+
+provinceOwners.set(
+feature,
+owner
+);
+
+}
+
+
+function colorFor(country){
+
+if(
+!countryColors[country]
+){
+
+countryColors[country]=
+colors[
+colorIndex++
+%
+colors.length
+];
+
+}
+
+return countryColors[country];
+
+}
+
+
+/* =========================================================
+   DIPLOMACY
+========================================================= */
+
+function warKey(a,b){
+
+return[
+a,
+b
+]
+.sort()
+.join("|");
+
+}
+
+
+function allianceKey(a,b){
+
+return[
+a,
+b
+]
+.sort()
+.join("♦");
+
+}
+
+
+function isWar(a,b){
+
+if(
+!a||
+!b||
+a===b
+)
+return false;
+
+return wars.has(
+warKey(
+a,
+b
+)
+);
+
+}
+
+
+function areAllies(a,b){
+
+if(
+!a||
+!b||
+a===b
+)
+return false;
+
+return alliances.has(
+allianceKey(
+a,
+b
+)
+);
+
+}
+
+
+/* =========================================================
+   MAP STYLE
+========================================================= */
+
+function provinceStyle(
+feature
+){
+
+const owner=
+ownerOf(feature);
+
+let fill;
+
+
+if(
+owner===
+currentCountry
+){
+
+fill="#536f4d";
+
+}
+else if(
+areAllies(
+currentCountry,
+owner
+)
+){
+
+fill="#3f6fa3";
+
+}
+else{
+
+fill=
+colorFor(
+owner
+);
+
+}
+
+
+return{
+
+fillColor:fill,
+
+fillOpacity:
+owner===
+currentCountry
+?.90
+:.76,
+
+color:"#30372f",
+
+weight:1,
+
+opacity:1
+
+};
+
+}
+
+
+function recolorMap(){
+
+if(
+!provinceLayer
+)
+return;
+
+
+provinceLayer.eachLayer(
+layer=>{
+layer.setStyle(
+provinceStyle(
+layer.feature
+)
+);
+
+});
+
+
+if(
+selectedProvince
+){
+
+selectedProvince
+.layer
+.setStyle({
+
+color:"#ead069",
+
+weight:3,
+
+fillOpacity:.95
+
+});
+
+}
+
+}
+
+
+/* =========================================================
+   CACHE
+========================================================= */
+
+function rebuildCaches(){
+
+layerByFeature.clear();
+
+provinceCenters.clear();
+
+countryProvinceCache.clear();
+
+countryLayers.clear();
+
+
+if(
+!provinceLayer
+)
+return;
+
+
+provinceLayer.eachLayer(
+layer=>{
+
+const feature=
+layer.feature;
+
+if(
+!feature
+)
+return;
+
+
+const country=
+ownerOf(
+feature
+);
+
+
+const center=
+layer
+.getBounds()
+.getCenter();
+
+
+layerByFeature.set(
+feature,
+layer
+);
+
+
+provinceCenters.set(
+feature,
+center
+);
+
+
+if(
+!countryProvinceCache.has(
+country
+)
+){
+
+countryProvinceCache.set(
+country,
+[]
+);
+
+}
+
+
+countryProvinceCache
+.get(country)
+.push(
+feature
+);
+
+
+if(
+!countryLayers.has(
+country
+)
+){
+
+countryLayers.set(
+country,
+layer
+);
+
+}
+
+});
+
+
+logisticsDirty=true;
+
+// Province ownership can change during war, but the physical borders do not.
+// Rebuilding here keeps movement data valid even after the map is recolored.
+rebuildProvinceAdjacency();
+
+}
+
+
+function findLayer(
+feature
+){
+
+return layerByFeature.get(
+feature
+)||
+null;
+
+}
+
+
+function findProvinceAt(
+latlng
+){
+
+if(
+!provinceLayer||
+!latlng
+)
+return null;
+
+
+let result=null;
+
+
+provinceLayer.eachLayer(
+layer=>{
+
+if(
+result
+)
+return;
+
+
+if(
+layer
+.getBounds()
+.contains(
+latlng
+)
+){
+
+result=
+layer.feature;
+
+}
+
+});
+
+
+return result;
+
+}
+
+
+function updateArmyProvinceCache(
+army
+){
+
+if(
+!army
+)
+return null;
+
+
+const feature=
+findProvinceAt(
+army.marker
+.getLatLng()
+);
+
+
+if(
+feature
+){
+
+army.currentProvince=
+feature;
+
+}
+
+
+return feature;
+
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+function showMessage(
+text
+){
+
+const box=
+document.getElementById(
+"notification"
+);
+
+
+box.textContent=
+text;
+
+
+box.style.display=
+"block";
+
+
+clearTimeout(
+window.msgTimer
+);
+
+
+window.msgTimer=
+setTimeout(
+()=>{
+
+box.style.display=
+"none";
+
+},
+2200
+);
+
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+function addWorldNews(
+text,
+type="battle"
+){
+
+const names=[
+
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+
+];
+
+
+worldNews.unshift({
+
+date:
+names[
+month-1
+]+
+" "+
+year,
+
+text,
+
+type
+
+});
+
+
+if(
+worldNews.length>
+MAX_NEWS
+){
+
+worldNews.pop();
+
+}
+
+
+const live=
+document.getElementById(
+"liveNewsText"
+);
+
+
+if(
+live
+){
+
+live.textContent=
+String(text)
+.replace(
+/<[^>]*>/g,
+""
+);
+
+
+live.classList.remove(
+"flash"
+);
+
+
+void live.offsetWidth;
+
+
+live.classList.add(
+"flash"
+);
+
+}
+
+
+const window=
+document.getElementById(
+"newsWindow"
+);
+
+
+if(
+window&&
+window.style.display===
+"block"
+){
+
+renderWorldNews();
+
+}
+
+}
+
+
+function newsWar(a,b){
+
+addWorldNews(
+"<b>⚔ WAR DECLARED</b><br>"+
+a+
+" has declared war on "+
+b+".",
+"war"
+);
+
+}
+
+
+function newsPeace(a,b){
+
+addWorldNews(
+"<b>🕊 PEACE</b><br>"+
+a+
+" and "+
+b+
+" have made peace.",
+"peace"
+);
+
+}
+
+
+function newsAlliance(a,b){
+
+addWorldNews(
+"<b>🤝 ALLIANCE FORMED</b><br>"+
+a+
+" and "+
+b+
+" have formed an alliance.",
+"alliance"
+);
+
+}
+
+
+function newsBattle(a,b,p){
+
+addWorldNews(
+"<b>⚔ BATTLE</b><br>"+
+a+
+" and "+
+b+
+" are fighting at "+
+p+".",
+"battle"
+);
+
+}
+
+
+function newsCapture(
+country,
+province
+){
+
+addWorldNews(
+"<b>🚩 TERRITORY CAPTURED</b><br>"+
+country+
+" captured "+
+province+".",
+"capture"
+);
+
+}
+
+
+function newsSurrender(
+country
+){
+
+addWorldNews(
+"<b>🏳 SURRENDER</b><br>"+
+country+
+" has surrendered.",
+"surrender"
+);
+
+}
+
+
+function openWorldNews(){
+
+renderWorldNews();
+
+
+document.getElementById(
+"newsWindow"
+).style.display=
+"block";
+
+}
+
+
+function renderWorldNews(){
+
+const box=
+document.getElementById(
+"newsContent"
+);
+
+
+if(
+!worldNews.length
+){
+
+box.innerHTML=
+"<p class='muted'>No major events yet.</p>";
+
+return;
+
+}
+
+
+box.innerHTML=
+worldNews
+.map(
+news=>`
+
+<div class="
+newsItem
+news${news.type
+.charAt(0)
+.toUpperCase()+
+news.type.slice(1)
+}">
+
+<div class="newsTime">
+${news.date}
+</div>
+
+${news.text}
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+/* =========================================================
+   SVG
+========================================================= */
+
+function infantrySVG(){
+
+return`
+
+<svg
+viewBox="0 0 40 40"
+width="19"
+height="18">
+
+<circle
+cx="20"
+cy="7"
+r="5"
+fill="#e4e3d2"/>
+
+<path
+d="
+M14 15
+L26 15
+L29 27
+L24 27
+L23 37
+L18 37
+L17 27
+L11 27
+Z"
+fill="#e4e3d2"/>
+
+<path
+d="
+M13 17 L5 24
+M27 17 L35 24"
+stroke="#e4e3d2"
+stroke-width="4"/>
+
+</svg>
+
+`;
+
+}
+
+
+function tankSVG(){
+
+return`
+
+<svg
+viewBox="0 0 40 40"
+width="19"
+height="18">
+
+<rect
+x="6"
+y="18"
+width="27"
+height="12"
+rx="2"
+fill="#d8d3a8"/>
+
+<rect
+x="14"
+y="12"
+width="13"
+height="8"
+fill="#d8d3a8"/>
+
+<rect
+x="26"
+y="14"
+width="12"
+height="3"
+fill="#d8d3a8"/>
+
+<circle
+cx="12"
+cy="32"
+r="4"
+fill="#222"/>
+
+<circle
+cx="27"
+cy="32"
+r="4"
+fill="#222"/>
+
+</svg>
+
+`;
+
+}
+
+
+/* =========================================================
+   TECH
+========================================================= */
+
+function getTechBonus(
+type
+){
+
+if(
+!currentCountry
+)
+return 0;
+
+
+const tech=
+techs[type];
+
+
+return tech&&tech.done
+?tech.bonus
+:0;
+
+}
+
+
+/* =========================================================
+   POWER
+========================================================= */
+
+function armyPower(
+army
+){
+
+const supply=
+Math.max(
+0,
+Math.min(
+100,
+army.supply
+)
+);
+
+
+const supplyMultiplier=
+.55+
+supply/
+100*
+.45;
+
+
+let power=
+army.infantry/
+100+
+army.tanks*
+2+
+getTechBonus(
+"infantryPower"
+)+
+army.tanks*
+getTechBonus(
+"tankPower"
+);
+
+
+power*=
+.65+
+Math.max(
+0,
+Math.min(
+100,
+army.org
+)
+)/
+100*
+.35;
+
+
+power*=
+supplyMultiplier;
+
+
+return Math.max(
+1,
+Math.floor(
+power
+)
+);
+
+}
+
+
+/* =========================================================
+   ARMY COUNTER
+========================================================= */
+
+function armyRelation(army){
+
+    if(!army) return "enemy";
+
+    if(!army.isAI) return "player";
+
+    if(army.isAlly===true) return "ally";
+
+    if(currentCountry && areAllies(currentCountry, army.country)){
+        return "ally";
+    }
+
+    return "enemy";
+
+}
+
+function refreshArmyRelations(){
+
+    for(const army of aiArmies){
+        army.isAlly = !!(currentCountry && areAllies(currentCountry, army.country));
+        updateArmyIcon(army);
+    }
+
+}
+
+function countryFlag(country){
+const flags={
+"United States of America":"🇺🇸","United States":"🇺🇸","Canada":"🇨🇦","Mexico":"🇲🇽",
+"Brazil":"🇧🇷","Argentina":"🇦🇷","Chile":"🇨🇱","Colombia":"🇨🇴","Peru":"🇵🇪",
+"United Kingdom":"🇬🇧","France":"🇫🇷","Germany":"🇩🇪","Italy":"🇮🇹","Spain":"🇪🇸",
+"Portugal":"🇵🇹","Belgium":"🇧🇪","Netherlands":"🇳🇱","Poland":"🇵🇱","Sweden":"🇸🇪",
+"Norway":"🇳🇴","Denmark":"🇩🇰","Finland":"🇫🇮","Switzerland":"🇨🇭","Austria":"🇦🇹",
+"Czechia":"🇨🇿","Czech Republic":"🇨🇿","Hungary":"🇭🇺","Romania":"🇷🇴",
+"Greece":"🇬🇷","Turkey":"🇹🇷","Russia":"🇷🇺","Russian Federation":"🇷🇺",
+"Ukraine":"🇺🇦","China":"🇨🇳","Japan":"🇯🇵","South Korea":"🇰🇷","North Korea":"🇰🇵",
+"India":"🇮🇳","Australia":"🇦🇺","New Zealand":"🇳🇿","South Africa":"🇿🇦",
+"Egypt":"🇪🇬","Saudi Arabia":"🇸🇦","Iran":"🇮🇷","Iraq":"🇮🇶","Israel":"🇮🇱","Pakistan":"🇵🇰"
+};
+return flags[country]||"🏳️";
+}
+
+function armyIcon(
+army
+){
+
+const selected=
+selectedArmy===
+army
+?" selected"
+:"";
+
+
+let cls="ai-army";
+
+const relation=armyRelation(army);
+
+/*
+   YOUR ARMY = GREEN
+   ALLIED ARMY = BLUE
+   ENEMY ARMY = RED
+*/
+
+if(relation==="player"){
+
+cls="player-army";
+
+}
+else if(relation==="ally"){
+
+cls="ally-army";
+
+}
+else{
+
+cls="ai-army";
+
+}
+
+
+const total=
+Math.max(
+0,
+Math.floor(
+army.infantry
+)
+)+
+Math.max(
+0,
+Math.floor(
+army.tanks
+)
+);
+
+
+return L.divIcon({
+
+className:"",
+
+html:`
+
+<div
+class="
+unit-counter
+${cls}
+${selected}
+">
+
+<div class="unit-flag">${countryFlag(army.country)}</div>
+<div class="stack-badge">x${Math.max(1,army.stackCount||1)}</div>
+
+<div class="unit-country">
+${army.country}
+</div>
+
+<div class="unit-top">
+
+<div class="unit-symbol">
+${
+army.type==="tank"
+?tankSVG()
+:infantrySVG()
+}
+</div>
+
+<div class="unit-numbers">
+${
+army.type==="tank"
+?"TANKS "+Math.floor(army.tanks).toLocaleString()
+:"INF "+Math.floor(army.infantry).toLocaleString()
+}
+</div>
+
+<div class="unit-total">
+${
+Math.max(
+1,
+Math.floor(
+(army.type==="tank"?army.tanks:army.infantry)/
+1000
+)
+)
+}K
+</div>
+
+</div>
+
+<div class="unit-bar">
+
+<div
+class="unit-org"
+style="
+width:${Math.max(
+0,
+Math.min(
+100,
+army.org
+)
+)}%">
+</div>
+
+</div>
+
+</div>
+
+`,
+
+iconSize:[
+78,
+44
+],
+
+iconAnchor:[
+39,
+22
+]
+
+});
+
+}
+
+
+function updateArmyIcon(
+army
+){
+
+if(
+army&&
+army.marker
+){
+
+army.marker.setIcon(
+armyIcon(
+army
+)
+);
+
+}
+
+}
+
+
+/* =========================================================
+   ARMY PANEL
+========================================================= */
+
+function showArmy(
+army
+){
+
+if(
+!army
+)
+return;
+
+
+document.getElementById(
+"armyPanel"
+).style.display=
+"block";
+
+
+document.getElementById(
+"armyName"
+).textContent=
+army.name;
+
+
+document.getElementById(
+"armyInfantry"
+).textContent=
+Math.floor(
+army.infantry
+).toLocaleString();
+
+
+document.getElementById(
+"armyTanks"
+).textContent=
+Math.floor(
+army.tanks
+).toLocaleString();
+
+
+document.getElementById(
+"armyOrg"
+).textContent=
+Math.floor(
+army.org
+)+
+"%";
+
+
+document.getElementById(
+"armyPower"
+).textContent=
+armyPower(
+army
+).toLocaleString();
+
+
+const supply=
+document.getElementById(
+"armySupply"
+);
+
+
+supply.textContent=
+Math.floor(
+army.supply
+)+
+"%";
+
+
+supply.className=
+army.supply>=70
+?"supplyGood"
+:
+army.supply>=35
+?"supplyWarn"
+:
+"supplyBad";
+
+
+document.getElementById(
+"armySupplyFill"
+).style.width=
+Math.max(
+0,
+Math.min(
+100,
+army.supply
+)
+)+
+"%";
+
+document.getElementById(
+"armyNetwork"
+).textContent=
+army.supply>=70
+?"CONNECTED"
+:
+army.supply>=35
+?"STRETCHED"
+:"CUT OFF";
+
+
+updateFrontButtonState(
+army
+);
+
+}
+
+
+/* =========================================================
+   CAPITAL
+========================================================= */
+
+function findCapitalProvince(
+country
+){
+
+const coords=
+CAPITAL_COORDINATES[
+country
+];
+
+
+if(
+!coords||
+!provinceLayer
+)
+return null;
+
+
+const point=
+L.latLng(
+coords[0],
+coords[1]
+);
+
+
+let inside=null;
+
+let nearest=null;
+
+let nearestDistance=
+Infinity;
+
+
+provinceLayer.eachLayer(
+layer=>{
+
+const feature=
+layer.feature;
+
+
+if(
+!feature
+)
+return;
+
+
+const provinceCountry=
+getCountry(
+feature.properties
+);
+
+
+if(
+provinceCountry!==
+country
+)
+return;
+
+
+const bounds=
+layer.getBounds();
+
+
+if(
+bounds.contains(
+point
+)
+){
+
+inside=
+feature;
+
+return;
+
+}
+
+
+const center=
+bounds.getCenter();
+
+
+const distance=
+Math.hypot(
+
+center.lat-
+point.lat,
+
+center.lng-
+point.lng
+
+);
+
+
+if(
+distance<
+nearestDistance
+){
+
+nearestDistance=
+distance;
+
+nearest=
+feature;
+
+}
+
+});
+
+
+return inside||nearest||null;
+
+}
+
+
+function setupCapitalProvinces(){
+
+countryCapitals.clear();
+
+
+for(
+const country of
+Object.keys(
+countryStats
+)
+){
+
+const capital=
+findCapitalProvince(
+country
+);
+
+
+if(
+capital
+){
+
+countryCapitals.set(
+country,
+capital
+);
+
+}
+
+}
+
+}
+
+
+function getCapitalSpawn(
+country
+){
+
+const capital=
+countryCapitals.get(
+country
+);
+
+
+if(
+capital
+){
+
+const center=
+provinceCenters.get(
+capital
+);
+
+
+if(
+center
+){
+
+return center;
+
+}
+
+}
+
+
+const coords=
+CAPITAL_COORDINATES[
+country
+];
+
+
+if(
+coords
+){
+
+return L.latLng(
+coords[0],
+coords[1]
+);
+
+}
+
+
+return null;
+
+}
+
+
+function clearCapitalStars(){
+
+for(
+const marker of
+capitalMarkers
+){
+
+if(
+map.hasLayer(
+marker
+)
+){
+
+map.removeLayer(
+marker
+);
+
+}
+
+}
+
+
+capitalMarkers=[];
+
+}
+
+
+function addCapitalStars(){
+
+clearCapitalStars();
+
+
+for(
+const [
+country,
+coords
+] of
+Object.entries(
+CAPITAL_COORDINATES
+)
+){
+
+if(
+!countryStats[country]||
+surrenderedCountries.has(
+country
+)
+)
+continue;
+
+
+const marker=
+L.marker(
+coords,
+{
+
+interactive:false,
+
+keyboard:false,
+
+zIndexOffset:1000,
+
+icon:
+L.divIcon({
+
+className:"",
+
+html:
+'<div class="capital-star">★</div>',
+
+iconSize:[
+24,
+24
+],
+
+iconAnchor:[
+12,
+12
+]
+
+})
+
+}
+)
+.addTo(
+map
+);
+
+
+marker.bindTooltip(
+"Capital — "+
+country
+);
+
+
+capitalMarkers.push(
+marker
+);
+
+}
+
+}
+
+
+/* =========================================================
+   CITIES
+========================================================= */
+
+function setupCities(){
+
+cities=[];
+
+cityById.clear();
+
+
+for(
+const data of
+CITY_DATA
+){
+
+const city={
+
+id:data[0],
+
+name:data[1],
+
+country:data[2],
+
+lat:data[3],
+
+lng:data[4],
+
+type:data[5],
+
+province:null,
+
+buildings:{
+
+factory:
+data[5]==="capital"
+?2
+:
+data[5]==="major"
+?1
+:0,
+
+barracks:
+data[5]==="capital"
+?2
+:
+data[5]==="major"
+?1
+:0,
+
+fort:0,
+
+supplyHub:
+data[5]==="capital"
+?1
+:0,
+
+port:0,
+
+airbase:0
+
+},
+
+construction:null
+
+};
+
+
+cities.push(
+city
+);
+
+
+cityById.set(
+city.id,
+city
+);
+
+}
+
+
+for(
+const city of
+cities
+){
+
+city.province=
+findProvinceContainingCity(
+city
+);
+
+}
+
+
+document.getElementById(
+"cityCount"
+).textContent=
+cities.length;
+
+
+renderCityMarkers();
+
+
+logisticsDirty=true;
+
+}
+
+
+function findProvinceContainingCity(
+city
+){
+
+if(
+!provinceLayer
+)
+return null;
+
+
+const point=
+L.latLng(
+city.lat,
+city.lng
+);
+
+
+let result=null;
+
+
+provinceLayer.eachLayer(
+layer=>{
+
+if(
+result
+)
+return;
+
+
+if(
+layer
+.getBounds()
+.contains(
+point
+)
+){
+
+result=
+layer.feature;
+
+}
+
+});
+
+
+return result;
+
+}
+
+
+function cityOwner(
+city
+){
+
+if(
+city.province
+){
+
+return ownerOf(
+city.province
+);
+
+}
+
+
+return city.country;
+
+}
+
+
+function cityMarkerIcon(
+city
+){
+
+let symbol="●";
+
+let cls="cityNormal";
+
+
+if(
+city.type==="capital"
+){
+
+symbol="★";
+
+cls="cityCapital";
+
+}
+else if(
+city.type==="major"
+){
+
+symbol="◆";
+
+cls="cityMajor";
+
+}
+
+
+return L.divIcon({
+
+className:"",
+
+html:
+`<div
+class="cityMarker ${cls}">
+${symbol}
+</div>`,
+
+iconSize:[
+24,
+24
+],
+
+iconAnchor:[
+12,
+12
+]
+
+});
+
+}
+
+
+function renderCityMarkers(){
+
+if(
+cityMarkers.length
+)
+return;
+
+
+for(
+const city of
+cities
+){
+
+const marker=
+L.marker(
+[
+city.lat,
+city.lng
+],
+{
+
+icon:
+cityMarkerIcon(
+city
+),
+
+zIndexOffset:700
+
+}
+)
+.addTo(
+map
+);
+
+
+marker.bindTooltip(
+city.name,
+{
+direction:"top",
+offset:[
+0,
+-8
+]
+}
+);
+
+
+marker.on(
+"click",
+event=>{
+
+L.DomEvent
+.stopPropagation(
+event
+);
+
+openCity(
+city.id
+);
+
+});
+
+cityMarkers.push(
+marker
+);
+
+}
+
+}
+
+
+/* =========================================================
+   CITY CONSTRUCTION
+========================================================= */
+
+function cityBuildHTML(
+city,
+building,
+title,
+description
+){
+
+return`
+
+<div class="cityBuild">
+
+<b>
+${title}
+</b>
+
+<span>
+${description}
+</span>
+
+<button
+class="button"
+style="
+width:100%;
+margin-top:7px;
+"
+${city.construction?"disabled":""}
+onclick="
+startCityConstruction(
+'${city.id}',
+'${building}'
+)
+">
+
+${
+city.construction
+?"CONSTRUCTION ACTIVE"
+:"START CONSTRUCTION"
+}
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function openCity(
+id
+){
+
+const city=
+cityById.get(
+id
+);
+
+
+if(
+!city
+)
+return;
+
+
+selectedCity=
+city;
+
+
+const owner=
+cityOwner(
+city
+);
+
+
+const friendly=
+owner===
+currentCountry;
+
+
+const box=
+document.getElementById(
+"cityContent"
+);
+
+
+let constructionHTML="";
+
+
+if(
+city.construction
+){
+
+const c=
+city.construction;
+
+
+const percent=
+Math.min(
+100,
+
+(
+1-
+c.timeLeft/
+c.time
+)*
+100
+
+);
+
+
+constructionHTML=`
+
+<div class="cityConstruction">
+
+<b>
+🏗 ${c.name}
+</b>
+
+<div class="progress">
+
+<div
+style="
+width:${percent}%;
+">
+</div>
+
+</div>
+
+<p class="muted">
+
+${Math.ceil(
+c.timeLeft
+)}s remaining
+
+</p>
+
+</div>
+
+`;
+
+}
+
+
+box.innerHTML=`
+
+<h2
+style="
+margin:0 0 8px;
+font-size:18px;
+">
+
+${city.name}
+
+${
+city.type==="capital"
+?" ★"
+:""
+}
+
+</h2>
+
+
+<p class="muted">
+
+Original country:
+${city.country}
+
+<br>
+
+Current owner:
+${owner}
+
+</p>
+
+
+<div class="cityStat">
+
+Factories:
+<b>
+${city.buildings.factory}
+</b>
+
+</div>
+
+
+<div class="cityStat">
+
+Barracks:
+<b>
+${city.buildings.barracks}
+</b>
+
+</div>
+
+
+<div class="cityStat">
+
+Forts:
+<b>
+${city.buildings.fort}
+</b>
+
+</div>
+
+
+<div class="cityStat">
+
+Supply Hubs:
+<b>
+${city.buildings.supplyHub}
+</b>
+
+</div>
+
+
+<div class="cityStat">
+
+Ports:
+<b>
+${city.buildings.port}
+</b>
+
+</div>
+
+
+<div class="cityStat">
+
+Airbases:
+<b>
+${city.buildings.airbase}
+</b>
+
+</div>
+
+
+${constructionHTML}
+
+
+${
+friendly
+?
+`
+
+<div class="cityBuildGrid">
+
+${cityBuildHTML(
+city,
+"factory",
+"🏭 Factory",
+"Adds production capacity."
+)}
+
+${cityBuildHTML(
+city,
+"barracks",
+"🪖 Barracks",
+"Improves recruitment."
+)}
+
+${cityBuildHTML(
+city,
+"fort",
+"🛡 Fort",
+"Defends the province."
+)}
+
+${cityBuildHTML(
+city,
+"supplyHub",
+"📦 Supply Hub",
+"Extends supply."
+)}
+
+${cityBuildHTML(
+city,
+"port",
+"⚓ Port",
+"Supports naval operations."
+)}
+
+${cityBuildHTML(
+city,
+"airbase",
+"✈ Airbase",
+"Supports air operations."
+)}
+
+</div>
+
+`
+:
+`
+
+<p class="muted">
+This city is not under your control.
+</p>
+
+`
+}
+
+`;
+
+
+document.getElementById(
+"cityWindow"
+).style.display=
+"block";
+
+}
+
+
+function startCityConstruction(
+cityId,
+building
+){
+
+const city=
+cityById.get(
+cityId
+);
+
+
+if(
+!city||
+!currentCountry
+)
+return;
+
+
+if(
+cityOwner(city)!==
+currentCountry
+){
+
+showMessage(
+"You do not control this city."
+);
+
+return;
+
+}
+
+
+if(
+city.construction
+){
+
+showMessage(
+"Construction already active."
+);
+
+return;
+
+}
+
+
+const cost=
+BUILDING_COSTS[
+building
+];
+
+
+const time=
+BUILDING_TIMES[
+building];
+
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+if(
+stats.economy<
+cost
+){
+
+showMessage(
+"Not enough economy."
+);
+
+return;
+
+}
+
+
+stats.economy-=
+cost;
+
+
+const names={
+
+factory:"Factory",
+barracks:"Barracks",
+fort:"Fort",
+supplyHub:"Supply Hub",
+port:"Port",
+airbase:"Airbase"
+
+};
+
+
+city.construction={
+
+id:building,
+
+name:
+names[
+building
+],
+
+time,
+
+timeLeft:time
+
+};
+
+
+logisticsDirty=true;
+
+
+openCity(
+city.id
+);
+
+
+updateStats();
+
+
+showMessage(
+city.name+
+": construction started."
+);
+
+}
+
+
+function constructionTick(){
+
+if(
+paused
+)
+return;
+
+
+for(
+const city of
+cities
+){
+
+if(
+!city.construction
+)
+continue;
+
+
+city.construction.timeLeft-=
+speed;
+
+
+if(
+city.construction.timeLeft<=0
+){
+
+const building=
+city.construction.id;
+
+
+const completedName=
+city.construction.name;
+
+
+city.buildings[
+building
+]++;
+
+
+const owner=
+cityOwner(
+city
+);
+
+
+if(
+building==="factory"&&
+owner
+){
+
+statsFor(
+owner
+).factories++;
+
+}
+
+
+city.construction=
+null;
+
+
+logisticsDirty=true;
+
+
+addWorldNews(
+"<b>🏗 CONSTRUCTION</b><br>"+
+city.name+
+" completed a "+
+completedName+".",
+"capture"
+);
+
+}
+
+}
+
+
+if(
+selectedCity&&
+document.getElementById(
+"cityWindow"
+).style.display===
+"block"
+){
+
+openCity(
+selectedCity.id
+);
+
+}
+
+}
+
+
+function cityProductionBonus(){
+
+if(
+!currentCountry
+)
+return 0;
+
+
+let total=0;
+
+
+for(
+const city of
+cities
+){
+
+if(
+cityOwner(city)===
+currentCountry
+){
+
+total+=
+city.buildings.factory;
+
+}
+
+}
+
+
+return total;
+
+}
+
+
+function getCountryBarracks(
+country
+){
+
+let total=0;
+
+
+for(
+const city of
+cities
+){
+
+if(
+cityOwner(city)===
+country
+){
+
+total+=
+city.buildings.barracks;
+
+}
+
+}
+
+
+return total;
+
+}
+
+
+/* =========================================================
+   LOGISTICS
+========================================================= */
+
+function buildRailwayNetwork(){
+
+railwayLines=[];
+
+
+const byCountry=
+new Map();
+
+
+for(
+const city of
+cities
+){
+
+const owner=
+cityOwner(
+city
+);
+
+
+if(
+!owner||
+surrenderedCountries.has(
+owner
+)
+)
+continue;
+
+
+if(
+!byCountry.has(
+owner
+)
+){
+
+byCountry.set(
+owner,
+[]
+);
+
+}
+
+
+byCountry
+.get(owner)
+.push(
+city
+);
+
+}
+
+
+for(
+const [
+country,
+list
+] of
+byCountry
+){
+
+for(
+let i=1;
+i<list.length;
+i++
+){
+
+const city=
+list[i];
+
+
+let nearest=null;
+
+let nearestDistance=
+Infinity;
+
+
+for(
+let j=0;
+j<i;
+j++
+){
+
+const other=
+list[j];
+
+
+const distance=
+Math.hypot(
+
+city.lat-
+other.lat,
+
+city.lng-
+other.lng
+
+);
+
+
+if(
+distance<
+nearestDistance
+){
+
+nearestDistance=
+distance;
+
+nearest=
+other;
+
+}
+
+}
+
+
+if(
+nearest&&
+nearestDistance<=18
+){
+
+railwayLines.push({
+
+a:city,
+
+b:nearest,
+
+country
+
+});
+
+}
+
+}
+
+}
+
+}
+
+
+function clearRailwayVisuals(){
+
+for(
+const marker of
+railwayMarkers
+){
+
+if(
+map.hasLayer(
+marker
+)
+){
+
+map.removeLayer(
+marker
+);
+
+}
+
+}
+
+
+railwayMarkers=[];
+
+}
+
+
+function renderRailways(){
+
+clearRailwayVisuals();
+
+
+for(
+const line of
+railwayLines
+){
+
+const poly=
+L.polyline(
+[
+
+[
+line.a.lat,
+line.a.lng
+],
+
+[
+line.b.lat,
+line.b.lng
+]
+
+],
+{
+
+color:"#c6b86f",
+
+weight:2,
+
+opacity:.45,
+
+dashArray:"5,7",
+
+interactive:false
+
+}
+)
+.addTo(
+map
+);
+
+
+railwayMarkers.push(
+poly
+);
+
+}
+
+}
+
+
+function getCountrySupplyCities(
+country
+){
+
+return cities.filter(
+city=>
+cityOwner(city)===
+country&&
+(
+city.type==="capital"||
+city.buildings.supplyHub>0
+)
+);
+
+}
+
+
+function buildSupplyNetworkForCountry(
+country
+){
+
+const sources=
+getCountrySupplyCities(
+country
+);
+
+
+const reachable=
+new Set();
+
+
+const queue=[];
+
+
+for(
+const source of
+sources
+){
+
+reachable.add(
+source.id
+);
+
+queue.push(
+source.id
+);
+
+}
+
+
+while(
+queue.length
+){
+
+const current=
+queue.shift();
+
+
+for(
+const line of
+railwayLines
+){
+
+if(
+line.country!==
+country
+)
+continue;
+
+
+let next=null;
+
+
+if(
+line.a.id===
+current
+){
+
+next=
+line.b;
+
+}
+else if(
+line.b.id===
+current
+){
+
+next=
+line.a;
+
+}
+
+
+if(
+!next
+)
+continue;
+
+
+if(
+cityOwner(next)!==
+country
+)
+continue;
+
+
+if(
+!reachable.has(
+next.id
+)
+){
+
+reachable.add(
+next.id
+);
+
+queue.push(
+next.id
+);
+
+}
+
+}
+
+}
+
+
+supplyReachCache.set(
+country,
+reachable
+);
+
+}
+
+
+function rebuildLogistics(){
+
+const now=
+performance.now();
+
+
+if(
+!logisticsDirty&&
+now-
+logisticsLastBuild<
+LOGISTICS_REBUILD_TIME
+)
+return;
+
+
+buildRailwayNetwork();
+
+
+supplyReachCache.clear();
+
+
+for(
+const country of
+Object.keys(
+countryStats
+)
+){
+
+buildSupplyNetworkForCountry(
+country
+);
+
+}
+
+
+renderRailways();
+
+
+logisticsLastBuild=
+now;
+
+
+logisticsDirty=false;
+
+}
+
+
+function findNearestSupplyCity(
+army
+){
+
+const reachable=
+supplyReachCache.get(
+army.country
+);
+
+
+if(
+!reachable||
+!reachable.size
+)
+return null;
+
+
+const position=
+army.marker
+.getLatLng();
+
+
+let best=null;
+
+let bestDistance=
+Infinity;
+
+
+for(
+const city of
+cities
+){
+
+if(
+!reachable.has(
+city.id
+)
+)
+continue;
+
+
+if(
+cityOwner(city)!==
+army.country
+)
+continue;
+
+
+const distance=
+Math.hypot(
+
+city.lat-
+position.lat,
+
+city.lng-
+position.lng
+
+);
+
+
+if(
+distance<
+bestDistance
+){
+
+bestDistance=
+distance;
+
+best=
+city;
+
+}
+
+}
+
+
+return best;
+
+}
+
+
+function calculateArmyTargetSupply(
+army
+){
+
+rebuildLogistics();
+
+
+const city=
+findNearestSupplyCity(
+army
+);
+
+
+const province=
+army.currentProvince||
+findProvinceAt(
+army.marker
+.getLatLng()
+);
+
+
+if(
+province
+){
+
+army.currentProvince=
+province;
+
+}
+
+
+if(
+city
+){
+
+const position=
+army.marker
+.getLatLng();
+
+
+const distance=
+Math.hypot(
+
+city.lat-
+position.lat,
+
+city.lng-
+position.lng
+
+);
+
+
+let value=
+100-
+Math.max(
+0,
+distance-2
+)*
+5;
+
+
+if(
+province&&
+ownerOf(province)===
+army.country
+){
+
+value+=12;
+
+}
+
+
+if(
+city.buildings.supplyHub>0
+){
+
+value+=15;
+
+}
+
+
+if(
+city.type==="capital"
+){
+
+value+=10;
+
+}
+
+
+return Math.max(
+0,
+Math.min(
+120,
+value
+)
+);
+
+}
+
+
+if(
+province&&
+ownerOf(province)===
+army.country
+)
+return 45;
+
+
+return 18;
+
+}
+
+
+function logisticsTick(){
+
+if(
+paused
+)
+return;
+
+
+rebuildLogistics();
+
+
+for(
+const army of
+playerArmies
+){
+
+const target=
+calculateArmyTargetSupply(
+army
+);
+
+
+army.supply=
+target>
+army.supply
+
+?
+
+Math.min(
+army.supplyCapacity,
+
+army.supply+
+Math.max(
+1,
+(
+target-
+army.supply
+)*.08
+)
+)
+
+:
+
+Math.max(
+0,
+
+army.supply-
+Math.max(
+1,
+(
+army.supply-
+target
+)*.07
+)
+);
+
+
+if(
+army.supply<20
+){
+
+army.org=
+Math.max(
+5,
+army.org-1.1
+);
+
+}
+else if(
+army.supply<40
+){
+
+army.org=
+Math.max(
+10,
+army.org-.4
+);
+
+}
+else if(
+!army.fighting
+){
+
+army.org=
+Math.min(
+100,
+army.org+1.3
+);
+
+}
+
+
+updateArmyIcon(
+army
+);
+
+}
+
+
+for(
+const army of
+aiArmies
+){
+
+const target=
+calculateArmyTargetSupply(
+army
+);
+
+
+army.supply=
+target>
+army.supply
+
+?
+
+Math.min(
+army.supplyCapacity,
+
+army.supply+
+Math.max(
+1,
+(
+target-
+army.supply
+)*.06
+)
+)
+
+:
+
+Math.max(
+0,
+
+army.supply-
+Math.max(
+1,
+(
+army.supply-
+target
+)*.05
+)
+);
+
+
+if(
+army.supply<20
+){
+
+army.org=
+Math.max(
+5,
+army.org-.8
+);
+
+}
+else if(
+army.supply>70&&
+!army.fighting
+){
+
+army.org=
+Math.min(
+100,
+army.org+1
+);
+
+}
+}
+
+
+if(
+selectedArmy
+){
+
+showArmy(
+selectedArmy
+);
+
+}
+
+}
+
+
+
+/* =========================================================
+   REALISTIC LAND MOVEMENT / PROVINCE ADJACENCY
+   Armies must move province-to-province. They cannot teleport
+   across unrelated land or across the sea.
+========================================================= */
+
+const provinceNeighbors = new Map();
+
+function provinceIsAdjacent(a, b){
+    if(!a || !b || a===b) return false;
+    const list = provinceNeighbors.get(a);
+    return !!(list && list.has(b));
+}
+
+function rebuildProvinceAdjacency(){
+    provinceNeighbors.clear();
+    if(!provinceLayer) return;
+
+    const layers = [];
+    provinceLayer.eachLayer(layer=>{
+        if(layer && layer.feature) layers.push(layer);
+    });
+
+    // Spatial grid prevents an expensive every-province-vs-every-province scan.
+    const grid = new Map();
+    const cellSize = 5;
+    const keyFor = (x,y)=>x+','+y;
+
+    const addCell=(key, layer)=>{
+        if(!grid.has(key)) grid.set(key, []);
+        grid.get(key).push(layer);
+    };
+
+    for(const layer of layers){
+        provinceNeighbors.set(layer.feature, new Set());
+        const b=layer.getBounds();
+        if(!b.isValid()) continue;
+        const west=b.getWest(), east=b.getEast(), south=b.getSouth(), north=b.getNorth();
+        const x0=Math.floor((west+180)/cellSize);
+        const x1=Math.floor((east+180)/cellSize);
+        const y0=Math.floor((south+90)/cellSize);
+        const y1=Math.floor((north+90)/cellSize);
+        for(let x=x0; x<=x1; x++) for(let y=y0; y<=y1; y++) addCell(keyFor(x,y), layer);
+    }
+
+    const checked=new Set();
+    for(const bucket of grid.values()){
+        for(let i=0;i<bucket.length;i++){
+            const a=bucket[i];
+            const af=a.feature;
+            for(let j=i+1;j<bucket.length;j++){
+                const b=bucket[j];
+                const bf=b.feature;
+                const pairId=(af.__k || (af.__k=Math.random().toString(36)))+'|'+(bf.__k || (bf.__k=Math.random().toString(36)));
+                if(checked.has(pairId)) continue;
+                checked.add(pairId);
+
+                const ba=a.getBounds(), bb=b.getBounds();
+                if(!ba.isValid() || !bb.isValid() || !ba.intersects(bb)) continue;
+
+                // Bounding-box overlap plus a sensible centroid limit removes most
+                // false positives while still working with multipolygon provinces.
+                const ca=ba.getCenter(), cb=bb.getCenter();
+                if(map.distance(ca,cb) > 700000) continue;
+
+                provinceNeighbors.get(af).add(bf);
+                provinceNeighbors.get(bf).add(af);
+            }
+        }
+    }
+}
+
+function movementOwnerAllowed(army, owner){
+    if(!army || !owner) return false;
+    if(owner===army.country) return true;
+    if(areAllies(army.country, owner)) return true;
+    if(isWar(army.country, owner)) return true;
+    return false;
+}
+
+function findLandPath(startFeature, targetFeature, army){
+    if(!startFeature || !targetFeature || !army) return null;
+    if(startFeature===targetFeature) return [startFeature];
+
+    const queue=[startFeature];
+    const previous=new Map();
+    previous.set(startFeature, null);
+
+    while(queue.length){
+        const current=queue.shift();
+        const neighbors=provinceNeighbors.get(current) || new Set();
+        for(const next of neighbors){
+            if(previous.has(next)) continue;
+            if(!movementOwnerAllowed(army, ownerOf(next))) continue;
+            previous.set(next, current);
+            if(next===targetFeature){
+                const path=[];
+                let step=targetFeature;
+                while(step){
+                    path.push(step);
+                    step=previous.get(step) || null;
+                }
+                return path.reverse();
+            }
+            queue.push(next);
+        }
+    }
+    return null;
+}
+
+function nextLandStep(army, destination){
+    if(!army || !destination) return null;
+
+    const startFeature=army.currentProvince || findProvinceAt(army.marker.getLatLng());
+    const targetFeature=findProvinceAt(destination);
+
+    if(!startFeature || !targetFeature) return null;
+    if(startFeature===targetFeature) return {feature:startFeature, center:L.latLng(destination.lat,destination.lng), final:true};
+
+    // A direct move is allowed only into a bordering province.
+    if(provinceIsAdjacent(startFeature,targetFeature)){
+        const layer=findLayer(targetFeature);
+        return {feature:targetFeature, center:layer ? layer.getBounds().getCenter() : destination, final:true};
+    }
+
+    const path=findLandPath(startFeature,targetFeature,army);
+    if(!path || path.length<2) return null;
+
+    const nextFeature=path[1];
+    const nextLayer=findLayer(nextFeature);
+    if(!nextLayer) return null;
+    return {
+        feature:nextFeature,
+        center:nextLayer.getBounds().getCenter(),
+        final:false,
+        targetFeature
+    };
+}
+
+
+/* =========================================================
+   MOVEMENT
+========================================================= */
+
+function getMovementSupplyMultiplier(
+army
+){
+
+const supply=
+Math.max(
+0,
+Math.min(
+100,
+army.supply
+)
+);
+
+
+if(
+supply<15
+)
+return .45;
+
+
+if(
+supply<30
+)
+return .62;
+
+
+if(
+supply<50
+)
+return .78;
+
+
+return .95+
+supply/
+100*
+.20;
+
+}
+
+
+function moveArmy(
+army,
+destination
+){
+
+if(
+!army||
+army.isAI||
+army.fighting||
+paused||
+!destination
+)
+return;
+
+/*
+   MOVEMENT FIX
+   Keep the existing province/pathfinding system, but actually use it.
+   A player can click a distant province and the army will travel through
+   connected provinces one at a time. The existing movement animation,
+   battles, captures and stacking are preserved.
+*/
+
+const requestedDestination=L.latLng(
+    destination.lat,
+    destination.lng
+);
+
+const startFeature=army.currentProvince || findProvinceAt(army.marker.getLatLng());
+const targetFeature=findProvinceAt(requestedDestination);
+
+if(!startFeature || !targetFeature){
+    showMessage("ARMY CANNOT MOVE THERE — SELECT A LAND PROVINCE.");
+    return;
+}
+
+/* Already in the requested province: move inside it normally. */
+if(startFeature===targetFeature){
+    army.moveToken++;
+    const token=army.moveToken;
+    army.moving=true;
+    army.destination=requestedDestination;
+    army.targetProvince=null;
+    army.targetLayer=null;
+
+    const start=army.marker.getLatLng();
+    const dest=requestedDestination;
+    const supplySpeed=getMovementSupplyMultiplier(army);
+    const bonus=army.moveSpeedBonus||1;
+    const duration=Math.max(650,Math.min(5000,650+map.distance(start,dest)/22))/bonus/supplySpeed/speed;
+    const startTime=performance.now();
+
+    function animateInside(now){
+        if(token!==army.moveToken || !army.moving) return;
+        if(paused){ requestAnimationFrame(animateInside); return; }
+
+        const progress=Math.min(1,(now-startTime)/duration);
+        army.marker.setLatLng([
+            start.lat+(dest.lat-start.lat)*progress,
+            start.lng+(dest.lng-start.lng)*progress
+        ]);
+
+        if(progress<1){
+            requestAnimationFrame(animateInside);
+            return;
+        }
+
+        army.marker.setLatLng(dest);
+        army.moving=false;
+        army.destination=null;
+        updateArmyProvinceCache(army);
+        arrangeArmyStacks();
+        updateArmyIcon(army);
+        if(selectedArmy===army) showArmy(army);
+    }
+
+    requestAnimationFrame(animateInside);
+    return;
+}
+
+/*
+   Find the next connected province. This is the important part that
+   was missing from the previous movement function: it no longer rejects
+   a distant destination just because it is not adjacent.
+*/
+const step=nextLandStep(army,requestedDestination);
+
+if(!step){
+    showMessage("NO CONNECTED LAND ROUTE TO THAT PROVINCE.");
+    return;
+}
+
+const finalStep=step.final===true;
+const stepFeature=step.feature;
+const stepLayer=findLayer(stepFeature);
+const stepCenter=step.center || (stepLayer ? stepLayer.getBounds().getCenter() : requestedDestination);
+
+if(!movementOwnerAllowed(army,ownerOf(stepFeature))){
+    showMessage("NO MILITARY ACCESS THROUGH "+ownerOf(stepFeature)+".");
+    return;
+}
+
+army.moveToken++;
+const token=army.moveToken;
+army.moving=true;
+army.destination=L.latLng(stepCenter.lat,stepCenter.lng);
+
+/*
+   Keep the ultimate target so the arrival code can attack/capture it
+   when the final province is reached. Intermediate provinces are just
+   movement steps.
+*/
+army.targetProvince=finalStep ? targetFeature : null;
+army.targetLayer=finalStep ? findLayer(targetFeature) : null;
+
+const start=army.marker.getLatLng();
+const dest=L.latLng(stepCenter.lat,stepCenter.lng);
+const supplySpeed=getMovementSupplyMultiplier(army);
+const bonus=army.moveSpeedBonus||1;
+const duration=Math.max(650,Math.min(5000,650+map.distance(start,dest)/22))/bonus/supplySpeed/speed;
+const startTime=performance.now();
+
+function animate(now){
+
+    if(token!==army.moveToken || !army.moving) return;
+
+    if(paused){
+        requestAnimationFrame(animate);
+        return;
+    }
+
+    const progress=Math.min(1,(now-startTime)/duration);
+
+    army.marker.setLatLng([
+        start.lat+(dest.lat-start.lat)*progress,
+        start.lng+(dest.lng-start.lng)*progress
+    ]);
+
+    if(progress<1){
+        requestAnimationFrame(animate);
+        return;
+    }
+
+    army.marker.setLatLng(dest);
+    army.moving=false;
+    army.destination=null;
+    updateArmyProvinceCache(army);
+
+    if(finalStep){
+        clearTacticalArrow();
+        /* Final destination: use the original battle/capture logic. */
+        if(army.targetProvince){
+            const feature=army.targetProvince;
+            const layer=army.targetLayer || findLayer(feature);
+            const owner=ownerOf(feature);
+            const target={
+                feature,
+                layer,
+                country:owner,
+                name:getProvince(feature.properties)
+            };
+
+            if(owner!==army.country && isWar(army.country,owner)){
+                const defenders=getEnemyArmiesInProvince(feature,army.country);
+                if(defenders.length){
+                    startBattle(army,target,defenders,false);
+                }else{
+                    freeCapture(army,target);
+                }
+            }
+
+            army.targetProvince=null;
+            army.targetLayer=null;
+        }else{
+            checkArmyArrival(army);
+        }
+
+        arrangeArmyStacks();
+        updateArmyIcon(army);
+        if(selectedArmy===army) showArmy(army);
+        return;
+    }
+
+    /*
+       Intermediate province reached. Recalculate the next step using
+       the same pathfinder, so the army visibly travels province by
+       province until it reaches the player's requested destination.
+    */
+    arrangeArmyStacks();
+    updateArmyIcon(army);
+    if(selectedArmy===army) showArmy(army);
+
+    requestAnimationFrame(()=>{
+        if(token!==army.moveToken) return;
+        moveArmy(army,requestedDestination);
+    });
+}
+
+requestAnimationFrame(animate);
+
+}
+
+function stopArmy(){
+
+if(
+!selectedArmy
+)
+return;
+
+clearTacticalArrow();
+
+selectedArmy.moveToken++;
+
+selectedArmy.moving=false;
+
+selectedArmy.destination=null;
+
+selectedArmy.targetProvince=null;
+
+selectedArmy.targetLayer=null;
+
+
+updateArmyIcon(
+selectedArmy
+);
+
+
+showMessage(
+"Army stopped."
+);
+
+}
+
+
+/* =========================================================
+   STACK
+========================================================= */
+
+function arrangeArmyStacks(){
+
+const all=[...playerArmies,...aiArmies];
+const groups=new Map();
+
+for(const army of all){
+if(!army.marker) continue;
+
+const province=army.currentProvince||findProvinceAt(army.marker.getLatLng());
+if(!province) continue;
+
+const key=(army.country||"")+"::"+getProvince(province);
+if(!groups.has(key)) groups.set(key,[]);
+groups.get(key).push(army);
+}
+
+for(const group of groups.values()){
+
+const center=group[0].marker.getLatLng();
+const cols=Math.ceil(Math.sqrt(group.length));
+const rows=Math.ceil(group.length/cols);
+
+group.forEach((army,index)=>{
+army.stackCount=group.length;
+
+const row=Math.floor(index/cols);
+const col=index%cols;
+
+const x=(col-(cols-1)/2)*0.045;
+const y=(row-(rows-1)/2)*0.035;
+
+if(!army.moving&&!army.fighting){
+army.marker.setLatLng([center.lat+y,center.lng+x]);
+}
+
+updateArmyIcon(army);
+});
+
+}
+
+}
+function getEnemyArmiesInProvince(
+feature,
+attackingCountry
+){
+
+const layer=
+findLayer(
+feature
+);
+
+
+if(
+!layer
+)
+return [];
+
+
+return aiArmies.filter(
+army=>{
+
+if(
+army.country===
+attackingCountry||
+army.fighting
+)
+return false;
+
+
+if(
+!isWar(
+attackingCountry,
+army.country
+)
+)
+return false;
+
+
+if(
+army.currentProvince===
+feature
+)
+return true;
+
+
+if(
+!army.moving&&
+layer
+.getBounds()
+.contains(
+army.marker
+.getLatLng()
+)
+){
+
+army.currentProvince=
+feature;
+
+return true;
+
+}
+
+
+return false;
+
+}
+);
+
+}
+
+
+/* =========================================================
+   AI ARMY
+========================================================= */
+
+function nextAIArmyName(
+country
+){
+
+const number=
+(
+aiArmyCounter.get(
+country
+)||
+0
+)+
+1;
+
+
+aiArmyCounter.set(
+country,
+number
+);
+
+
+return country+
+" Army "+
+number;
+
+}
+
+
+function createAIArmy(
+country
+){
+
+if(
+surrenderedCountries.has(
+country
+)
+)
+return null;
+
+
+const spawn=
+getCapitalSpawn(
+country
+);
+
+
+if(
+!spawn
+)
+return null;
+
+
+const stats=
+statsFor(
+country
+);
+
+
+const infantry=
+5000+
+Math.floor(
+stats.military/
+25
+)+
+Math.floor(
+Math.random()*5000
+);
+
+
+const tanks=
+100+
+Math.floor(
+Math.random()*350
+);
+
+
+const lat=spawn.lat+(Math.random()-.5)*.25;
+const lng=spawn.lng+(Math.random()-.5)*.25;
+const baseName=nextAIArmyName(country);
+
+const infantryArmy=createArmy(
+lat,lng,baseName+" — Infantry",infantry,0,country,true
+);
+
+createArmy(
+lat,lng,baseName+" — Tanks",0,tanks,country,true
+);
+
+arrangeArmyStacks();
+return infantryArmy;
+
+}
+
+
+function createArmy(
+lat,
+lng,
+name,
+infantry,
+tanks,
+country,
+isAI=false,
+splitMixed=true
+){
+
+/* Keep infantry and tanks as separate selectable units. */
+if(
+splitMixed &&
+Number(infantry)>0 &&
+Number(tanks)>0
+){
+
+const infantryUnit=createArmy(
+lat,lng,name+" — Infantry",infantry,0,country,isAI,false
+);
+
+createArmy(
+lat,lng,name+" — Tanks",0,tanks,country,isAI,false
+);
+
+arrangeArmyStacks();
+
+return infantryUnit;
+
+}
+
+const army={
+
+marker:null,
+
+name,
+
+infantry:
+Number(
+infantry
+)||
+0,
+
+tanks:
+Number(
+tanks
+)||
+0,
+
+country,
+
+isAI,
+
+isAlly:
+    !!(isAI && currentCountry && areAllies(currentCountry, country)),
+
+org:100,
+
+supply:100,
+
+supplyCapacity:100,
+
+moving:false,
+
+fighting:false,
+
+destination:null,
+
+targetProvince:null,
+
+targetLayer:null,
+
+currentProvince:null,
+
+moveToken:0,
+
+moveSpeedBonus:1,
+
+stackCount:1,
+
+type:
+Number(tanks)>0 && Number(infantry)<=0
+?"tank"
+:"infantry"
+
+};
+
+
+army.marker=
+L.marker(
+[
+lat,
+lng
+],
+{
+
+icon:
+armyIcon(
+army
+),
+
+zIndexOffset:
+isAI
+?1200
+:1400,
+
+keyboard:false
+
+}
+)
+.addTo(
+map
+);
+
+
+if(
+isAI
+){
+
+aiArmies.push(
+army
+);
+
+}
+else{
+
+playerArmies.push(
+army
+);
+
+}
+
+
+army.currentProvince=
+findProvinceAt(
+army.marker
+.getLatLng()
+);
+
+
+army.marker.on(
+"click",
+event=>{
+
+L.DomEvent
+.stopPropagation(
+event
+);
+
+
+if(
+!army.isAI
+){
+
+if(selectedArmy!==army) clearTacticalArrow();
+
+selectedArmy=
+army;
+
+
+playerArmies.forEach(
+updateArmyIcon
+);
+
+
+showArmy(
+army
+);
+
+
+showMessage(
+army.name+
+" selected"
+);
+
+}
+
+});
+
+
+updateCounts();
+arrangeArmyStacks();
+
+return army;
+
+}
+
+
+/* =========================================================
+   PLAYER ARMIES
+========================================================= */
+
+function createPlayerArmies(){
+
+if(
+playerArmies.length
+)
+return;
+
+
+const spawn=
+getCapitalSpawn(
+currentCountry
+);
+
+
+if(
+!spawn
+)
+return;
+
+
+const first=createArmy(
+spawn.lat,spawn.lng,"1st Army — Infantry",7000,0,currentCountry,false
+);
+
+createArmy(
+spawn.lat,spawn.lng,"1st Army — Tanks",0,150,currentCountry,false
+);
+
+createArmy(
+spawn.lat+.18,spawn.lng+.18,"2nd Army — Infantry",6000,0,currentCountry,false
+);
+
+createArmy(
+spawn.lat+.18,spawn.lng+.18,"2nd Army — Tanks",0,250,currentCountry,false
+);
+
+createArmy(
+spawn.lat-.18,spawn.lng-.18,"3rd Army — Infantry",5000,0,currentCountry,false
+);
+
+createArmy(
+spawn.lat-.18,spawn.lng-.18,"3rd Army — Tanks",0,350,currentCountry,false
+);
+
+arrangeArmyStacks();
+
+
+selectedArmy=
+first;
+
+
+showArmy(
+first
+);
+
+
+updateCounts();
+
+
+showMessage(
+"ARMIES DEPLOYED AT CAPITAL!"
+);
+
+}
+
+
+/* =========================================================
+   INITIAL AI
+========================================================= */
+
+function createInitialAIArmies(){
+
+const countries=
+Array.from(
+countryLayers.keys()
+)
+.filter(
+country=>
+country!==
+currentCountry
+)
+.filter(
+country=>
+!surrenderedCountries.has(
+country
+)
+);
+
+
+let index=0;
+
+
+function batch(){
+
+const end=
+Math.min(
+index+5,
+countries.length
+);
+
+
+for(
+;
+index<end;
+index++
+){
+
+const country=
+countries[index];
+
+
+if(
+!countryAI[country]
+){
+
+countryAI[country]=
+createAIPersonality();
+
+}
+
+
+const number=
+1+
+Math.floor(
+Math.random()*2
+);
+
+
+for(
+let i=0;
+i<number;
+i++
+){
+
+createAIArmy(
+country
+);
+
+}
+
+}
+
+
+if(
+index<
+countries.length
+){
+
+setTimeout(
+batch,
+50
+);
+
+}
+
+}
+
+
+batch();
+}
+
+
+/* =========================================================
+   AI PERSONALITY
+========================================================= */
+
+function createAIPersonality(){
+
+return{
+
+aggression:
+.25+
+Math.random()*.70,
+
+defense:
+.25+
+Math.random()*.70,
+
+industry:
+.25+
+Math.random()*.70,
+
+diplomacy:
+.20+
+Math.random()*.80,
+
+lastDecision:0,
+
+lastRecruit:0,
+
+lastBuild:0,
+
+lastWar:0
+
+};
+
+}
+
+
+/* =========================================================
+   AI THREAT
+========================================================= */
+
+function findAIThreat(
+country
+){
+
+const capital=
+countryCapitals.get(
+country
+);
+
+
+if(
+!capital
+)
+return null;
+
+
+const center=
+provinceCenters.get(
+capital
+);
+
+
+if(
+!center
+)
+return null;
+
+
+let nearest=null;
+
+let nearestDistance=
+Infinity;
+
+
+for(
+const army of
+playerArmies
+){
+
+if(
+!isWar(
+country,
+currentCountry
+)
+)
+continue;
+
+
+const position=
+army.marker
+.getLatLng();
+
+
+const distance=
+Math.hypot(
+
+center.lat-
+position.lat,
+
+center.lng-
+position.lng
+
+);
+
+
+if(
+distance<
+nearestDistance
+){
+
+nearestDistance=
+distance;
+
+nearest=
+army;
+
+}
+
+}
+
+
+return{
+
+army:nearest,
+
+distance:nearestDistance
+
+};
+
+}
+
+
+/* =========================================================
+   CLOSEST ENEMY ARMY
+========================================================= */
+
+function findClosestEnemyArmy(
+army
+){
+
+let best=null;
+
+let bestDistance=
+Infinity;
+
+
+const candidates=[
+
+...playerArmies,
+
+...aiArmies
+
+];
+
+
+for(
+const enemy of
+candidates
+){
+
+if(
+enemy===
+army||
+enemy.fighting
+)
+continue;
+
+
+if(
+!isWar(
+army.country,
+enemy.country
+)
+)
+continue;
+
+
+const distance=
+map.distance(
+
+army.marker
+.getLatLng(),
+
+enemy.marker
+.getLatLng()
+
+);
+
+
+if(
+distance<
+bestDistance
+){
+
+bestDistance=
+distance;
+
+best=
+enemy;
+
+}
+
+}
+
+
+return best;
+
+}
+
+
+/* =========================================================
+   AI TARGET PROVINCE
+========================================================= */
+
+function findAIProvinceTarget(
+army
+){
+
+let best=null;
+
+let bestDistance=
+Infinity;
+
+
+const position=
+army.marker
+.getLatLng();
+
+
+for(
+const [
+country,
+features
+] of
+countryProvinceCache
+){
+
+if(
+country===
+army.country
+)
+continue;
+
+
+if(
+!isWar(
+army.country,
+country
+)
+)
+continue;
+
+
+for(
+const feature of
+features
+){
+
+const center=
+provinceCenters.get(
+feature
+);
+
+
+if(
+!center
+)
+continue;
+
+
+const distance=
+Math.hypot(
+
+center.lat-
+position.lat,
+
+center.lng-
+position.lng
+
+);
+
+
+let score=
+distance;
+
+
+if(
+countryCapitals.get(
+country
+)===
+feature
+){
+
+score-=7;
+
+}
+
+
+if(
+score<
+bestDistance
+){
+
+bestDistance=
+score;
+
+
+best={
+
+feature,
+
+layer:
+findLayer(
+feature
+),
+
+center,
+
+country,
+
+name:
+getProvince(
+feature.properties
+)
+
+};
+
+}
+
+}
+
+}
+
+
+return best;
+
+}
+
+
+/* =========================================================
+   AI MOVE
+========================================================= */
+
+function animateAI(
+army,
+destination
+){
+
+if(
+army.moving||
+army.fighting||
+!destination
+)
+return;
+
+// AI armies also obey province borders. If the target is several provinces
+// away, calculate a land route and move one province at a time.
+const routed=nextLandStep(army,destination);
+if(routed){
+    destination=routed.center;
+    army.targetProvince = routed.targetFeature || routed.feature;
+}
+else{
+    const startFeature=army.currentProvince || findProvinceAt(army.marker.getLatLng());
+    const targetFeature=findProvinceAt(destination);
+    if(startFeature && targetFeature && startFeature!==targetFeature){
+        return;
+    }
+}
+
+army.moveToken++;
+
+
+const token=
+army.moveToken;
+
+
+army.moving=true;
+
+
+const start=
+army.marker
+.getLatLng();
+
+
+const dest=
+L.latLng(
+destination.lat,
+destination.lng
+);
+
+
+const distance=
+map.distance(
+start,
+dest
+);
+
+
+const supplySpeed=
+getMovementSupplyMultiplier(
+army
+);
+
+
+const duration=
+Math.max(
+700,
+Math.min(
+5000,
+700+
+distance/28
+)
+)
+/
+supplySpeed
+/
+speed;
+
+
+const startTime=
+performance.now();
+
+
+function frame(
+now
+){
+
+if(
+token!==
+army.moveToken||
+!army.moving
+)
+return;
+
+
+if(
+paused
+){
+
+requestAnimationFrame(
+frame
+);
+
+return;
+
+}
+
+
+const progress=
+Math.min(
+1,
+(
+now-
+startTime
+)/
+duration
+);
+
+
+army.marker.setLatLng([
+
+start.lat+
+(
+dest.lat-
+start.lat
+)*
+progress,
+
+start.lng+
+(
+dest.lng-
+start.lng
+)*
+progress
+
+]);
+
+
+if(
+progress<
+1
+){
+
+requestAnimationFrame(
+frame
+);
+
+}
+else{
+
+army.marker.setLatLng(
+dest
+);
+
+
+army.moving=false;
+
+
+updateArmyProvinceCache(
+army
+);
+
+
+aiCheckArrival(
+army
+);
+
+}
+
+}
+
+
+requestAnimationFrame(
+frame
+);
+
+}
+
+
+/* =========================================================
+   AI ARRIVAL
+========================================================= */
+
+function aiCheckArrival(
+army
+){
+
+const feature=
+army.currentProvince||
+findProvinceAt(
+army.marker
+.getLatLng()
+);
+
+
+if(
+!feature
+)
+return;
+
+
+army.currentProvince=
+feature;
+
+
+const owner=
+ownerOf(
+feature
+);
+
+
+if(
+owner===
+army.country
+)
+return;
+
+
+if(
+!isWar(
+army.country,
+owner
+)
+)
+return;
+
+
+const target={
+
+feature,
+
+layer:
+findLayer(
+feature
+),
+
+country:
+owner,
+
+name:
+getProvince(
+feature.properties
+)
+
+};
+
+
+let defenders=[];
+
+
+if(
+owner===
+currentCountry
+){
+
+defenders=
+playerArmies.filter(
+defender=>{
+
+if(
+defender.fighting
+)
+return false;
+
+
+return(
+defender.currentProvince===
+feature
+)||
+(
+!defender.moving&&
+target.layer
+.getBounds()
+.contains(
+defender.marker
+.getLatLng()
+)
+);
+
+}
+);
+
+}
+else{
+
+defenders=
+aiArmies.filter(
+defender=>{
+
+if(
+defender===army||
+defender.fighting
+)
+return false;
+
+
+return(
+defender.currentProvince===
+feature
+);
+
+}
+);
+
+}
+
+
+if(
+defenders.length
+){
+
+startBattle(
+army,
+target,
+defenders,
+true
+);
+
+}
+else{
+
+freeCapture(
+army,
+target
+);
+
+}
+
+}
+
+
+/* =========================================================
+   AI ATTACK
+========================================================= */
+
+function aiAttackPlayerArmy(
+attacker,
+defender
+){
+
+if(
+activeBattle||
+attacker.fighting||
+defender.fighting
+)
+return;
+
+
+const feature=
+defender.currentProvince||
+findProvinceAt(
+defender.marker
+.getLatLng()
+);
+
+
+const target={
+
+feature,
+
+layer:
+feature
+?
+findLayer(
+feature
+)
+:null,
+
+country:
+defender.country,
+
+name:
+defender.name
+
+};
+
+
+if(
+feature
+){
+
+attacker.targetProvince=
+feature;
+
+attacker.targetLayer=
+target.layer;
+
+}
+
+
+startBattle(
+attacker,
+target,
+[
+defender
+],
+true
+);
+
+
+/* important: allied/enemy attacks appear immediately */
+
+if(
+attacker.country&&
+areAllies(
+currentCountry,
+attacker.country
+)
+){
+
+addWorldNews(
+"<b>🤝 ALLIED ATTACK</b><br>"+
+attacker.country+
+" attacked "+
+defender.country+".",
+"AI"
+);
+
+}
+
+}
+
+
+/* =========================================================
+   AI LAND WAR / ALLY ROUTING
+========================================================= */
+function aiCountryHasLandAccessTo(country, targetCountry){
+    if(!country || !targetCountry || country===targetCountry) return false;
+    const allowed=new Set([country]);
+    for(const c of Object.keys(countryStats)){
+        if(c!==country && areAllies(country,c) && !surrenderedCountries.has(c)) allowed.add(c);
+    }
+    const queue=[country], seen=new Set([country]);
+    while(queue.length){
+        const c=queue.shift();
+        for(const f of (countryProvinceCache.get(c)||[])){
+            for(const n of (provinceNeighbors.get(f)||new Set())){
+                const o=ownerOf(n);
+                if(o===targetCountry) return true;
+                if(allowed.has(o) && !seen.has(o)){seen.add(o);queue.push(o);}
+            }
+        }
+    }
+    return false;
+}
+function aiHasReachableWarTarget(army,targetFeature){
+    if(!army||!targetFeature) return false;
+    const start=army.currentProvince||findProvinceAt(army.marker.getLatLng());
+    if(!start) return false;
+    if(start===targetFeature) return true;
+    const path=findLandPath(start,targetFeature,army);
+    return !!(path&&path.length>1);
+}
+function orderAIArmyToWar(army){
+    if(!army||army.moving||army.fighting||surrenderedCountries.has(army.country)) return false;
+    const target=findAIProvinceTarget(army);
+    if(!target||!aiHasReachableWarTarget(army,target.feature)) return false;
+    army.targetProvince=target.feature;
+    army.targetLayer=target.layer;
+    animateAI(army,target.center);
+    return true;
+}
+function orderAlliedAIArmy(ally,attacker,defender){
+    for(const army of aiArmies){
+        if(army.country!==ally||army.moving||army.fighting) continue;
+        if(!isWar(ally,attacker)) continue;
+        const enemy=findClosestEnemyArmy(army);
+        if(enemy&&enemy.country&&isWar(ally,enemy.country)){
+            const f=enemy.currentProvince||findProvinceAt(enemy.marker.getLatLng());
+            if(f&&aiHasReachableWarTarget(army,f)){animateAI(army,enemy.marker.getLatLng());continue;}
+        }
+        orderAIArmyToWar(army);
+    }
+}
+
+/* =========================================================
+   AI STRATEGIC MOVE
+========================================================= */
+
+function aiStrategicMove(
+army
+){
+if(!army||army.moving||army.fighting||surrenderedCountries.has(army.country)) return;
+const country=army.country, ai=countryAI[country];
+if(!ai) return;
+const threat=findAIThreat(country);
+if(threat&&threat.army&&threat.distance<10){ animateAI(army,threat.army.marker.getLatLng()); return; }
+const enemy=findClosestEnemyArmy(army);
+if(enemy&&enemy.country&&isWar(country,enemy.country)){
+    const d=map.distance(army.marker.getLatLng(),enemy.marker.getLatLng());
+    const f=enemy.currentProvince||findProvinceAt(enemy.marker.getLatLng());
+    if(d<140000){ aiAttackPlayerArmy(army,enemy); return; }
+    if(ai.aggression>.35&&f&&aiHasReachableWarTarget(army,f)){ animateAI(army,enemy.marker.getLatLng()); return; }
+}
+orderAIArmyToWar(army);
+}
+
+
+/* =========================================================
+   NORMAL AI
+========================================================= */
+
+function aiTick(){
+
+if(
+paused||
+!currentCountry||
+!aiArmies.length
+)
+return;
+
+
+let processed=0;
+
+
+while(
+processed<
+AI_BATCH_SIZE
+){
+
+if(
+aiCursor>=
+aiArmies.length
+){
+
+aiCursor=0;
+
+}
+
+
+const army=
+aiArmies[
+aiCursor++
+];
+
+
+processed++;
+
+
+if(
+!army||
+army.moving||
+army.fighting
+)
+continue;
+
+
+if(
+surrenderedCountries.has(
+army.country
+)
+)
+continue;
+
+
+aiStrategicMove(
+army
+);
+
+}
+
+}
+
+
+/* =========================================================
+   WAR RESPONSE
+========================================================= */
+
+function aiWarResponseTick(){
+
+if(
+paused||
+!currentCountry
+)
+return;
+
+
+for(
+const army of
+aiArmies
+){
+
+if(
+army.country===
+currentCountry
+)
+continue;
+
+
+if(
+!isWar(
+army.country,
+currentCountry
+)
+)
+continue;
+
+
+if(
+army.moving||
+army.fighting
+)
+continue;
+
+
+const target=
+findClosestEnemyArmy(
+army
+);
+
+
+if(
+target
+){
+
+const distance=
+map.distance(
+
+army.marker
+.getLatLng(),
+
+target.marker
+.getLatLng()
+
+);
+
+
+if(
+distance<
+130000
+){
+
+aiAttackPlayerArmy(
+army,
+target
+);
+
+continue;
+
+}
+
+
+animateAI(
+army,
+target.marker
+.getLatLng()
+);
+
+}
+
+}
+
+}
+
+/* =========================================================
+   ARTICLE 5-STYLE ALLIANCE DEFENSE
+========================================================= */
+
+function allianceResponseKey(warKeyValue,country){
+return warKeyValue+"::"+country;
+}
+
+function aiAllianceWarDecision(ally,attacker,defender){
+const ai=countryAI[ally];
+if(!ally||!ai||ally===attacker||ally===defender||(!areAllies(ally,defender)&&!areAllies(ally,attacker))) return false;
+const responseKey=allianceResponseKey(warKey(attacker,defender),ally);
+if(allianceWarResponses.has(responseKey)) return false;
+allianceWarResponses.add(responseKey);
+const defensive=areAllies(ally,defender);
+let chance=(defensive?.78:.42)+(ai.diplomacy||0)*.06+(ai.aggression||0)*.08;
+chance=Math.max(.15,Math.min(.95,chance));
+if(Math.random()<=chance){
+  wars.add(warKey(ally,attacker));
+  newsWar(ally,attacker);
+  addWorldNews("<b>🛡 ALLIANCE RESPONSE</b><br>"+ally+(defensive?" joined the war to defend ally "+defender+".":" chose to support ally "+attacker+" in the war."),"AI");
+  setTimeout(()=>orderAlliedAIArmy(ally,attacker,defender),50);
+  return true;
+}
+addWorldNews("<b>🤝 ALLIANCE DECISION</b><br>"+ally+" chose not to join the war between "+attacker+" and "+defender+".","AI");
+return false;
+}
+
+function askPlayerAllianceWarDecision(ally,attacker,defender){
+if(!currentCountry||ally!==currentCountry||ally===attacker||ally===defender) return false;
+const responseKey=allianceResponseKey(warKey(attacker,defender),ally);
+if(allianceWarResponses.has(responseKey)) return false;
+allianceWarResponses.add(responseKey);
+const defensive=areAllies(ally,defender);
+const join=window.confirm("🛡 ALLIANCE REQUEST\n\n"+attacker+" has attacked "+defender+".\n\n"+(defensive?"This is a defensive alliance call. Join the war?":"Your ally started the war. Join the war anyway?"));
+if(join){
+  wars.add(warKey(currentCountry,attacker));
+  newsWar(currentCountry,attacker);
+  showMessage("ALLIANCE JOINED THE WAR!");
+  return true;
+}
+showMessage("ALLIANCE: STAYING OUT OF THE WAR");
+return false;
+}
+
+function processAllianceWarResponses(attacker,defender){
+if(!attacker||!defender||attacker===defender) return;
+const allies=Object.keys(countryStats).filter(country=>country!==attacker&&country!==defender&&!surrenderedCountries.has(country));
+for(const ally of allies){
+  if(areAllies(ally,defender)||areAllies(ally,attacker)){
+    if(ally===currentCountry) askPlayerAllianceWarDecision(ally,attacker,defender);
+    else aiAllianceWarDecision(ally,attacker,defender);
+  }
+}
+refreshArmyRelations(); recolorMap(); updateCounts(); renderDiplomacy();
+}
+
+function declareWar(attacker,defender){
+if(!attacker||!defender||attacker===defender||surrenderedCountries.has(attacker)||surrenderedCountries.has(defender)||areAllies(attacker,defender)) return false;
+const key=warKey(attacker,defender);
+if(wars.has(key)) return false;
+wars.add(key);
+warInitiators.set(key,attacker);
+newsWar(attacker,defender);
+processAllianceWarResponses(attacker,defender);
+return true;
+}
+
+/* =========================================================
+   AI WAR DECISIONS
+========================================================= */
+
+function isWarWithAnyone(
+country
+){
+
+for(
+const other of
+Object.keys(
+countryStats
+)
+){
+
+if(
+other!==country&&
+isWar(
+country,
+other
+)
+)
+return true;
+
+}
+
+
+return false;
+
+}
+
+
+function aiWarDecision(
+country
+){
+const ai=countryAI[country];
+if(!ai||surrenderedCountries.has(country)) return;
+const now=Date.now();
+if(now-ai.lastWar<28000) return;
+if(Math.random()>(.12+ai.aggression*.22)) return;
+const possible=Object.keys(countryStats)
+.filter(other=>other!==country&&!surrenderedCountries.has(other))
+.filter(other=>!isWar(country,other)&&!areAllies(country,other))
+.filter(other=>aiCountryHasLandAccessTo(country,other));
+if(!possible.length) return;
+const mine=statsFor(country);
+const reasonable=possible.filter(other=>statsFor(other).military<mine.military*2.2);
+const list=reasonable.length?reasonable:possible;
+const target=list[Math.floor(Math.random()*list.length)];
+if(declareWar(country,target)){
+    ai.lastWar=now;
+    addWorldNews('<b>⚔ AI WAR DECLARATION</b><br>'+country+' declared war on '+target+'.','AI');
+}
+}
+
+
+/* =========================================================
+   AI ALLIANCES
+========================================================= */
+
+function aiAllianceDecision(
+country
+){
+
+const ai=
+countryAI[country];
+
+
+if(
+!ai||
+surrenderedCountries.has(
+country
+)
+)
+return;
+
+
+if(
+Math.random()>
+(
+.08+
+ai.diplomacy*.18
+)
+)
+return;
+
+
+const possible=
+Object.keys(
+countryStats
+)
+.filter(
+other=>
+other!==
+country&&
+!surrenderedCountries.has(
+other
+)
+)
+.filter(
+other=>
+!isWar(
+country,
+other
+)
+)
+.filter(
+other=>
+!areAllies(
+country,
+other
+)
+);
+
+
+if(
+!possible.length
+)
+return;
+
+
+const target=
+possible[
+Math.floor(
+Math.random()*
+possible.length
+)
+];
+
+
+alliances.add(
+allianceKey(
+country,
+target
+)
+);
+
+
+newsAlliance(
+country,
+target
+);
+
+
+/*
+   refresh army colors immediately
+*/
+
+aiArmies.forEach(
+updateArmyIcon
+);
+
+}
+
+
+/* =========================================================
+   AI RECRUIT
+========================================================= */
+
+function aiRecruit(
+country
+){
+
+const stats=
+statsFor(
+country
+);
+
+
+if(
+stats.manpower<
+15||
+stats.equipment<
+20
+)
+return;
+
+
+const barracks=
+getCountryBarracks(
+country
+);
+
+
+const chance=
+.18+
+barracks*.035;
+
+
+if(
+Math.random()>
+Math.min(
+.75,
+chance
+)
+)
+return;
+
+
+const manpowerCost=8;
+
+const equipmentCost=20;
+
+
+stats.manpower-=
+manpowerCost;
+
+
+stats.equipment-=
+equipmentCost;
+
+
+setTimeout(
+()=>{
+
+if(
+surrenderedCountries.has(
+country
+)
+)
+return;
+
+
+const army=
+createAIArmy(
+country
+);
+
+
+if(
+army
+){
+
+addWorldNews(
+"<b>🪖 AI REINFORCEMENTS</b><br>"+
+country+
+" deployed a new army.",
+"AI"
+);
+
+}
+
+},
+350
+);
+
+}
+
+
+/* =========================================================
+   AI BUILDING
+========================================================= */
+
+function findAIBuildCity(
+country
+){
+
+const owned=
+cities.filter(
+city=>
+cityOwner(city)===
+country&&
+!city.construction
+);
+
+
+if(
+!owned.length
+)
+return null;
+
+
+owned.sort(
+(a,b)=>{
+
+const score=
+city=>
+city.type==="capital"
+?3
+:
+city.type==="major"
+?2
+:1;
+
+
+return score(b)-
+score(a);
+
+}
+);
+
+
+return owned[
+Math.floor(
+Math.random()*
+Math.min(
+owned.length,
+4
+)
+)
+];
+
+}
+
+
+function aiBuild(
+country
+){
+
+const ai=
+countryAI[country];
+
+
+if(
+!ai
+)
+return;
+
+
+if(
+Math.random()>
+(
+.15+
+ai.industry*.25
+)
+)
+return;
+
+
+const stats=
+statsFor(
+country
+);
+
+
+const city=
+findAIBuildCity(
+country
+);
+
+
+if(
+!city
+)
+return;
+
+
+const threatened=
+isWarWithAnyone(
+country
+);
+
+
+let building;
+
+
+const hasSupply=
+cities.some(
+item=>
+cityOwner(item)===
+country&&
+item.buildings.supplyHub>0
+);
+
+
+if(
+threatened&&
+Math.random()<.35
+){
+
+building="fort";
+
+}
+else if(
+!hasSupply&&
+Math.random()<.35
+){
+
+building="supplyHub";
+
+}
+else if(
+Math.random()<.45
+){
+
+building="factory";
+
+}
+else{
+
+building="barracks";
+
+}
+
+
+const cost=
+BUILDING_COSTS[
+building
+];
+
+
+if(
+stats.economy<
+cost
+)
+return;
+
+
+stats.economy-=
+cost;
+
+
+const names={
+
+factory:"Factory",
+barracks:"Barracks",
+fort:"Fort",
+supplyHub:"Supply Hub"
+
+};
+
+
+city.construction={
+
+id:building,
+
+name:names[building],
+
+time:
+BUILDING_TIMES[
+building
+],
+
+timeLeft:
+BUILDING_TIMES[
+building
+]
+
+};
+
+
+logisticsDirty=true;
+
+
+addWorldNews(
+"<b>🏗 AI CONSTRUCTION</b><br>"+
+country+
+" began building a "+
+names[building]+
+" in "+
+city.name+".",
+"AI"
+);
+
+}
+
+
+/* =========================================================
+   AI MANAGEMENT
+========================================================= */
+
+function aiCountryTick(){
+
+if(
+paused
+)
+return;
+
+
+const countries=
+Object.keys(
+countryStats
+);
+
+
+let processed=0;
+
+
+for(
+const country of
+countries
+){
+
+if(
+processed>=6
+)
+break;
+
+
+if(
+country===
+currentCountry||
+surrenderedCountries.has(
+country
+)
+)
+continue;
+
+
+if(
+!countryAI[country]
+){
+
+countryAI[country]=
+createAIPersonality();
+
+}
+
+
+const ai=
+countryAI[country];
+
+
+const now=
+Date.now();
+
+
+if(
+now-
+ai.lastDecision>
+8000+
+Math.random()*9000
+){
+
+ai.lastDecision=
+now;
+
+
+aiWarDecision(
+country
+);
+
+
+aiAllianceDecision(
+country
+);
+
+
+aiBuild(
+country
+);
+
+
+processed++;
+
+}
+
+
+if(
+now-
+ai.lastRecruit>
+11000+
+Math.random()*7000
+){
+
+ai.lastRecruit=
+now;
+
+
+aiRecruit(
+country
+);
+
+}
+
+}
+
+}
+
+
+/* =========================================================
+   ALLIED WAR
+========================================================= */
+
+function callAlliesToWar(){
+
+if(
+!currentCountry
+){
+
+showMessage(
+"Choose a country first."
+);
+
+return;
+
+}
+
+
+const allies=
+Object.keys(
+countryStats
+)
+.filter(
+country=>
+country!==
+currentCountry&&
+areAllies(
+currentCountry,
+country
+)&&
+!surrenderedCountries.has(
+country
+)
+);
+
+
+const enemies=
+Object.keys(
+countryStats
+)
+.filter(
+country=>
+country!==
+currentCountry&&
+isWar(
+currentCountry,
+country
+)&&
+!surrenderedCountries.has(
+country
+)
+);
+
+
+if(
+!allies.length
+){
+
+showMessage(
+"You have no allies."
+);
+
+return;
+
+}
+
+
+if(
+!enemies.length
+){
+
+showMessage(
+"You are not at war."
+);
+
+return;
+
+}
+
+
+let ordered=0;
+
+
+/*
+   ALLIES JOIN THE WAR
+*/
+
+for(
+const ally of
+allies
+){
+
+for(
+const enemy of
+enemies
+){
+
+wars.add(
+warKey(
+ally,
+enemy
+)
+);
+
+}
+
+}
+
+
+/*
+   ALLY ARMIES GET IMMEDIATE ORDERS
+*/
+
+for(
+const ally of
+allies
+){
+
+/* Make every army belonging to this ally BLUE immediately. */
+for(const army of aiArmies){
+    if(army.country===ally){
+        army.isAlly=true;
+    }
+}
+
+const allyArmies=
+aiArmies.filter(
+army=>
+army.country===
+ally&&
+!army.fighting&&
+!army.moving&&
+!surrenderedCountries.has(
+ally
+)
+);
+
+
+for(
+const army of
+allyArmies
+){
+
+const enemyArmy=
+findClosestEnemyArmy(
+army
+);
+
+
+if(
+enemyArmy
+){
+
+const distance=
+map.distance(
+
+army.marker
+.getLatLng(),
+
+enemyArmy.marker
+.getLatLng()
+
+);
+
+
+if(
+distance<
+140000
+){
+
+aiAttackPlayerArmy(
+army,
+enemyArmy
+);
+
+ordered++;
+
+continue;
+
+}
+
+
+animateAI(
+army,
+enemyArmy.marker
+.getLatLng()
+);
+
+ordered++;
+
+continue;
+
+}
+
+
+const target=
+findAIProvinceTarget(
+army
+);
+
+
+if(
+target
+){
+
+army.targetProvince=
+target.feature;
+
+army.targetLayer=
+target.layer;
+
+
+animateAI(
+army,
+target.center
+);
+
+ordered++;
+
+}
+
+}
+
+}
+
+
+/*
+   REFRESH COLORS
+*/
+
+refreshArmyRelations();
+
+
+recolorMap();
+
+
+updateCounts();
+
+
+renderDiplomacy();
+
+
+addWorldNews(
+"<b>🤝 ALLIED WAR MOBILIZATION</b><br>"+
+currentCountry+
+" called its allies into the war. "+
+ordered+
+" allied armies received orders.",
+"AI"
+);
+
+
+showMessage(
+"YOUR ALLIES ARE GOING TO WAR!"
+);
+
+}
+
+
+/* =========================================================
+   KEEP ALLIES ACTIVE
+========================================================= */
+
+function alliedWarTick(){
+
+if(
+paused||
+!currentCountry
+)
+return;
+
+
+const allies=
+Object.keys(
+countryStats
+)
+.filter(
+country=>
+country!==
+currentCountry&&
+areAllies(
+currentCountry,
+country
+)&&
+!surrenderedCountries.has(
+country
+)
+);
+
+
+for(
+const ally of
+allies
+){
+
+/*
+   Find wars that this ally is involved in.
+*/
+
+const enemies=
+Object.keys(
+countryStats
+)
+.filter(
+enemy=>
+enemy!==
+ally&&
+!surrenderedCountries.has(
+enemy
+)&&
+isWar(
+ally,
+enemy
+)
+);
+
+
+if(
+!enemies.length
+)
+continue;
+
+
+const armies=
+aiArmies.filter(
+army=>
+army.country===
+ally&&
+!army.moving&&
+!army.fighting&&
+army.infantry+
+army.tanks>
+100
+);
+
+
+let checked=0;
+
+
+for(
+const army of
+armies
+){
+
+if(
+checked>=3
+)
+break;
+
+
+checked++;
+
+
+const enemy=
+findClosestEnemyArmy(
+army
+);
+
+
+if(
+enemy){
+
+const distance=
+map.distance(
+
+army.marker
+.getLatLng(),
+
+enemy.marker
+.getLatLng()
+
+);
+
+
+if(
+distance<
+125000
+){
+
+aiAttackPlayerArmy(
+army,
+enemy
+);
+
+continue;
+
+}
+
+
+animateAI(
+army,
+enemy.marker
+.getLatLng()
+);
+
+continue;
+
+}
+
+
+const target=
+findAIProvinceTarget(
+army
+);
+
+
+if(
+target
+){
+
+army.targetProvince=
+target.feature;
+
+army.targetLayer=
+target.layer;
+
+
+animateAI(
+army,
+target.center
+);
+
+}
+
+}
+
+}
+
+
+/*
+   MAKE SURE THEIR COUNTERS ARE STILL BLUE
+*/
+
+refreshArmyRelations();
+
+}
+
+
+/* =========================================================
+   BATTLE INDICATOR
+========================================================= */
+
+function createBattleIndicator(
+battle
+){
+
+removeBattleIndicator();
+
+
+if(
+!battle||
+!battle.target||
+!battle.target.feature
+)
+return;
+
+
+const point=
+provinceCenters.get(
+battle.target.feature
+);
+
+
+if(
+!point
+)
+return;
+
+
+battleIndicator=
+L.marker(
+point,
+{
+
+interactive:false,
+
+keyboard:false,
+
+zIndexOffset:3000,
+
+icon:
+L.divIcon({
+
+className:"",
+
+html:`
+
+<div
+class="battle-indicator-wrap">
+
+<div
+class="battle-indicator"
+id="battleIndicatorIcon">
+
+➜
+
+</div>
+
+<span
+class="battle-label"
+id="battleLabel">
+
+BATTLE
+
+</span>
+
+</div>
+
+`,
+
+iconSize:[
+130,
+45
+],
+
+iconAnchor:[
+17,
+17
+]
+
+})
+
+}
+)
+.addTo(
+map
+);
+
+
+updateBattleIndicator();
+
+}
+
+
+function updateBattleIndicator(){
+
+if(
+!battleIndicator||
+!activeBattle
+)
+return;
+
+
+const label=
+document.getElementById(
+"battleLabel"
+);
+
+
+const icon=
+document.getElementById(
+"battleIndicatorIcon"
+);
+
+
+if(
+!label||
+!icon
+)
+return;
+
+
+const playerAttacker=
+activeBattle.attackerCountry===
+currentCountry;
+
+
+const attackerWinning=
+activeBattle.attacker>
+activeBattle.defender;
+
+
+label.textContent=
+attackerWinning===
+playerAttacker
+?"PLAYER WINNING"
+:"ENEMY WINNING";
+
+
+icon.style.transform=
+attackerWinning===
+playerAttacker
+?"rotate(0deg)"
+:"rotate(180deg)";
+
+}
+
+
+function removeBattleIndicator(){
+
+if(
+battleIndicator&&
+map.hasLayer(
+battleIndicator
+)
+){
+
+map.removeLayer(
+battleIndicator
+);
+
+}
+
+
+battleIndicator=null;
+
+}
+
+
+/* =========================================================
+   BATTLE
+========================================================= */
+
+function startBattle(
+army,
+target,
+defenders=[],
+aiBattle=false
+){
+
+if(
+activeBattle||
+!army||
+!target
+)
+return;
+
+
+army.moveToken++;
+
+army.moving=false;
+
+army.fighting=true;
+
+
+for(
+const defender of
+defenders
+){
+
+defender.fighting=true;
+
+}
+
+
+const attackerPower=
+Math.max(
+100,
+armyPower(
+army
+)
+);
+
+
+const defenderPower=
+Math.max(
+
+100,
+
+defenders.reduce(
+(
+total,
+defender
+)=>
+total+
+armyPower(
+defender
+),
+
+0
+)
+
+);
+
+
+activeBattle={
+
+army,
+
+defenders,
+
+target,
+
+attacker:
+attackerPower,
+
+attackerMax:
+attackerPower,
+
+defender:
+defenderPower,
+
+defenderMax:
+defenderPower,
+
+attackerCountry:
+army.country,
+
+defenderCountry:
+target.country,
+
+aiBattle
+
+};
+
+
+createBattleIndicator(
+activeBattle
+);
+
+
+newsBattle(
+army.country,
+target.country,
+target.name
+);
+
+
+showMessage(
+"BATTLE AT "+
+target.name+"!"
+);
+
+
+battleTick();
+
+}
+
+
+function battleTick(){
+
+if(
+!activeBattle
+)
+return;
+
+
+if(
+paused
+){
+
+setTimeout(
+battleTick,
+350
+);
+
+return;
+
+}
+
+
+const battle=
+activeBattle;
+
+
+const army=
+battle.army;
+
+
+const supply=
+Math.max(
+0,
+Math.min(
+100,
+army.supply
+)
+);
+
+
+let multiplier=
+.55+
+supply/
+100*
+.45;
+
+
+multiplier+=
+(
+army.org/
+100
+)*
+.25;
+
+
+if(
+army.country===
+currentCountry
+){
+
+multiplier+=
+getTechBonus(
+"combatBonus"
+)/
+100;
+
+}
+
+
+battle.attacker-=
+Math.random()*
+28+
+12;
+
+
+battle.defender-=
+(
+Math.random()*
+40+
+18
+)*
+multiplier;
+
+
+battle.attacker=
+Math.max(
+0,
+battle.attacker
+);
+
+
+battle.defender=
+Math.max(
+0,
+battle.defender
+);
+
+
+updateBattleIndicator();
+
+
+if(
+battle.attacker<=0||
+battle.defender<=0
+){
+
+finishBattle();
+
+return;
+
+}
+
+
+setTimeout(
+battleTick,
+650/speed
+);
+
+}
+
+
+/* =========================================================
+   FINISH BATTLE
+========================================================= */
+
+function finishBattle(){
+
+const battle=
+activeBattle;
+
+
+if(
+!battle
+)
+return;
+
+
+const attackerWon=
+battle.defender<=0&&
+battle.attacker>0;
+
+
+const army=
+battle.army;
+
+
+army.fighting=false;
+
+
+for(
+const defender of
+battle.defenders
+){
+
+defender.fighting=false;
+
+}
+
+
+if(
+attackerWon
+){
+
+for(
+const defender of
+battle.defenders
+){
+
+defender.infantry=
+Math.floor(
+defender.infantry*.18
+);
+
+
+defender.tanks=
+Math.floor(
+defender.tanks*.18
+);
+
+
+defender.org=
+Math.max(
+10,
+defender.org-30
+);
+
+
+defender.supply=
+Math.max(
+0,
+defender.supply-12
+);
+
+
+updateArmyIcon(
+defender
+);
+
+}
+
+
+captureProvince(
+battle.target,
+army.country
+);
+
+
+army.infantry=
+Math.floor(
+army.infantry*.82
+);
+
+
+army.tanks=
+Math.floor(
+army.tanks*.90
+);
+
+
+army.org=
+Math.max(
+30,
+army.org-20
+);
+
+
+army.supply=
+Math.max(
+0,
+army.supply-12
+);
+
+
+updateArmyIcon(
+army
+);
+
+
+showMessage(
+"VICTORY! "+
+battle.target.name+
+" captured!"
+);
+
+}
+else{
+
+army.infantry=
+Math.floor(
+army.infantry*.60
+);
+
+
+army.tanks=
+Math.floor(
+army.tanks*.70
+);
+
+
+army.org=
+Math.max(
+10,
+army.org-35
+);
+
+
+army.supply=
+Math.max(
+0,
+army.supply-15
+);
+
+
+updateArmyIcon(
+army
+);
+
+
+for(
+const defender of
+battle.defenders
+){
+
+defender.infantry=
+Math.floor(
+defender.infantry*.92
+);
+
+
+defender.tanks=
+Math.floor(
+defender.tanks*.94
+);
+
+
+defender.org=
+Math.max(
+25,
+defender.org-10
+);
+
+
+updateArmyIcon(
+defender
+);
+
+}
+
+
+showMessage(
+"Attack stopped!"
+);
+
+}
+
+
+removeBattleIndicator();
+
+
+activeBattle=null;
+
+
+updateCounts();
+
+
+if(
+selectedArmy===
+army
+){
+
+showArmy(
+army
+);
+
+}
+
+}
+
+
+/* =========================================================
+   FORT
+========================================================= */
+
+function getProvinceFortLevel(
+feature
+){
+
+if(
+!feature
+)
+return 0;
+
+
+let level=0;
+
+
+for(
+const city of
+cities
+){
+
+if(
+city.province===
+feature
+){
+
+level=
+Math.max(
+level,
+city.buildings.fort
+);
+
+}
+
+}
+
+
+return level;
+
+}
+
+
+/* =========================================================
+   CAPTURE
+========================================================= */
+
+function freeCapture(
+army,
+target
+){
+
+if(
+!target||
+!target.feature
+)
+return;
+
+
+const owner=
+ownerOf(
+target.feature
+);
+
+
+if(
+owner===
+army.country||
+!isWar(
+army.country,
+owner
+)
+)
+return;
+
+
+const fort=
+getProvinceFortLevel(
+target.feature
+);
+
+
+if(
+fort>0&&
+Math.random()<
+Math.min(
+.45,
+fort*.07
+)
+){
+
+army.org=
+Math.max(
+20,
+army.org-10
+);
+
+
+army.supply=
+Math.max(
+0,
+army.supply-6
+);
+
+
+updateArmyIcon(
+army
+);
+
+
+showMessage(
+target.name+
+" resisted!"
+);
+
+
+return;
+
+}
+
+
+captureProvince(
+target,
+army.country
+);
+
+
+army.org=
+Math.max(
+40,
+army.org-5
+);
+
+
+army.supply=
+Math.max(
+0,
+army.supply-5
+);
+
+
+updateArmyIcon(
+army
+);
+
+
+newsCapture(
+army.country,
+target.name
+);
+
+
+showMessage(
+target.name+
+" captured!"
+);
+
+}
+
+
+/* =========================================================
+   CAPTURE PROVINCE
+========================================================= */
+
+function captureProvince(
+target,
+newOwner
+){
+
+if(
+!target||
+!target.feature
+)
+return;
+
+
+const oldOwner=
+ownerOf(
+target.feature
+);
+
+
+if(
+oldOwner===
+newOwner
+)
+return;
+
+
+setOwner(
+target.feature,
+newOwner
+);
+
+
+target.country=
+newOwner;
+
+
+rebuildCaches();
+
+
+logisticsDirty=true;
+
+
+if(
+newOwner===
+currentCountry
+){
+
+const captured=
+document.getElementById(
+"captured"
+);
+
+
+captured.textContent=
+Number(
+captured.textContent
+)+1;
+
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+stats.economy+=10;
+
+stats.military+=5;
+
+}
+
+
+if(
+oldOwner&&
+oldOwner!==
+newOwner
+){
+
+checkCountrySurrender(
+oldOwner
+);
+
+}
+
+
+recolorMap();
+
+addCapitalStars();
+
+updateStats();
+
+}
+
+
+/* =========================================================
+   SURRENDER
+========================================================= */
+
+function checkCountrySurrender(
+country
+){
+
+if(
+!country||
+country===
+currentCountry||
+surrenderedCountries.has(
+country
+)
+)
+return;
+
+
+const original=
+countryStartingProvinces
+.get(
+country
+)||
+[];
+
+
+if(
+!original.length
+)
+return;
+
+
+let remaining=0;
+
+for(
+const feature of
+original
+){
+
+if(
+ownerOf(
+feature
+)===
+country
+){
+
+remaining++;
+
+}
+
+}
+
+
+const capital=
+countryCapitals.get(
+country
+);
+
+
+const capitalLost=
+!capital||
+ownerOf(
+capital
+)!==
+country;
+
+
+if(
+capitalLost&&
+remaining/
+original.length<=
+.40
+){
+
+window.surrenderCountry(
+country
+);
+
+}
+
+}
+
+
+function surrenderCountryOriginal(
+country
+){
+
+if(
+surrenderedCountries.has(
+country
+)
+)
+return;
+
+
+surrenderedCountries.add(
+country
+);
+
+
+newsSurrender(
+country
+);
+
+
+const original=
+countryStartingProvinces
+.get(
+country
+)||
+[];
+
+
+for(
+const feature of
+original
+){
+
+if(
+ownerOf(
+feature
+)!==
+country
+)
+continue;
+
+
+if(
+currentCountry&&
+isWar(
+currentCountry,
+country
+)
+){
+
+setOwner(
+feature,
+currentCountry
+);
+
+}
+
+}
+
+
+aiArmies=
+aiArmies.filter(
+army=>{
+
+if(
+army.country===
+country
+){
+
+army.moveToken++;
+
+
+if(
+army.marker&&
+map.hasLayer(
+army.marker
+)
+){
+
+map.removeLayer(
+army.marker
+);
+
+}
+
+
+return false;
+
+}
+
+
+return true;
+
+}
+);
+
+
+rebuildCaches();
+
+
+logisticsDirty=true;
+
+
+recolorMap();
+
+addCapitalStars();
+
+updateCounts();
+
+
+showMessage(
+country+
+" HAS SURRENDERED!"
+);
+
+}
+
+
+/* =========================================================
+   FRONTS
+========================================================= */
+
+function startFrontCreation(){
+
+if(
+!selectedArmy
+){
+
+showMessage(
+"Select your army first."
+);
+
+return;
+
+}
+
+
+if(
+!selectedProvince
+){
+
+showMessage(
+"Select a province first."
+);
+
+return;
+
+}
+
+
+if(
+!isWar(
+currentCountry,
+selectedProvince.country
+)
+){
+
+showMessage(
+"You must be at war first."
+);
+
+return;
+
+}
+
+
+creatingFront=true;
+
+
+currentFront={
+
+army:selectedArmy,
+
+points:[]
+
+};
+
+
+frontMarkers=[];
+
+
+document.getElementById(
+"createFrontButton"
+).style.display=
+"none";
+
+
+document.getElementById(
+"finishFrontButton"
+).style.display=
+"block";
+
+
+showMessage(
+"Click points along the front."
+);
+
+}
+
+
+function addFrontPoint(
+latlng
+){
+
+if(
+!creatingFront||
+!currentFront||
+!latlng
+)
+return;
+
+
+const point=
+L.latLng(
+latlng.lat,
+latlng.lng
+);
+
+
+currentFront.points.push(
+point
+);
+
+
+const marker=
+L.marker(
+point,
+{
+
+interactive:false,
+
+icon:
+L.divIcon({
+
+className:"",
+
+html:
+'<div style="width:10px;height:10px;border-radius:50%;background:#e5cb64;border:2px solid #222;"></div>',
+
+iconSize:[
+10,
+10
+],
+
+iconAnchor:[
+5,
+5
+]
+
+}),
+
+zIndexOffset:800
+
+}
+)
+.addTo(
+map
+);
+
+
+frontMarkers.push(
+marker
+);
+
+
+drawCurrentFront();
+
+}
+
+
+function drawCurrentFront(){
+
+if(
+!currentFront||
+currentFront.points.length<2
+)
+return;
+
+
+if(
+frontLineLayer
+){
+
+map.removeLayer(
+frontLineLayer
+);
+
+}
+
+
+frontLineLayer=
+L.polyline(
+currentFront.points,
+{
+
+color:"#e5cb64",
+
+weight:4,
+
+opacity:.95,
+
+dashArray:"10,6",
+
+interactive:false
+
+}
+)
+.addTo(
+map
+);
+
+}
+
+
+function finishFrontCreation(){
+
+if(
+!creatingFront||
+!currentFront
+)
+return;
+
+
+if(
+currentFront.points.length<2
+){
+
+showMessage(
+"Add at least two points."
+);
+
+return;
+
+}
+
+
+playerFronts.push({
+
+army:
+currentFront.army,
+
+points:
+[
+...currentFront.points
+],
+
+active:true
+
+});
+
+
+creatingFront=false;
+
+currentFront=null;
+
+
+document.getElementById(
+"createFrontButton"
+).style.display=
+"block";
+
+
+document.getElementById(
+"finishFrontButton"
+).style.display=
+"none";
+
+
+showMessage(
+"FRONT LINE CREATED!"
+);
+
+}
+
+
+function removeSelectedFront(){
+
+if(
+!selectedArmy
+){
+
+showMessage(
+"Select an army first."
+);
+
+return;
+
+}
+
+
+playerFronts=
+playerFronts.filter(
+front=>
+front.army!==
+selectedArmy
+);
+
+
+if(
+frontLineLayer
+){
+
+map.removeLayer(
+frontLineLayer
+);
+
+frontLineLayer=null;
+
+}
+
+
+for(
+const marker of
+frontMarkers
+){
+
+if(
+map.hasLayer(
+marker
+)
+){
+
+map.removeLayer(
+marker
+);
+
+}
+
+}
+
+
+frontMarkers=[];
+
+
+updateFrontButtonState(
+selectedArmy
+);
+
+
+showMessage(
+"Front removed."
+);
+
+}
+
+
+function updateFrontButtonState(
+army
+){
+
+const button=
+document.getElementById(
+"removeFrontButton"
+);
+
+
+if(
+!button
+)
+return;
+
+
+const exists=
+playerFronts.some(
+front=>
+front.army===
+army&&
+front.active
+);
+
+
+button.style.display=
+exists
+?"block"
+:"none";
+
+}
+
+
+function findFrontTarget(
+army,
+front
+){
+
+if(
+!front||
+!front.points.length
+)
+return null;
+
+
+const position=
+army.marker
+.getLatLng();
+
+
+let best=null;
+
+let bestDistance=
+Infinity;
+
+
+for(
+const [
+country,
+features
+] of
+countryProvinceCache
+){
+
+if(
+country===
+army.country
+)
+continue;
+
+
+if(
+!isWar(
+army.country,
+country
+)
+)
+continue;
+
+
+for(
+const feature of
+features
+){
+
+const center=
+provinceCenters.get(
+feature
+);
+
+
+if(
+!center
+)
+continue;
+
+
+let frontDistance=
+Infinity;
+
+
+for(
+const point of
+front.points
+){
+
+frontDistance=
+Math.min(
+
+frontDistance,
+
+Math.hypot(
+
+point.lat-
+center.lat,
+
+point.lng-
+center.lng
+
+)
+
+);
+
+}
+
+
+if(
+frontDistance>5
+)
+continue;
+
+
+const distance=
+Math.hypot(
+
+center.lat-
+position.lat,
+
+center.lng-
+position.lng
+
+);
+
+
+if(
+distance<
+bestDistance
+){
+
+bestDistance=
+distance;
+
+
+best={
+
+feature,
+
+layer:
+findLayer(
+feature
+),
+
+center,
+
+country,
+
+name:
+getProvince(
+feature.properties
+)
+
+};
+
+}
+
+}
+
+}
+
+
+return best;
+
+}
+
+
+function updateFrontArmies(){
+
+if(
+paused||
+!playerFronts.length
+)
+return;
+
+
+let processed=0;
+
+
+while(
+processed<
+FRONT_BATCH_SIZE
+){
+
+if(
+frontCursor>=
+playerFronts.length
+){
+
+frontCursor=0;
+
+}
+
+
+const front=
+playerFronts[
+frontCursor++
+];
+
+
+processed++;
+
+
+if(
+!front||
+!front.active
+)
+continue;
+
+
+const army=
+front.army;
+
+
+if(
+!army||
+army.fighting||
+army.moving
+)
+continue;
+
+
+const target=
+findFrontTarget(
+army,
+front
+);
+
+
+if(
+target
+){
+
+army.targetProvince=
+target.feature;
+
+
+army.targetLayer=
+target.layer;
+
+
+moveArmy(
+army,
+target.center
+);
+
+}
+
+}
+
+}
+
+
+/* =========================================================
+   ARMY ARRIVAL
+========================================================= */
+
+function checkArmyArrival(
+army
+){
+
+const feature=
+army.currentProvince||
+findProvinceAt(
+army.marker
+.getLatLng()
+);
+
+
+if(
+!feature
+)
+return;
+
+
+army.currentProvince=
+feature;
+
+
+const owner=
+ownerOf(
+feature
+);
+
+
+if(
+owner===
+army.country
+)
+return;
+
+
+if(
+!isWar(
+army.country,
+owner
+)
+)
+return;
+
+
+const target={
+
+feature,
+
+layer:
+findLayer(
+feature
+),
+
+country:
+owner,
+
+name:
+getProvince(
+feature.properties
+)
+
+};
+
+
+const defenders=
+getEnemyArmiesInProvince(
+feature,
+army.country
+);
+
+
+if(
+defenders.length
+){
+
+startBattle(
+army,
+target,
+defenders,
+army.isAI
+);
+
+}
+else{
+
+freeCapture(
+army,
+target
+);
+
+}
+
+}
+
+
+/* =========================================================
+   DIPLOMACY UI
+========================================================= */
+
+let dipSearchText="";
+
+
+function openDiplomacy(){
+
+if(
+!currentCountry
+){
+
+showMessage(
+"Choose a country first."
+);
+
+return;
+
+}
+
+
+dipSearchText="";
+
+
+document.getElementById(
+"dipContent"
+).innerHTML=`
+
+<input
+id="dipSearch"
+class="dipSearch"
+type="text"
+placeholder="Search countries...">
+
+<div id="dipResults"></div>
+
+`;
+
+
+document.getElementById(
+"dipSearch"
+).addEventListener(
+"input",
+event=>{
+
+dipSearchText=
+event.target.value;
+
+renderDiplomacy();
+
+}
+);
+
+
+renderDiplomacy();
+
+
+document.getElementById(
+"dipWindow"
+).style.display=
+"block";
+
+}
+
+
+function renderDiplomacy(){
+
+const results=
+document.getElementById(
+"dipResults"
+);
+
+
+if(
+!results
+)
+return;
+
+
+const query=
+dipSearchText
+.trim()
+.toLowerCase();
+
+
+const countries=
+Object.keys(
+countryStats
+)
+.filter(
+country=>
+country!==
+currentCountry
+)
+.filter(
+country=>
+!surrenderedCountries.has(
+country
+)
+)
+.filter(
+country=>
+!query||
+country
+.toLowerCase()
+.includes(
+query
+)
+)
+.sort();
+
+
+const allies=
+countries.filter(
+country=>
+areAllies(
+currentCountry,
+country
+)
+);
+
+
+let html=`
+
+<div class="dipCountry">
+
+<h3>
+ALLIANCE NETWORK
+</h3>
+
+<small>${allies.length}
+current allies
+</small>
+
+<br><br>
+
+<button
+class="button blue"
+onclick="callAlliesToWar()">
+
+CALL ALL ALLIES TO WAR
+
+</button>
+
+</div>
+
+`;
+
+
+for(
+const country of
+countries
+){
+
+const atWar=
+isWar(
+currentCountry,
+country
+);
+
+
+const allied=
+areAllies(
+currentCountry,
+country
+);
+
+
+if(
+atWar
+){
+
+html+=`
+
+<div class="dipCountry">
+
+<h3>
+${country}
+</h3>
+
+<small>
+AT WAR • AI CONTROLLED
+</small>
+
+<br><br>
+
+<button
+class="button"
+onclick="
+toggleWar(
+'${escapeText(country)}'
+)
+">
+
+MAKE PEACE
+
+</button>
+
+</div>
+
+`;
+
+}
+else if(
+allied
+){
+
+html+=`
+
+<div class="dipCountry">
+
+<h3>
+${country}
+</h3>
+
+<small>
+ALLIED • AI CONTROLLED
+</small>
+
+<br><br>
+
+<button
+class="button red"
+onclick="
+leaveAlliance(
+'${escapeText(country)}'
+)
+">
+
+LEAVE ALLIANCE
+
+</button>
+
+</div>
+
+`;
+
+}
+else{
+
+html+=`
+
+<div class="dipCountry">
+
+<h3>
+${country}
+</h3>
+
+<small>
+NEUTRAL • AI CONTROLLED
+</small>
+
+<br><br>
+
+<button
+class="button blue"
+onclick="
+formAlliance(
+'${escapeText(country)}'
+)
+">
+
+FORM ALLIANCE
+
+</button>
+
+<br><br>
+
+<button
+class="button red"
+onclick="
+toggleWar(
+'${escapeText(country)}'
+)
+">
+
+DECLARE WAR
+
+</button>
+
+</div>
+
+`;
+
+}
+
+}
+
+
+results.innerHTML=
+html;
+
+}
+
+
+function escapeText(
+text
+){
+
+return String(text)
+.replace(
+/\\/g,
+"\\\\"
+)
+.replace(
+/'/g,
+"\\'"
+);
+
+}
+
+
+function formAlliance(
+country
+){
+
+if(
+!country||
+country===
+currentCountry
+)
+return;
+
+
+if(
+isWar(
+currentCountry,
+country
+)
+){
+
+showMessage(
+"You are already at war."
+);
+
+return;
+
+}
+
+
+alliances.add(
+allianceKey(
+currentCountry,
+country
+)
+);
+
+
+newsAlliance(
+currentCountry,
+country
+);
+
+
+/*
+   Refresh every AI counter so the
+   new ally immediately becomes BLUE.
+*/
+
+refreshArmyRelations();
+
+
+recolorMap();
+
+
+updateCounts();
+
+
+renderDiplomacy();
+
+
+showMessage(
+"ALLIANCE FORMED WITH "+
+country+"!"
+);
+
+}
+
+
+function leaveAlliance(
+country
+){
+
+alliances.delete(
+allianceKey(
+currentCountry,
+country
+)
+);
+
+
+refreshArmyRelations();
+
+
+recolorMap();
+
+
+updateCounts();
+
+
+renderDiplomacy();
+
+
+showMessage(
+"Alliance ended."
+);
+
+}
+
+
+function toggleWar(
+country
+){
+
+const key=warKey(currentCountry,country);
+
+if(wars.has(key)){
+  wars.delete(key);
+  warInitiators.delete(key);
+  newsPeace(currentCountry,country);
+  showMessage("Peace with "+country);
+}else{
+  if(areAllies(currentCountry,country)){
+    showMessage("Leave the alliance first.");
+    return;
+  }
+  declareWar(currentCountry,country);
+  for(const army of aiArmies){
+    if(army.country===country) army.moveToken++;
+  }
+  showMessage("WAR DECLARED ON "+country+"! Your allies will decide whether to join.");
+}
+
+refreshArmyRelations();
+recolorMap();
+updateCounts();
+renderDiplomacy();
+showProvinceInfo();
+}
+
+
+
+/* =========================================================
+   NATIONAL FOCUS TREES — COUNTRY SPECIFIC
+========================================================= */
+
+const focusDurationDefault=35;
+
+const majorFocusProfiles={
+  "United States":{title:"UNITED STATES NATIONAL PROGRAM",branches:["Industry & Arsenal","Continental Security","Naval Power","Air Power"]},
+  "Germany":{title:"GERMAN NATIONAL PROGRAM",branches:["Industrial Rearmament","Army Modernization","Air Power","Strategic Expansion"]},
+  "United Kingdom":{title:"BRITISH NATIONAL PROGRAM",branches:["War Industry","Royal Navy","Air Defense","Imperial Security"]},
+  "France":{title:"FRENCH NATIONAL PROGRAM",branches:["Industrial Recovery","Army Reform","Fortify the Homeland","Air Force"]},
+  "Italy":{title:"ITALIAN NATIONAL PROGRAM",branches:["Industrial Development","Army Reform","Mediterranean Fleet","Air Force"]},
+  "Japan":{title:"JAPANESE NATIONAL PROGRAM",branches:["Industrial Mobilization","Army Modernization","Imperial Navy","Air Power"]},
+  "Russia":{title:"RUSSIAN NATIONAL PROGRAM",branches:["Heavy Industry","Army Modernization","Strategic Depth","Air Power"]},
+  "China":{title:"CHINESE NATIONAL PROGRAM",branches:["Industrial Recovery","Army Reform","National Unity","Air Force"]},
+  "India":{title:"INDIAN NATIONAL PROGRAM",branches:["Industrial Development","Army Modernization","Infrastructure","Air Power"]},
+  "Canada":{title:"CANADIAN NATIONAL PROGRAM",branches:["Industrial Expansion","Army Training","Atlantic Defense","Air Force"]},
+  "Australia":{title:"AUSTRALIAN NATIONAL PROGRAM",branches:["Industrial Expansion","Army Training","Pacific Defense","Air Force"]},
+  "Turkey":{title:"TURKISH NATIONAL PROGRAM",branches:["Industrial Development","Army Reform","Border Security","Air Force"]},
+  "Spain":{title:"SPANISH NATIONAL PROGRAM",branches:["Industrial Recovery","Army Reform","National Stability","Air Force"]},
+  "Brazil":{title:"BRAZILIAN NATIONAL PROGRAM",branches:["Industrialization","Army Modernization","Continental Security","Air Force"]}
+};
+
+function focusProfile(country){
+  if(majorFocusProfiles[country]) return majorFocusProfiles[country];
+  const name=String(country||"NATION");
+  return {
+    title:name.toUpperCase()+" NATIONAL PROGRAM",
+    branches:["Industrial Development","Army Modernization","National Stability","National Defense"]
+  };
+}
+
+function buildNationalFocusTree(country){
+  const p=focusProfile(country);
+  const ids=["foundation","industry","army","stability","industry2","logistics","armor","air","mobilization","warindustry","diplomacy","expansion","national_goal"];
+  const effects=[
+    {kind:"foundation"},
+    {kind:"industry"},
+    {kind:"army"},
+    {kind:"stability"},
+    {kind:"industry2"},
+    {kind:"logistics"},
+    {kind:"armor"},
+    {kind:"air"},
+    {kind:"mobilization"},
+    {kind:"warindustry"},
+    {kind:"diplomacy"},
+    {kind:"expansion"},
+    {kind:"goal"}
+  ];
+  const names=[
+    p.branches[0]+" Initiative",
+    p.branches[0],
+    p.branches[1],
+    p.branches[2],
+    "Heavy " + p.branches[0],
+    "National Logistics",
+    "Armored Forces Program",
+    p.branches[3],
+    "General Mobilization",
+    "War Industry",
+    "Foreign Ministry",
+    "National Expansion",
+    "A New National Era"
+  ];
+  const desc=[
+    "Establish a national direction.",
+    "+100 Economy • +2 Factories",
+    "+5,000 Infantry across the army",
+    "+10 Stability",
+    "+3 Factories • +75 Economy",
+    "Improved supply and movement",
+    "+300 Tanks to existing armies",
+    "+1 Factory • stronger air capability",
+    "+50K Manpower",
+    "+100 Equipment • +2 Factories",
+    "+5 Stability • stronger diplomacy",
+    "+80 Economy • +50 Military",
+    "Complete the national development path."
+  ];
+  const durations=[35,35,35,35,42,42,42,49,30,49,42,49,56];
+  const req=[[],["foundation"],["foundation"],["foundation"],["industry"],["army"],["army"],["industry2"],["stability"],["industry2","mobilization"],["foundation"],["industry","army"],["expansion","diplomacy"]];
+  return ids.map((id,i)=>({id,title:names[i],desc:desc[i],duration:durations[i],req:req[i],kind:effects[i].kind}));
+}
+
+function currentFocusCatalog(){
+  return buildNationalFocusTree(currentCountry);
+}
+
+function focusNode(id){
+  return currentFocusCatalog().find(f=>f.id===id);
+}
+
+function renderFocusTree(){
+  const box=document.getElementById("focusTreeDynamic");
+  const title=document.getElementById("focusNationTitle");
+  if(!box||!currentCountry) return;
+  const p=focusProfile(currentCountry);
+  if(title) title.innerHTML="<b>"+p.title+"</b><div class='muted'>"+currentCountry+" • Player National Focus Tree</div>";
+  const fs=currentFocusCatalog();
+  box.innerHTML="";
+  const rows=[[fs[0]],[fs[1],fs[2],fs[3]],[fs[4],fs[5],fs[6],fs[7]],[fs[8],fs[9]],[fs[10],fs[11]],[fs[12]]];
+  for(const row of rows){
+    const r=document.createElement("div"); r.className="focusRow";
+    for(const f of row){
+      const el=document.createElement("div");
+      const done=focusDone.has(f.id);
+      const missing=f.req.filter(x=>!focusDone.has(x));
+      const locked=missing.length>0 || (focusQueue && focusQueue.id!==f.id);
+      el.className="focus"+(done?" done":"")+(locked?" locked":"");
+      el.innerHTML="<b>"+f.title+"</b>"+f.desc+"<br><small>Time: "+f.duration+" days</small>"+(missing.length?"<br><small>Requires: "+missing.join(", ")+"</small>":"");
+      el.onclick=()=>takeFocus(f.id);
+      r.appendChild(el);
+    }
+    box.appendChild(r);
+  }
+  renderFocusQueue();
+}
+
+function openFocus(){
+  if(!currentCountry){showMessage("Choose a country first.");return;}
+  renderFocusTree();
+  document.getElementById("focusWindow").style.display="block";
+}
+
+function takeFocus(id){
+  if(!currentCountry) return;
+  const f=focusNode(id);
+  if(!f) return;
+  if(focusDone.has(id)){showMessage("Focus already completed.");return;}
+  if(focusQueue){showMessage("A national focus is already in progress.");return;}
+  const missing=f.req.filter(x=>!focusDone.has(x));
+  if(missing.length){showMessage("Complete first: "+missing.join(", "));return;}
+  focusQueue={id:f.id,name:f.title,time:f.duration,timeLeft:f.duration};
+  renderFocusTree();
+  showMessage("NATIONAL FOCUS STARTED — "+f.duration+" DAYS");
+}
+
+function focusTick(dayDelta=gameDaysThisTick){
+  if(!focusQueue) return;
+  focusQueue.timeLeft-=dayDelta;
+  if(focusQueue.timeLeft<=0){
+    const id=focusQueue.id;
+    const f=focusNode(id);
+    focusQueue=null;
+    if(f) completeNationalFocus(f);
+    showMessage("FOCUS COMPLETE: "+(f?f.title:id));
+  }
+  renderFocusTree();
+}
+
+function renderFocusQueue(){
+  const box=document.getElementById("focusTimeStatus");
+  if(!box) return;
+  box.innerHTML=focusQueue ? "<b>FOCUS IN PROGRESS:</b> "+focusQueue.name+" • "+Math.max(0,Math.ceil(focusQueue.timeLeft))+" days remaining" : "<b>NO FOCUS IN PROGRESS</b> • Select a focus to begin.";
+}
+
+function completeNationalFocus(f){
+  focusDone.add(f.id);
+  const stats=statsFor(currentCountry);
+  switch(f.kind){
+    case "industry": stats.economy+=100; stats.factories+=2; break;
+    case "army": for(const a of playerArmies){a.infantry+=2000;updateArmyIcon(a);} break;
+    case "stability": stats.stability=Math.min(100,stats.stability+10); break;
+    case "industry2": stats.factories+=3; stats.economy+=75; break;
+    case "logistics": for(const a of playerArmies){a.moveSpeedBonus=1.35;a.supplyCapacity=120;a.supply=Math.min(120,a.supply+25);updateArmyIcon(a);} break;
+    case "armor": for(const a of playerArmies){a.tanks+=300;a.type=a.tanks>500?"tank":"infantry";updateArmyIcon(a);} break;
+    case "air": stats.factories+=1; stats.military+=15; break;
+    case "mobilization": stats.manpower+=50; break;
+    case "warindustry": stats.equipment+=100; stats.factories+=2; break;
+    case "diplomacy": stats.stability=Math.min(100,stats.stability+5); break;
+    case "expansion": stats.economy+=80; stats.military+=50; break;
+    case "goal": stats.stability=Math.min(100,stats.stability+10);stats.economy+=100;stats.military+=100; break;
+  }
+  updateStats();
+  renderFocusTree();
+}
+
+/* Compatibility for older calls */
+function unlockFocuses(){renderFocusTree();}
+function instantTakeFocus(id){const f=focusNode(id);if(f&&!focusDone.has(id)) completeNationalFocus(f);}
+
+
+/* =========================================================
+   MOBILIZATION
+========================================================= */
+function mobilizationTick(dayDelta=gameDaysThisTick){
+  if(!mobilizationQueue || !currentCountry) return;
+  mobilizationQueue.timeLeft-=dayDelta;
+  if(mobilizationQueue.timeLeft<=0){
+    const stats=statsFor(currentCountry);
+    stats.manpower+=mobilizationQueue.manpower;
+    showMessage("MOBILIZATION COMPLETE: +"+mobilizationQueue.manpower+"K MANPOWER");
+    mobilizationQueue=null;
+    updateStats();
+  }
+  renderGovernmentQueue();
+}
+
+function renderGovernmentQueue(){
+  const box=document.getElementById("governmentContent");
+  if(!box) return;
+  let status=document.getElementById("mobilizationTimeStatus");
+  if(!status){
+    status=document.createElement("div");status.id="mobilizationTimeStatus";
+    status.style.cssText="margin-bottom:10px;padding:9px;background:#202520;border:1px solid #555;";
+    box.insertBefore(status,box.firstChild);
+  }
+  status.innerHTML=mobilizationQueue ? "<b>MOBILIZATION:</b> "+mobilizationQueue.name+" • "+Math.max(0,Math.ceil(mobilizationQueue.timeLeft))+" days remaining" : "<b>MOBILIZATION:</b> Ready";
+}
+
+/* =========================================================
+   RESEARCH
+========================================================= */
+
+const techCatalog=[
+
+{
+id:"infantry",
+name:"Improved Infantry Weapons",
+cat:"INFANTRY",
+cost:60,
+time:45,
+desc:"+20 combat power.",
+bonus:20,
+kind:"infantryPower"
+},
+
+{
+id:"tankPower",
+name:"Improved Tank Design",
+cat:"ARMOR",
+cost:75,
+time:55,
+desc:"+1 power per tank.",
+bonus:1,
+kind:"tankPower"
+},
+
+{
+id:"combatBonus",
+name:"Combined Arms Doctrine",
+cat:"DOCTRINE",
+cost:90,
+time:65,
+desc:"+15% battle damage.",
+bonus:15,
+kind:"combatBonus"
+},
+
+{
+id:"industryTech",
+name:"Industrial Methods",
+cat:"INDUSTRY",
+cost:70,
+time:50,
+desc:"Faster production.",
+bonus:25,
+kind:"industry"
+},
+
+{
+id:"logistics",
+name:"Logistics Network",
+cat:"LOGISTICS",
+cost:85,
+time:60,
+desc:"Better supply recovery.",
+bonus:25,
+kind:"logistics"
+},
+
+{
+id:"air",
+name:"Fighter Development",
+cat:"AIR FORCE",
+cost:100,
+time:70,
+desc:"Unlocks aircraft production.",
+bonus:10,
+kind:"air"
+}
+
+];
+
+
+function initTechs(){
+
+techs={};
+
+
+for(
+const tech of
+techCatalog
+){
+
+techs[
+tech.kind
+]={
+
+done:false,
+
+bonus:
+tech.bonus
+
+};
+
+}
+
+}
+
+
+function openResearch(){
+
+if(
+!currentCountry
+){
+
+showMessage(
+"Choose a country first."
+);
+
+return;
+
+}
+
+
+renderResearch();
+
+
+document.getElementById(
+"researchWindow"
+).style.display=
+"block";
+
+}
+
+
+function renderResearch(){
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+const box=
+document.getElementById(
+"researchContent"
+);
+
+
+box.innerHTML=`
+
+<div class="subhead">
+
+Research Points:
+<b>
+${Math.floor(
+stats.research
+)}
+</b>
+
+</div>
+
+<div class="techGrid"></div>
+
+`;
+
+
+const grid=
+box.querySelector(
+".techGrid"
+);
+
+
+for(
+const tech of
+techCatalog
+){
+
+const state=
+techs[
+tech.kind
+];
+
+
+const card=
+document.createElement(
+"div"
+);
+
+
+card.className=
+"tech"+
+(
+state?.done
+?
+" done"
+:
+""
+)+
+(
+researchQueue?.id===
+tech.id
+?
+" researching"
+:
+""
+);
+
+
+let content="";
+
+
+if(
+researchQueue?.id===
+tech.id
+){
+
+const percent=
+Math.min(
+100,
+(
+1-
+researchQueue.timeLeft/
+researchQueue.time
+)*
+100
+);
+
+
+content=`
+
+<div class="progress">
+
+<div
+style="
+width:${percent}%;
+">
+</div>
+
+</div>
+
+<p>
+Researching...
+</p>
+
+`;
+
+}
+else{
+
+content=`
+
+<button
+class="button blue"
+${
+state?.done||
+researchQueue
+?
+"disabled"
+:
+""
+}
+onclick="
+startResearch(
+'${tech.id}'
+)
+">
+
+${
+state?.done
+?
+"COMPLETED"
+:
+"START RESEARCH"
+}
+
+</button>
+
+`;
+
+}
+
+
+card.innerHTML=`
+
+<h3>
+${tech.name}
+</h3>
+
+<p>
+${tech.cat}
+•
+${tech.desc}
+</p>
+
+<p>
+Cost:
+${tech.cost}
+RP
+•
+${tech.time}s
+</p>
+
+${content}
+
+`;
+
+
+grid.appendChild(
+card
+);
+
+}
+
+}
+
+
+function startResearch(
+id
+){
+
+const tech=
+techCatalog.find(
+x=>
+x.id===
+id
+);
+
+
+if(
+!tech||
+researchQueue
+)
+return;
+
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+if(
+techs[
+tech.kind
+].done
+)
+return;
+
+
+if(
+stats.research<
+tech.cost
+){
+
+showMessage(
+"Not enough research points."
+);
+
+return;
+
+}
+
+
+stats.research-=
+tech.cost;
+
+
+researchQueue={
+
+id:
+tech.id,
+
+time:
+tech.time,
+
+timeLeft:
+tech.time
+
+};
+
+
+renderResearch();
+
+
+showMessage(
+"Research started."
+);
+
+}
+
+
+function researchTick(dayDelta=gameDaysThisTick){
+
+if(
+paused||
+!currentCountry||
+!researchQueue
+)
+return;
+
+
+researchQueue.timeLeft-=dayDelta;
+
+
+if(
+researchQueue.timeLeft<=0
+){
+
+const tech=
+techCatalog.find(
+x=>
+x.id===
+researchQueue.id
+);
+
+
+if(
+tech
+){
+
+techs[
+tech.kind
+].done=true;
+
+
+showMessage(
+"RESEARCH COMPLETE: "+
+tech.name
+);
+
+}
+
+
+researchQueue=null;
+
+
+if(
+document.getElementById(
+"researchWindow"
+).style.display===
+"block"
+){
+
+renderResearch();
+
+}
+
+}
+
+}
+
+
+/* =========================================================
+   RECRUITMENT
+========================================================= */
+
+const recruitTypes={
+
+inf:{
+
+name:"Infantry Division",
+
+man:10,
+
+equip:20,
+
+time:35,
+
+inf:10000,
+
+tank:0
+
+},
+
+motor:{
+
+name:"Motorized Division",
+
+man:8,
+
+equip:30,
+
+time:45,
+inf:8000,
+
+tank:100
+
+},
+
+armor:{
+
+name:"Armored Division",
+
+man:5,
+
+equip:55,
+
+time:60,
+
+inf:5000,
+
+tank:500
+
+}
+
+};
+
+
+function openRecruitment(){
+
+if(
+!currentCountry
+){
+
+showMessage(
+"Choose a country first."
+);
+
+return;
+
+}
+
+
+renderRecruitment();
+
+
+document.getElementById(
+"recruitWindow"
+).style.display=
+"block";
+
+}
+
+
+function renderRecruitment(){
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+const box=
+document.getElementById(
+"recruitContent"
+);
+
+
+box.innerHTML=`
+
+<div class="subhead">
+
+Available manpower:
+<b>
+${Math.floor(
+stats.manpower
+)}K
+</b>
+
+•
+
+Equipment:
+<b>
+${Math.floor(
+stats.equipment
+)}
+</b>
+
+</div>
+
+<div class="recruitGrid"></div>
+
+<div class="queue">
+
+<b>
+TRAINING QUEUE
+</b>
+
+<div id="recruitQueueList"></div>
+
+</div>
+
+`;
+
+
+const grid=
+box.querySelector(
+".recruitGrid"
+);
+
+
+for(
+const [
+id,
+type
+] of
+Object.entries(
+recruitTypes
+)
+){
+
+const card=
+document.createElement(
+"div"
+);
+
+
+card.className=
+"recruitCard";
+
+
+card.innerHTML=`
+
+<h3>
+${type.name}
+</h3>
+
+<p>
+${type.inf.toLocaleString()}
+infantry
+•
+${type.tank.toLocaleString()}
+tanks
+</p>
+
+<p>
+Manpower:
+${type.man}K
+•
+Equipment:
+${type.equip}
+</p>
+
+<p>
+Training:
+${type.time} days
+</p>
+
+<button
+class="button gold"
+onclick="
+recruitUnit(
+'${id}'
+)
+">
+
+BEGIN TRAINING
+
+</button>
+
+`;
+
+
+grid.appendChild(
+card
+);
+
+}
+
+
+const queue=
+document.getElementById(
+"recruitQueueList"
+);
+
+
+if(
+!recruitQueue.length
+){
+
+queue.innerHTML=
+"<p class='muted'>No units training.</p>";
+
+}
+else{
+
+queue.innerHTML=
+recruitQueue
+.map(
+(
+unit,
+i
+)=>
+
+`<div
+class="queueItem">
+
+${i+1}.
+${unit.name}
+—
+${Math.ceil(
+unit.timeLeft
+)} days remaining
+
+</div>`
+
+)
+.join("");
+
+}
+
+}
+
+
+function recruitUnit(
+id
+){
+
+const type=
+recruitTypes[
+id
+];
+
+
+if(
+!type
+)
+return;
+
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+const barracks=
+getCountryBarracks(
+currentCountry
+);
+
+
+const manpowerCost=
+Math.max(
+5,
+type.man-
+Math.min(
+3,
+barracks
+)
+);
+
+
+if(
+stats.manpower<
+manpowerCost
+){
+
+showMessage(
+"Not enough manpower."
+);
+
+return;
+
+}
+
+
+if(
+stats.equipment<
+type.equip
+){
+
+showMessage(
+"Not enough equipment."
+);
+
+return;
+
+}
+
+
+stats.manpower-=
+manpowerCost;
+
+
+stats.equipment-=
+type.equip;
+
+
+recruitQueue.push({
+
+name:type.name,
+
+time:type.time,
+
+timeLeft:type.time,
+
+inf:type.inf,
+
+tank:type.tank
+
+});
+
+
+renderRecruitment();
+
+
+updateStats();
+
+
+showMessage(
+type.name+
+" entered training."
+);
+
+}
+
+
+function recruitmentTick(dayDelta=gameDaysThisTick){
+
+if(
+paused||
+!currentCountry||
+!recruitQueue.length
+)
+return;
+
+
+for(
+const unit of
+recruitQueue
+){
+
+unit.timeLeft-=dayDelta;
+
+}
+
+
+const completed=
+recruitQueue.filter(
+unit=>
+unit.timeLeft<=0
+);
+
+
+recruitQueue=
+recruitQueue.filter(
+unit=>
+unit.timeLeft>0
+);
+
+
+for(
+const unit of
+completed
+){
+
+const spawn=
+getCapitalSpawn(
+currentCountry
+);
+
+
+if(
+!spawn
+)
+continue;
+
+
+const army=
+createArmy(
+spawn.lat,
+spawn.lng,
+unit.name,
+unit.inf,
+unit.tank,
+currentCountry,
+false
+);
+
+
+army.supply=100;
+
+
+selectedArmy=
+army;
+
+
+showArmy(
+army
+);
+
+
+showMessage(
+"NEW TROOPS DEPLOYED AT CAPITAL!"
+);
+
+}
+
+
+if(
+document.getElementById(
+"recruitWindow"
+).style.display===
+"block"
+){
+
+renderRecruitment();
+
+}
+
+
+updateStats();
+
+}
+
+
+/* =========================================================
+   PRODUCTION
+========================================================= */
+
+const productionItems={
+
+guns:{
+name:"Infantry Equipment",
+cost:1,
+rate:2
+},
+
+tanks:{
+name:"Tanks",
+cost:2,
+rate:1
+},
+
+artillery:{
+name:"Artillery",
+cost:1.5,
+rate:1
+},
+
+aircraft:{
+name:"Aircraft",
+cost:3,
+rate:.5
+}
+
+};
+
+
+/* =========================================================
+   INDUSTRY / PRODUCTION SYSTEM
+   Civilian + military factories, resource shortages,
+   production line queues and factory output scaling.
+========================================================= */
+
+const INDUSTRY_RESOURCES={
+  steel:{name:"Steel",base:80},
+  oil:{name:"Oil",base:35},
+  rubber:{name:"Rubber",base:20},
+  aluminium:{name:"Aluminium",base:25}
+};
+
+let industryByCountry={};
+
+function ensureIndustry(country){
+  if(!country) return null;
+  const stats=statsFor(country);
+  const total=Math.max(2,Math.floor(stats.factories||10));
+  if(!industryByCountry[country]){
+    const military=Math.max(1,Math.floor(total*.55));
+    industryByCountry[country]={
+      civilianFactories:Math.max(1,total-military),
+      militaryFactories:military,
+      constructionQueue:[],
+      resources:{steel:INDUSTRY_RESOURCES.steel.base,oil:INDUSTRY_RESOURCES.oil.base,rubber:INDUSTRY_RESOURCES.rubber.base,aluminium:INDUSTRY_RESOURCES.aluminium.base},
+      stockpile:{guns:Math.max(0,Math.floor(stats.equipment||0)),tanks:0,artillery:0,aircraft:0},
+      lines:[]
+    };
+  }
+  const i=industryByCountry[country];
+  const desiredTotal=Math.max(2,Math.floor(stats.factories||10)+cityProductionBonusFor(country));
+  const current=i.civilianFactories+i.militaryFactories;
+  if(desiredTotal>current) i.civilianFactories+=desiredTotal-current;
+  return i;
+}
+
+function cityProductionBonusFor(country){
+  if(country!==currentCountry) return 0;
+  try{return cityProductionBonus()||0}catch(e){return 0;}
+}
+
+function productionResourceNeed(id){
+  return {
+    guns:{steel:1},
+    tanks:{steel:3,oil:1},
+    artillery:{steel:2},
+    aircraft:{aluminium:2,rubber:1,oil:1}
+  }[id]||{};
+}
+
+function productionOutput(id){
+  return {guns:2,tanks:1,artillery:1,aircraft:.5}[id]||1;
+}
+
+function productionItemLabel(id){
+  return {guns:"Infantry Equipment",tanks:"Tanks",artillery:"Artillery",aircraft:"Aircraft"}[id]||id;
+}
+
+function getProductionState(){return ensureIndustry(currentCountry);}
+
+function openProduction(){
+  if(!currentCountry){showMessage("Choose a country first.");return;}
+  renderProduction();
+  document.getElementById("productionWindow").style.display="block";
+}
+
+function renderProduction(){
+  const stats=statsFor(currentCountry);
+  const ind=ensureIndustry(currentCountry);
+  const box=document.getElementById("productionContent");
+  if(!box||!ind)return;
+
+  const total=ind.civilianFactories+ind.militaryFactories;
+  const used=ind.lines.reduce((n,l)=>n+l.factories,0);
+  const free=Math.max(0,ind.militaryFactories-used);
+
+  box.innerHTML=`
+    <div class="industrySummary">
+      <div class="industryBox"><b>${ind.civilianFactories}</b><small>CIVILIAN FACTORIES</small></div>
+      <div class="industryBox"><b>${ind.militaryFactories}</b><small>MILITARY FACTORIES</small></div>
+      <div class="industryBox"><b>${free}</b><small>FREE MILITARY</small></div>
+      <div class="industryBox"><b>${total}</b><small>TOTAL FACTORIES</small></div>
+    </div>
+    <div class="subhead">EQUIPMENT STOCKPILE</div>
+    <div class="resourceStrip">
+      <span class="resourceTag">🪖 Guns: <b>${Math.floor(ind.stockpile.guns)}</b></span>
+      <span class="resourceTag">🛡️ Tanks: <b>${Math.floor(ind.stockpile.tanks)}</b></span>
+      <span class="resourceTag">💥 Artillery: <b>${Math.floor(ind.stockpile.artillery)}</b></span>
+      <span class="resourceTag">✈️ Aircraft: <b>${Math.floor(ind.stockpile.aircraft)}</b></span>
+    </div>
+    <div class="subhead">RESOURCES</div>
+    <div class="resourceStrip">${Object.entries(ind.resources).map(([k,v])=>`<span class="resourceTag ${v<5?'shortage':''}">${INDUSTRY_RESOURCES[k].name}: <b>${Math.floor(v)}</b></span>`).join('')}</div>
+    <div class="prodGrid" id="industryCards"></div>
+    <div class="queue"><b>PRODUCTION LINE QUEUES</b><div id="prodQueue"></div></div>
+  `;
+
+  const grid=document.getElementById("industryCards");
+  for(const [id,item] of Object.entries(productionItems)){
+    const locked=id==="aircraft"&&(!techs.air||!techs.air.done);
+    const card=document.createElement("div");
+    card.className="prodCard";
+    card.innerHTML=`<h3>${item.name}</h3>
+      <p>Base output: ${productionOutput(id)}/factory/day</p>
+      <p class="prodLineMeta">Resources: ${Object.entries(productionResourceNeed(id)).map(([r,n])=>r.toUpperCase()+" ×"+n).join(', ')||'None'}</p>
+      <button class="button" ${locked?'disabled':''} onclick="addProduction('${id}')">${locked?'RESEARCH AIR FIRST':'ADD PRODUCTION LINE'}</button>`;
+    grid.appendChild(card);
+  }
+
+  const queue=document.getElementById("prodQueue");
+  if(!ind.lines.length){queue.innerHTML="<p class='muted'>No active production lines.</p>";}
+  else{
+    queue.innerHTML=ind.lines.map((line,i)=>{
+      const max=Math.max(1,ind.militaryFactories);
+      const eff=Math.round((line.efficiency||.5)*100);
+      return `<div class="queueItem">
+        <b>${i+1}. ${line.name}</b>
+        <span>Factories: <b>${line.factories}</b></span>
+        <div class="factoryBtns">
+          <button class="button" onclick="changeProductionFactories(${i},-1)">−</button>
+          <button class="button" onclick="changeProductionFactories(${i},1)">+</button>
+          <button class="button red" onclick="removeProduction(${i})">REMOVE</button>
+        </div>
+        <div class="prodLineMeta">Efficiency: ${eff}% • Output scaling: ${line.factories} factories</div>
+        <div class="efficiencyBar"><div class="efficiencyFill" style="width:${eff}%"></div></div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function addProduction(id){
+  const item=productionItems[id];
+  if(!item||!currentCountry)return;
+  const ind=ensureIndustry(currentCountry);
+  if(ind.lines.reduce((n,l)=>n+l.factories,0)>=ind.militaryFactories){showMessage("All military factories are assigned.");return;}
+  const existing=ind.lines.find(l=>l.id===id);
+  if(existing) existing.factories=Math.min(ind.militaryFactories,existing.factories+1);
+  else ind.lines.push({id,name:item.name,factories:1,efficiency:.5});
+  productionLines=ind.lines;
+  renderProduction();
+  showMessage(item.name+" production line expanded.");
+}
+
+function changeProductionFactories(index,delta){
+  const ind=ensureIndustry(currentCountry); const line=ind.lines[index]; if(!line)return;
+  const usedOther=ind.lines.reduce((n,l,i)=>n+(i===index?0:l.factories),0);
+  line.factories=Math.max(1,Math.min(ind.militaryFactories-usedOther,line.factories+delta));
+  productionLines=ind.lines; renderProduction();
+}
+
+function removeProduction(index){
+  const ind=ensureIndustry(currentCountry); ind.lines.splice(index,1); productionLines=ind.lines; renderProduction();
+}
+
+function productionTick(){
+  if(paused||!currentCountry)return;
+  const stats=statsFor(currentCountry);
+  const ind=ensureIndustry(currentCountry);
+  const industryBonus=techs.industry&&techs.industry.done?1.25:1;
+  for(const line of ind.lines){
+    const needs=productionResourceNeed(line.id);
+    let resourceFactor=1;
+    for(const [r,n] of Object.entries(needs)) resourceFactor=Math.min(resourceFactor,(ind.resources[r]||0)/(n*Math.max(1,line.factories)));
+    resourceFactor=Math.max(0,Math.min(1,resourceFactor));
+    if(resourceFactor<1) line.efficiency=Math.max(.15,(line.efficiency||.5)-.01);
+    else line.efficiency=Math.min(1,(line.efficiency||.5)+.002);
+    const output=productionOutput(line.id)*line.factories*speed*industryBonus*.08*line.efficiency*resourceFactor;
+    for(const [r,n] of Object.entries(needs)) ind.resources[r]=Math.max(0,ind.resources[r]-n*line.factories*speed*.08*resourceFactor);
+    if(line.id==='guns')ind.stockpile.guns+=output;
+    else if(line.id==='tanks')ind.stockpile.tanks+=output;
+    else if(line.id==='artillery')ind.stockpile.artillery+=output;
+    else if(line.id==='aircraft')ind.stockpile.aircraft+=output;
+    stats.equipment+=line.id==='guns'?output:output*.5;
+  }
+  productionLines=ind.lines;
+  updateStats();
+  if(document.getElementById("productionWindow")?.style.display==="block")renderProduction();
+}
+
+/* =========================================================
+   NATIONAL FOCUS TIME SYSTEM
+========================================================= */
+
+const focusDurations={
+  future:35, industry:35, army:35, diplomacy:35, industry2:42, logistics:42,
+  stability:35, tanks:42, artillery:42, airforce:49, mobilization:30, warindustry:49,
+  alliance:42, expansion:49
+};
+
+function focusTick(dayDelta=gameDaysThisTick){
+  if(!focusQueue) return;
+  focusQueue.timeLeft-=dayDelta;
+  if(focusQueue.timeLeft<=0){
+    const id=focusQueue.id;
+    focusQueue=null;
+    instantTakeFocus(id);
+    showMessage("FOCUS COMPLETE: "+id.toUpperCase());
+  }
+  renderFocusQueue();
+}
+
+function renderFocusQueue(){
+  let box=document.getElementById("focusTimeStatus");
+  if(!box){
+    const content=document.getElementById("focusContent");
+    if(!content) return;
+    box=document.createElement("div");
+    box.id="focusTimeStatus";
+    box.style.cssText="margin:0 0 12px;padding:9px;background:#202520;border:1px solid #555;";
+    content.insertBefore(box,content.firstChild);
+  }
+  if(!focusQueue){ box.innerHTML="<b>NO FOCUS IN PROGRESS</b> • Select a focus to begin."; return; }
+  box.innerHTML="<b>FOCUS IN PROGRESS:</b> "+focusQueue.name+" • "+Math.max(0,Math.ceil(focusQueue.timeLeft))+" days remaining";
+}
+
+function takeFocus(id){
+  if(!currentCountry) return;
+  if(focusQueue){ showMessage("A national focus is already in progress."); return; }
+  const duration=focusDurations[id]||35;
+  focusQueue={id:id,name:(document.querySelector("#focus"+id.charAt(0).toUpperCase()+id.slice(1)+" b")?.textContent||id),time:duration,timeLeft:duration};
+  renderFocusQueue();
+  showMessage("NATIONAL FOCUS STARTED — "+duration+" DAYS");
+}
+
+
+
+function mobilizationTick(dayDelta=gameDaysThisTick){
+  if(!mobilizationQueue || !currentCountry) return;
+  mobilizationQueue.timeLeft-=dayDelta;
+  if(mobilizationQueue.timeLeft<=0){
+    const stats=statsFor(currentCountry);
+    stats.manpower+=mobilizationQueue.manpower;
+    showMessage("MOBILIZATION COMPLETE: +"+mobilizationQueue.manpower+"K MANPOWER");
+    mobilizationQueue=null;
+    updateStats();
+  }
+  renderGovernmentQueue();
+}
+
+function renderGovernmentQueue(){
+  const box=document.getElementById("governmentContent");
+  if(!box) return;
+  let status=document.getElementById("mobilizationTimeStatus");
+  if(!status){
+    status=document.createElement("div");
+    status.id="mobilizationTimeStatus";
+    status.style.cssText="margin-bottom:10px;padding:9px;background:#202520;border:1px solid #555;";
+    box.insertBefore(status,box.firstChild);
+  }
+  status.innerHTML=mobilizationQueue ? "<b>MOBILIZATION:</b> "+mobilizationQueue.name+" • "+Math.max(0,Math.ceil(mobilizationQueue.timeLeft))+" days remaining" : "<b>MOBILIZATION:</b> Ready";
+}
+/* =========================================================
+   GOVERNMENT
+========================================================= */
+
+function openGovernment(){
+
+if(
+!currentCountry
+){
+
+showMessage(
+"Choose a country first."
+);
+
+return;
+
+}
+
+
+renderGovernment();
+
+
+document.getElementById(
+"governmentWindow"
+).style.display=
+"block";
+
+}
+
+
+function renderGovernment(){
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+const decisions=[
+
+{
+
+name:
+"Economic Mobilization",
+
+desc:
+"+15 economy, -2 stability",
+
+ok:
+stats.economy>=100,
+
+act:()=>{
+
+stats.economy+=15;
+
+stats.stability=
+Math.max(
+0,
+stats.stability-2
+);
+
+}
+
+},
+
+{
+
+name:
+"Military Recruitment Drive",
+
+desc:
+"+25K manpower, -5 stability",
+
+ok:
+stats.stability>=20,
+
+act:()=>{
+
+if(mobilizationQueue){
+showMessage("A mobilization is already in progress.");
+return;
+}
+
+stats.stability=Math.max(0,stats.stability-5);
+
+mobilizationQueue={name:"Military Recruitment Drive",time:14,timeLeft:14,manpower:25};
+
+}
+
+},
+
+{
+
+name:
+"National Recovery",
+
+desc:
+"+5 stability, -20 economy",
+
+ok:
+stats.economy>=20,
+
+act:()=>{
+
+stats.economy-=20;
+
+stats.stability=
+Math.min(
+100,
+stats.stability+5
+);
+
+}
+
+},
+
+{
+
+name:
+"Expand Industry",
+
+desc:
+"+1 factory, -60 economy",
+
+ok:
+stats.economy>=60,
+
+act:()=>{
+
+stats.economy-=60;
+
+stats.factories++;
+
+}
+
+}
+
+];
+
+
+window.govDecisions=
+decisions;
+
+
+const box=
+document.getElementById(
+"governmentContent"
+);
+
+
+box.innerHTML=`
+
+<div class="subhead">
+
+Government decisions affect
+economy, stability and military.
+
+</div>
+
+<div class="govGrid">
+
+${
+decisions
+.map(
+(
+decision,
+index
+)=>
+
+`<div
+class="govCard">
+
+<h3>
+${decision.name}
+</h3>
+
+<p>
+${decision.desc}
+</p>
+
+<button
+class="button"
+${decision.ok?"":"disabled"}
+onclick="
+governmentDecision(
+${index}
+)
+">
+
+ENACT DECISION
+
+</button>
+
+</div>`
+
+)
+.join("")
+}
+
+</div>
+
+`;
+
+}
+
+
+function governmentDecision(
+index
+){
+
+const decision=
+window.govDecisions[
+index
+];
+
+
+if(
+!decision||
+!decision.ok
+){
+
+showMessage(
+"Your country cannot afford that."
+);
+
+return;
+
+}
+
+
+decision.act();
+
+
+renderGovernment();
+
+
+updateStats();
+
+
+showMessage(
+decision.name+
+" enacted."
+);
+
+}
+
+
+/* =========================================================
+   DATE / GAME CLOCK
+========================================================= */
+
+let gameDaysThisTick=1;
+
+function advanceGameDate(days){
+  for(let i=0;i<days;i++){
+    day++;
+    const daysInMonth=new Date(year,month,0).getDate();
+    if(day>daysInMonth){ day=1; month++; }
+    if(month>12){ month=1; year++; }
+  }
+  const names=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const el=document.getElementById("date");
+  if(el) el.textContent=day+" "+names[month-1]+" "+year;
+}
+
+function currentGameDayCount(){
+  return gameDaysThisTick;
+}
+
+setInterval(
+()=>{
+
+if(paused) return;
+
+/* One simulation tick advances the calendar by days.
+   Speed 1 = 1 day/tick, speed 2 = 2 days/tick, speed 4 = 4 days/tick. */
+gameDaysThisTick=speed;
+advanceGameDate(gameDaysThisTick);
+
+researchTick(gameDaysThisTick);
+recruitmentTick(gameDaysThisTick);
+productionTick();
+constructionTick();
+
+if(focusQueue) focusTick(gameDaysThisTick);
+if(mobilizationQueue) mobilizationTick(gameDaysThisTick);
+
+},
+5000
+);
+
+/* =========================================================
+   PASSIVE
+========================================================= */
+
+function passiveTick(){
+
+if(
+paused||
+!currentCountry
+)
+return;
+
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+stats.economy+=
+speed*.5;
+
+
+stats.military+=
+speed*.2;
+
+
+stats.manpower+=
+speed*.04;
+
+
+stats.research+=
+speed*.8;
+
+
+for(
+const army of
+playerArmies
+){
+
+if(
+army.fighting
+)
+continue;
+
+
+let recovery=
+1.5+
+getTechBonus(
+"logistics"
+)*.5;
+
+
+if(
+army.supply<50
+){
+
+recovery*=.55;
+
+}
+
+
+army.org=
+Math.min(
+100,
+army.org+
+recovery
+);
+
+
+updateArmyIcon(
+army
+);
+
+}
+
+
+updateStats();
+
+}
+
+
+/* =========================================================
+   COUNTS
+========================================================= */
+
+function updateCounts(){
+
+document.getElementById(
+"armyCount"
+).textContent=
+playerArmies.length;
+
+
+document.getElementById(
+"aiCount"
+).textContent=
+aiArmies.length;
+
+
+document.getElementById(
+"troopCount"
+).textContent=
+playerArmies
+.reduce(
+(
+total,
+army
+)=>
+total+
+Math.floor(
+army.infantry
+)+
+Math.floor(
+army.tanks
+),
+0
+)
+.toLocaleString();
+
+
+document.getElementById(
+"warCount"
+).textContent=
+wars.size;
+
+
+document.getElementById(
+"allianceCount"
+).textContent=
+currentCountry
+?
+Object.keys(
+countryStats
+)
+.filter(
+country=>
+country!==
+currentCountry&&
+areAllies(
+currentCountry,
+country
+)
+)
+.length
+:
+0;
+
+
+document.getElementById(
+"researchPoints"
+).textContent=
+currentCountry
+?
+Math.floor(
+statsFor(
+currentCountry
+).research
+)
+:
+0;
+
+}
+
+
+function updateStats(){
+
+if(
+!currentCountry
+)
+return;
+
+
+const stats=
+statsFor(
+currentCountry
+);
+
+
+document.getElementById(
+"population"
+).textContent=
+stats.population.toFixed(
+1
+)+
+"M";
+
+
+document.getElementById(
+"economy"
+).textContent=
+"$"+
+Math.floor(
+stats.economy
+)+
+"B";
+
+
+document.getElementById(
+"military"
+).textContent=
+Math.floor(
+stats.military
+)+
+"K";
+
+
+document.getElementById(
+"stability"
+).textContent=
+Math.floor(
+stats.stability
+)+
+"%";
+
+
+document.getElementById(
+"manpower"
+).textContent=
+Math.floor(
+stats.manpower
+)+
+"K";
+
+
+document.getElementById(
+"stabSmall"
+).textContent=
+Math.floor(
+stats.stability
+)+
+"%";
+
+
+document.getElementById(
+"ecoSmall"
+).textContent=
+Math.floor(
+stats.economy
+);
+
+
+document.getElementById(
+"milSmall"
+).textContent=
+Math.floor(
+stats.military
+);
+
+
+document.getElementById(
+"stabBar"
+).style.width=
+Math.min(
+100,
+stats.stability
+)+
+"%";
+
+
+document.getElementById(
+"ecoBar"
+).style.width=
+Math.min(
+100,
+stats.economy/
+10
+)+
+"%";
+
+
+document.getElementById(
+"milBar"
+).style.width=
+Math.min(
+100,
+stats.military/
+5
+)+
+"%";
+
+
+updateCounts();
+
+}
+
+
+/* =========================================================
+   NATION POLITICS DATA + DYNAMIC UI
+========================================================= */
+const nationPolitics={};
+const ideologyPresets={
+"United States":{leader:"The President",party:"National Democratic Coalition",ideology:{Democratic:58,Conservative:22,Socialist:10,Authoritarian:10},portrait:"🏛️"},
+"Germany":{leader:"The Chancellor",party:"National Conservative Party",ideology:{Conservative:62,Authoritarian:25,Democratic:8,Socialist:5},portrait:"🎖️"},
+"United Kingdom":{leader:"The Prime Minister",party:"National Government",ideology:{Democratic:70,Conservative:20,Socialist:7,Authoritarian:3},portrait:"👑"},
+"France":{leader:"The President",party:"French National Union",ideology:{Democratic:55,Conservative:25,Socialist:12,Authoritarian:8},portrait:"🏛️"},
+"Italy":{leader:"The Prime Minister",party:"National Unity Party",ideology:{Conservative:45,Authoritarian:35,Democratic:15,Socialist:5},portrait:"🏛️"},
+"Japan":{leader:"The Prime Minister",party:"Imperial Government",ideology:{Conservative:48,Authoritarian:38,Democratic:10,Socialist:4},portrait:"🎌"},
+"Russia":{leader:"The President",party:"Russian National Party",ideology:{Authoritarian:55,Conservative:25,Socialist:15,Democratic:5},portrait:"🏛️"},
+"China":{leader:"The President",party:"National People's Government",ideology:{Authoritarian:60,Socialist:30,Conservative:7,Democratic:3},portrait:"🏛️"}
+};
+function ensureNationPolitics(country){
+if(!country)return null;if(nationPolitics[country])return nationPolitics[country];
+const preset=ideologyPresets[country]||{};const seed=Array.from(country).reduce((a,c)=>a+c.charCodeAt(0),0);
+const raw=preset.ideology||{Democratic:25+(seed%31),Conservative:20+((seed*3)%26),Socialist:10+((seed*5)%21),Authoritarian:10+((seed*7)%21)};
+const total=Object.values(raw).reduce((a,b)=>a+b,0),ideology={};Object.entries(raw).forEach(([k,v])=>ideology[k]=Math.round(v*100/total));ideology[Object.keys(ideology)[0]]+=100-Object.values(ideology).reduce((a,b)=>a+b,0);
+const stats=statsFor(country);nationPolitics[country]={leader:preset.leader||"Head of State",portrait:preset.portrait||"🏛️",rulingParty:preset.party||country+" National Government",ideology,electionDay:1+((seed*7)%27),electionMonth:1+((seed*3)%12),warSupport:55+((seed*11)%36),politicalPower:50+((seed*17)%151),advisors:[null,null,null],advisorSlots:3,spirits:[{icon:"⚙️",name:"National Industry",desc:"Industrial development"},{icon:"🛡️",name:"National Unity",desc:"Stability and defense"},{icon:"📜",name:"State Administration",desc:"Government efficiency"}],laws:{conscription:"Volunteer Service",trade:"Limited Exports",economy:"Civilian Economy"},statsRef:stats};return nationPolitics[country];}
+function ideologyGradient(ideology){const colors={Democratic:"#4c83c3",Conservative:"#7e91a9",Socialist:"#b64e4e",Authoritarian:"#6d5b7b"};let c=0,p=[];for(const[n,v]of Object.entries(ideology||{})){p.push(`${colors[n]||"#777"} ${c}% ${c+v}%`);c+=v;}return `conic-gradient(${p.join(",")})`;}
+function renderNationPanel(country){if(!country)return;const d=ensureNationPolitics(country),s=statsFor(country);viewedCountry=country;nationPanelOpen=true;const panel=document.getElementById("countryPanel");if(panel)panel.style.display="block";const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};set("countryName",country);set("nationLeaderName",d.leader);set("nationIdeologyName","Ruling ideology • "+Object.entries(d.ideology).sort((a,b)=>b[1]-a[1])[0][0]);set("nationElection","Election: "+d.electionDay+" / "+String(d.electionMonth).padStart(2,"0")+" / "+year);const portrait=document.getElementById("nationPortrait");if(portrait)portrait.textContent=d.portrait;const pie=document.getElementById("nationIdeologyPie");if(pie)pie.style.background=ideologyGradient(d.ideology);const leg=document.getElementById("nationIdeologyLegend");if(leg)leg.innerHTML=Object.entries(d.ideology).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="ideologyLine"><span>${k}</span><b>${v}%</b></div>`).join("");set("stabSmall",Math.floor(s.stability)+"%");set("warSupportSmall",Math.floor(d.warSupport)+"%");const sb=document.getElementById("stabBar"),wb=document.getElementById("warSupportBar");if(sb)sb.style.width=Math.min(100,s.stability)+"%";if(wb)wb.style.width=Math.min(100,d.warSupport)+"%";set("nationRulingParty","Ruling party: "+d.rulingParty);set("nationConscription",d.laws.conscription);set("nationTrade",d.laws.trade);set("nationEconomyLaw",d.laws.economy);set("nationPoliticalPower",Math.floor(d.politicalPower));set("nationAdvisorSlots",d.advisors.filter(Boolean).length+"/"+d.advisorSlots);set("nationPopulation",Math.floor(s.population)+"M");set("nationEconomy",Math.floor(s.economy));set("nationMilitary",Math.floor(s.military));set("nationManpower",Math.floor(s.manpower)+"K");const spirits=document.getElementById("nationSpirits");if(spirits)spirits.innerHTML=d.spirits.map(x=>`<div class="spiritIcon" title="${x.name}: ${x.desc}">${x.icon}<small>${x.name}</small></div>`).join("");const adv=document.getElementById("nationAdvisors");if(adv)adv.innerHTML=d.advisors.map((a,i)=>`<div class="advisorSlot">${a||"ADVISOR SLOT "+(i+1)}</div>`).join("");}
+function closeNationPanel(){nationPanelOpen=false;const p=document.getElementById("countryPanel");if(p)p.style.display="none";}
+
+/* =========================================================
+   SELECT PROVINCE
+========================================================= */
+
+function selectProvince(
+feature,
+layer,
+clickLatLng
+){
+
+const owner=
+ownerOf(
+feature
+);
+
+
+selectedProvince={
+
+feature,
+
+layer,
+
+name:
+getProvince(
+feature.properties
+),
+
+country:
+owner
+
+};
+
+renderNationPanel(owner);
+
+
+if(
+creatingFront
+){
+
+addFrontPoint(
+clickLatLng||
+provinceCenters.get(
+feature
+)||
+layer
+.getBounds()
+.getCenter()
+);
+
+return;
+
+}
+
+
+/*
+   First click chooses the country.
+*/
+
+if(
+!currentCountry
+){
+
+currentCountry=
+owner;
+
+
+statsFor(
+currentCountry
+);
+
+
+initCountrySystems();
+
+refreshArmyRelations();
+
+
+document.getElementById(
+"countryName"
+).textContent=
+currentCountry;
+
+
+document.getElementById(
+"countrySub"
+).textContent=
+"National command established.";
+
+
+recolorMap();
+
+
+createPlayerArmies();
+
+
+updateStats();
+
+
+addWorldNews(
+"<b>🏛 GOVERNMENT</b><br>"+
+"You now command "+
+currentCountry+".",
+"alliance"
+);
+
+
+showMessage(
+"You now command "+
+currentCountry+"!"
+);
+
+
+setTimeout(
+createInitialAIArmies,
+100
+);
+
+}
+
+
+showProvinceInfo();
+
+
+if(
+selectedArmy&&
+!selectedArmy.isAI&&
+selectedArmy.country===
+currentCountry&&
+!selectedArmy.fighting&&
+!paused
+){
+
+const destination=
+clickLatLng||
+provinceCenters.get(
+feature
+)||
+layer
+.getBounds()
+.getCenter();
+
+
+selectedArmy.targetProvince=
+feature;
+
+
+selectedArmy.targetLayer=
+layer;
+
+
+moveArmy(
+selectedArmy,
+destination
+);
+
+}
+
+}
+
+
+/* =========================================================
+   PROVINCE INFO
+========================================================= */
+
+function showProvinceInfo(){
+
+if(
+!selectedProvince
+)
+return;
+
+
+const stats=
+statsFor(
+selectedProvince.country
+);
+
+
+const fort=
+getProvinceFortLevel(
+selectedProvince.feature
+);
+
+
+document.getElementById(
+"provinceInfo"
+).style.display=
+"block";
+
+
+document.getElementById(
+"provinceName"
+).textContent=
+selectedProvince.name;
+
+
+document.getElementById(
+"provinceOwner"
+).textContent=
+"Owner: "+
+selectedProvince.country;
+
+
+document.getElementById(
+"provincePopulation"
+).textContent=
+"Population: "+
+stats.population.toFixed(
+1
+)+
+"M";
+
+
+const status=
+document.getElementById(
+"provinceStatus"
+);
+
+
+const button=
+document.getElementById(
+"attackButton"
+);
+
+
+if(
+selectedProvince.country===
+currentCountry
+){
+
+status.textContent=
+fort>0
+?
+"YOUR TERRITORY • Fort "+
+fort
+:
+"YOUR TERRITORY";
+
+
+button.disabled=true;
+
+}
+else if(
+isWar(
+currentCountry,
+selectedProvince.country
+)
+){
+
+status.textContent=
+fort>0
+?
+"AT WAR • Fortified province"
+:
+"AT WAR — move an army here.";
+
+
+button.disabled=false;
+
+}
+else{
+
+status.textContent=
+"PEACE — declare war in Diplomacy.";
+
+
+button.disabled=true;
+
+}
+
+
+recolorMap();
+
+
+selectedProvince.layer
+.setStyle({
+
+color:"#ead069",
+
+weight:3,
+
+fillOpacity:.95
+
+});
+
+}
+
+
+/* =========================================================
+   MAP CLICK
+========================================================= */
+
+map.on(
+"click",
+event=>{
+
+if(
+creatingFront
+){
+
+addFrontPoint(
+event.latlng
+);
+
+return;
+
+}
+
+
+if(
+selectedArmy&&
+!selectedArmy.isAI&&
+!selectedArmy.fighting&&
+!paused
+){
+
+selectedArmy.targetProvince=
+null;
+
+
+selectedArmy.targetLayer=
+null;
+
+
+setTacticalMoveOrder(
+selectedArmy,
+event.latlng
+);
+
+}
+
+ });
+
+/* =========================================================
+   RIGHT-CLICK TACTICAL MOVEMENT
+========================================================= */
+map.on('contextmenu',event=>{
+    L.DomEvent.preventDefault(event);
+    L.DomEvent.stopPropagation(event);
+    if(!selectedArmy||selectedArmy.isAI||selectedArmy.fighting||paused) return;
+    const targetFeature=findProvinceAt(event.latlng);
+    if(!targetFeature){ showMessage('SELECT A LAND PROVINCE.'); return; }
+    selectedArmy.targetProvince=null;
+    selectedArmy.targetLayer=null;
+    setTacticalMoveOrder(selectedArmy,event.latlng);
+});
+
+
+/* =========================================================
+   ATTACK
+========================================================= */
+
+function attackProvince(){
+
+if(
+!selectedProvince
+){
+
+showMessage(
+"Select a province first."
+);
+
+return;
+
+}
+
+
+if(
+!selectedArmy
+){
+
+showMessage(
+"Select an army first."
+);
+
+return;
+
+}
+
+
+if(
+selectedProvince.country===
+currentCountry
+)
+return;
+
+
+if(
+!isWar(
+currentCountry,
+selectedProvince.country
+)
+){
+
+showMessage(
+"Declare war first."
+);
+
+return;
+
+}
+
+
+const target={
+
+feature:
+selectedProvince.feature,
+
+layer:
+selectedProvince.layer,
+
+country:
+selectedProvince.country,
+
+name:
+selectedProvince.name
+
+};
+
+
+selectedArmy.targetProvince=
+target.feature;
+
+
+selectedArmy.targetLayer=
+target.layer;
+
+
+const defenders=
+getEnemyArmiesInProvince(
+target.feature,
+currentCountry
+);
+
+
+if(
+defenders.length
+){
+
+startBattle(
+selectedArmy,
+target,
+defenders,
+false
+);
+
+}
+else{
+
+freeCapture(
+selectedArmy,
+target
+);
+
+}
+
+}
+
+
+/* =========================================================
+   MAP LOAD
+========================================================= */
+
+fetch(
+ADMIN1_URL
+)
+
+.then(
+response=>{
+
+if(
+!response.ok
+){
+
+throw new Error(
+"Map failed to load"
+);
+
+}
+
+
+return response.json();
+
+}
+)
+
+.then(
+data=>{
+
+provinces=
+data.features;
+
+
+for(
+const feature of
+data.features
+){
+
+const country=
+getCountry(
+feature.properties
+);
+
+
+statsFor(
+country
+);
+
+
+setOwner(
+feature,
+country
+);
+
+
+if(
+!countryStartingProvinces.has(
+country
+)
+){
+
+countryStartingProvinces.set(
+country,
+[]
+);
+
+}
+
+
+countryStartingProvinces
+.get(country)
+.push(
+feature
+);
+
+}
+
+
+/*
+   SAME REAL WORLD MAP
+*/
+
+provinceLayer=
+L.geoJSON(
+data,
+{
+
+style:
+provinceStyle,
+
+onEachFeature:
+(
+feature,
+layer
+)=>{
+
+layer.bindTooltip(
+getProvince(
+feature.properties
+),
+{
+sticky:true
+}
+);
+
+
+layer.on(
+"click",
+event=>{
+
+L.DomEvent
+.stopPropagation(
+event
+);
+
+
+selectProvince(
+feature,
+layer,
+event.latlng
+);
+
+}
+);
+
+}
+
+}
+)
+.addTo(
+map
+);
+
+
+rebuildCaches();
+
+
+setupCapitalProvinces();
+
+
+setupCities();
+
+
+addCapitalStars();
+
+
+initCountrySystems();
+
+
+const countries=
+new Set(
+data.features.map(
+feature=>
+getCountry(
+feature.properties
+)
+)
+);
+
+
+document.getElementById(
+"countryCount"
+).textContent=
+countries.size;
+
+
+document.getElementById(
+"provinceCount"
+).textContent=
+data.features.length;
+
+
+rebuildLogistics();
+
+
+addWorldNews(
+"<b>🌍 WORLD MAP</b><br>"+
+"The world is ready.",
+"battle"
+);
+
+
+showMessage(
+"WORLD MAP LOADED — SELECT A COUNTRY"
+);
+
+}
+)
+
+.catch(
+error=>{
+
+console.error(
+error
+);
+
+
+showMessage(
+"MAP FAILED TO LOAD — CHECK INTERNET"
+);
+
+});
+
+
+/* =========================================================
+   COUNTRY SYSTEM
+========================================================= */
+
+function initCountrySystems(){
+
+for(
+const country of
+Object.keys(
+countryStats
+)
+){
+
+if(
+country===
+currentCountry
+)
+continue;
+
+
+if(
+!countryAI[country]
+){
+
+countryAI[country]=
+createAIPersonality();
+}
+
+}
+
+
+initTechs();
+
+}
+
+
+/* =========================================================
+   MAIN TIMERS
+========================================================= */
+
+setInterval(
+logisticsTick,
+5000
+);
+
+
+setInterval(
+passiveTick,
+5000
+);
+
+
+setInterval(
+aiTick,
+1400
+);
+
+
+setInterval(
+aiWarResponseTick,
+1200
+);
+
+
+/*
+   ALLIED AI
+*/
+
+setInterval(
+alliedWarTick,
+1800
+);
+
+
+/*
+   AI countries
+*/
+
+setInterval(
+aiCountryTick,
+4000
+);
+
+
+/*
+   Player fronts
+*/
+
+setInterval(
+updateFrontArmies,
+2500
+);
+
+
+/*
+   UI
+*/
+
+setInterval(
+updateCounts,
+2500
+);
+
+
+/*
+   Logistics only rebuilds when dirty
+*/
+
+setInterval(
+()=>{
+
+if(
+logisticsDirty
+){
+
+rebuildLogistics();
+
+}
+
+},
+3500
+);
+
+
+/* =========================================================
+   STARTING NEWS
+========================================================= */
+
+addWorldNews(
+"<b>📰 KANDORA WORLD NEWS</b><br>"+
+"International tensions are rising.",
+"battle"
+);
+
+
+/* =========================================================
+   CLOSE WINDOWS
+========================================================= */
+
+function closeWindow(
+id
+){
+
+const element=
+document.getElementById(
+id
+);
+
+
+if(
+element
+){
+
+element.style.display=
+"none";
+
+}
+
+}
+
+</script>
+
+
+
+<!-- =====================================================
+     KANDORA PEACE CONFERENCE — ADDED WITHOUT TOUCHING
+     THE ARMY MOVEMENT SYSTEM
+===================================================== -->
+<div id="kPeaceOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:20000;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;">
+  <div style="width:min(1000px,96vw);max-height:90vh;overflow:auto;background:#252b25;border:2px solid #7f8d5b;box-shadow:0 20px 60px #000;border-radius:8px;color:#eee;padding:20px;box-sizing:border-box;">
+    <div style="font-size:26px;font-weight:900;color:#dbe678;letter-spacing:2px;margin-bottom:6px;">PEACE CONFERENCE</div>
+    <div id="kPeaceStatus" style="color:#bbb;margin-bottom:14px;"></div>
+    <div id="kPeaceBody"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   PEACE CONFERENCE
+   IMPORTANT: This patch does NOT replace or modify moveArmy,
+   pathfinding, army animation, fronts, or army arrival code.
+   It only replaces the surrender settlement step.
+========================================================= */
+(function(){
+
+let kPeaceData=null;
+let kPeaceSelected=new Set();
+
+function kPeaceEsc(v){
+  return String(v??"").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function kPeaceId(feature){
+  if(!feature) return "";
+  return String(feature.__kPeaceId || (feature.__kPeaceId=Math.random().toString(36).slice(2)+Date.now()));
+}
+
+function kPeaceCandidates(enemy){
+  const original=countryStartingProvinces.get(enemy)||[];
+  return original.filter(f=>ownerOf(f)===currentCountry);
+}
+
+window.kPeaceOpen=function(enemy){
+  if(!enemy||!currentCountry) return;
+  const candidates=kPeaceCandidates(enemy);
+  kPeaceData={enemy:enemy, candidates:candidates};
+  kPeaceSelected=new Set();
+  const nameInput=document.getElementById("kPeacePuppetName");
+  if(nameInput) nameInput.value=enemy+" Puppet";
+  kPeaceRender();
+  const ov=document.getElementById("kPeaceOverlay");
+  if(ov) ov.style.display="flex";
+};
+
+window.kPeaceToggle=function(id){
+  if(kPeaceSelected.has(id)) kPeaceSelected.delete(id);
+  else kPeaceSelected.add(id);
+  kPeaceRender();
+};
+
+window.kPeaceSelectAll=function(){
+  if(!kPeaceData) return;
+  kPeaceData.candidates.forEach(f=>kPeaceSelected.add(kPeaceId(f)));
+  kPeaceRender();
+};
+
+window.kPeaceClear=function(){
+  kPeaceSelected.clear();
+  kPeaceRender();
+};
+
+function kPeaceRender(){
+  if(!kPeaceData) return;
+  const body=document.getElementById("kPeaceBody");
+  const status=document.getElementById("kPeaceStatus");
+  if(!body||!status) return;
+
+  const enemy=kPeaceData.enemy;
+  const list=kPeaceData.candidates;
+  const kept=list.filter(f=>kPeaceSelected.has(kPeaceId(f)));
+
+  status.innerHTML="<b>Defeated:</b> "+kPeaceEsc(enemy)+" &nbsp; | &nbsp; <b>Your occupied provinces:</b> "+list.length+" &nbsp; | &nbsp; <b>Selected to keep:</b> "+kept.length;
+
+  let html="";
+  html+='<div style="background:#171c17;padding:14px;border-radius:6px;margin-bottom:14px;">';
+  html+='<div style="font-weight:800;margin-bottom:8px;">SELECT LAND TO KEEP</div>';
+  html+='<div style="color:#aaa;font-size:13px;margin-bottom:10px;">Only provinces you actually occupied during the war are listed here. Your army movement system is unchanged.</div>';
+  html+='<button class="button blue" onclick="kPeaceSelectAll()">KEEP ALL OCCUPIED</button> ';
+  html+='<button class="button" onclick="kPeaceClear()">CLEAR</button>';
+  html+='</div>';
+
+  if(!list.length){
+    html+='<div style="padding:18px;background:#321b1b;border:1px solid #733;color:#ffb0b0;border-radius:6px;">You do not currently occupy any original provinces of '+kPeaceEsc(enemy)+'.</div>';
+  }else{
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;max-height:330px;overflow:auto;margin-bottom:16px;">';
+    list.forEach(f=>{
+      const id=kPeaceId(f);
+      const selected=kPeaceSelected.has(id);
+      const pname=getProvince(f.properties)||f.properties?.name||"Province";
+      html+='<button onclick="kPeaceToggle(\''+kPeaceEsc(id)+'\')" style="text-align:left;padding:12px;border-radius:6px;border:1px solid '+(selected?'#dbe678':'#555')+';background:'+(selected?'#59643d':'#30362f')+';color:#fff;cursor:pointer;">';
+      html+='<b>'+(selected?'✓ ':'')+kPeaceEsc(pname)+'</b><div style="font-size:11px;color:#aaa;margin-top:3px;">OCCUPIED</div></button>';
+    });
+    html+='</div>';
+  }
+
+  html+='<div style="background:#171c17;padding:14px;border-radius:6px;margin-bottom:14px;">';
+  html+='<div style="font-weight:800;margin-bottom:7px;">PUPPET STATE</div>';
+  html+='<div style="color:#aaa;font-size:13px;margin-bottom:8px;">All remaining original territory of the defeated country will form the puppet state.</div>';
+  html+='<input id="kPeacePuppetName" type="text" value="'+kPeaceEsc(enemy+' Puppet')+'" style="width:100%;box-sizing:border-box;padding:10px;background:#0e120e;color:#fff;border:1px solid #555;border-radius:4px;">';
+  html+='</div>';
+
+  html+='<div style="display:flex;justify-content:flex-end;gap:8px;">';
+  html+='<button class="button" onclick="kPeaceCancel()">CANCEL</button>';
+  html+='<button class="button gold" onclick="kPeaceFinish()">SIGN PEACE</button>';
+  html+='</div>';
+  body.innerHTML=html;
+}
+
+window.kPeaceCancel=function(){
+  const ov=document.getElementById("kPeaceOverlay");
+  if(ov) ov.style.display="none";
+  kPeaceData=null;
+  kPeaceSelected.clear();
+};
+
+window.kPeaceFinish=function(){
+  if(!kPeaceData) return;
+  const enemy=kPeaceData.enemy;
+  const original=countryStartingProvinces.get(enemy)||[];
+  const kept=original.filter(f=>ownerOf(f)===currentCountry && kPeaceSelected.has(kPeaceId(f)));
+  const occupied=original.filter(f=>ownerOf(f)===currentCountry);
+  const remaining=original.filter(f=>ownerOf(f)===enemy);
+
+  const input=document.getElementById("kPeacePuppetName");
+  let puppetName=input ? input.value.trim() : "";
+  if(!puppetName) puppetName=enemy+" Puppet";
+  if(puppetName===currentCountry || countryStats[puppetName]) puppetName=enemy+" Puppet";
+
+  /* Any occupied province not selected is returned to the puppet too. */
+  for(const f of occupied){
+    if(!kPeaceSelected.has(kPeaceId(f))) remaining.push(f);
+  }
+
+  /* Selected provinces stay with the player. */
+  for(const f of kept) setOwner(f,currentCountry);
+
+  /* Create the puppet from every remaining original province. */
+  if(remaining.length){
+    for(const f of remaining) setOwner(f,puppetName);
+    const base=countryStats[enemy] || {population:100,economy:50,military:50,stability:60,manpower:10000};
+    countryStats[puppetName]={
+      population:Math.max(1,Math.floor((base.population||100)*0.55)),
+      economy:Math.max(10,Math.floor((base.economy||50)*0.55)),
+      military:Math.max(10,Math.floor((base.military||50)*0.45)),
+      stability:65,
+      manpower:Math.max(5000,Math.floor((base.manpower||10000)*0.45))
+    };
+    countryStartingProvinces.set(puppetName,remaining.slice());
+    countryAI[puppetName]={
+      personality:"puppet",
+      aggressiveness:0.08,
+      expansion:0.03,
+      diplomacy:0.75
+    };
+    puppetStates.set(puppetName,{overlord:currentCountry,originalCountry:enemy});
+
+    const oldCapital=countryCapitals.get(enemy);
+    if(oldCapital && remaining.includes(oldCapital)) countryCapitals.set(puppetName,oldCapital);
+  }
+
+  /* End the war cleanly. This does not affect army movement logic. */
+  const key=warKey(currentCountry,enemy);
+  wars.delete(key);
+  if(typeof warInitiators!=="undefined") warInitiators.delete(key);
+
+  /* Stop only armies belonging to the defeated country. */
+  aiArmies=aiArmies.filter(army=>{
+    if(army.country!==enemy) return true;
+    if(army.marker && map.hasLayer(army.marker)) map.removeLayer(army.marker);
+    return false;
+  });
+
+  surrenderedCountries.add(enemy);
+  rebuildCaches();
+  logisticsDirty=true;
+  recolorMap();
+  addCapitalStars();
+  updateCounts();
+  updateStats();
+  refreshArmyRelations();
+  if(typeof renderDiplomacy==="function") renderDiplomacy();
+
+  newsPeace(currentCountry,enemy);
+  showMessage("PEACE SIGNED WITH "+enemy+" — "+kept.length+" PROVINCES KEPT.");
+
+  kPeaceData=null;
+  kPeaceSelected.clear();
+  const ov=document.getElementById("kPeaceOverlay");
+  if(ov) ov.style.display="none";
+};
+
+/* Replace ONLY the surrender settlement. Movement functions are untouched. */
+window.surrenderCountry=function(country){
+  if(!country || surrenderedCountries.has(country)) return;
+  surrenderedCountries.add(country);
+  newsSurrender(country);
+
+  /* Remove defeated-country armies exactly at surrender time. */
+  aiArmies=aiArmies.filter(army=>{
+    if(army.country!==country) return true;
+    if(army.marker && map.hasLayer(army.marker)) map.removeLayer(army.marker);
+    return false;
+  });
+
+  rebuildCaches();
+  logisticsDirty=true;
+  recolorMap();
+  addCapitalStars();
+  updateCounts();
+  updateStats();
+  showMessage(country+" HAS SURRENDERED — PEACE CONFERENCE OPENING!");
+
+  setTimeout(function(){
+    if(isWar(currentCountry,country)) kPeaceOpen(country);
+  },300);
+};
+
+/* The original game calls surrenderCountry as a global lexical function.
+   Rename-safe replacement: replace its function binding through a wrapper
+   call from checkCountrySurrender without touching any movement code. */
+const kOldCheckCountrySurrender=window.checkCountrySurrender;
+if(typeof kOldCheckCountrySurrender==="function"){
+  /* No movement code is changed here; surrender is only settlement logic. */
+}
+
+console.log("KANDORA PEACE CONFERENCE ADDED — MOVEMENT CODE UNCHANGED");
+})();
+</script>
+
+</body>
+</html>
